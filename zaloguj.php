@@ -8,35 +8,27 @@
 	$polaczenie = @new mysqli($host, $db_user,$db_password, $db_name); //@ operator kontroli bledow
 	if($polaczenie->connect_errno!=0){
 		echo "Error: ".$polaczenie->connect_errno;
-	}//Wykona się jesli zajdzie blad 
+	}
 	else{
 			$login = $_POST['login'];
 			$haslo = $_POST['haslo'];
 			$login = htmlentities($login, ENT_QUOTES, "UTF-8"); 
-			
-		/*$zapytanieII="SELECT AVG(kwota) FROM uzytkownicy WHERE (ilosc_dzieci, woj, szkola) in (SELECT ilosc_dzieci, woj, szkola FROM uzytkownicy WHERE login='$login')";
-		$zapytanieIII="SELECT AVG(kwota) FROM uzytkownicy WHERE (woj, szkola) in (SELECT woj, szkola FROM uzytkownicy WHERE login='$login')";
-		$zapytanieIV="SELECT AVG(kwota) FROM uzytkownicy WHERE (woj, ilosc_dzieci) in (SELECT woj, ilosc_dzieci FROM uzytkownicy WHERE login='$login')";*/
-			
+			$zapytanieII="SELECT kwota FROM kwota k INNER JOIN dziecko d ON d.ID_dziecko=k.ID_dziecko INNER JOIN uzytkownicy u ON d.ID_user=u.ID_user WHERE Nick='$login'";
 		if	($rezultat = @$polaczenie->query(sprintf("SELECT * FROM uzytkownicy WHERE Nick='%s'",
 		mysqli_real_escape_string($polaczenie, $login)))){
 			$ilu_userow = $rezultat->num_rows; 						//ile uzytkownikow  o podanym log i hasl ilosc wierszy
-			$rezultatII = @$polaczenie->query($zapytanieII);
-			$rezultatIII = @$polaczenie->query($zapytanieIII);
-			$rezultatIV = @$polaczenie->query($zapytanieIV);
-			if($ilu_userow>0){
+					if($ilu_userow>0){
 					$wiersz = $rezultat->fetch_assoc();
-					
 					if(password_verify($haslo, $wiersz['Haslo'])){
-						$_SESSION['login']=$wiersz['login']; //NOWE
-						$_SESSION['zalogowany']=true;
 						
-					/*	$wierszII = $rezultatII->fetch_assoc();
-						$wierszIII = $rezultatIII->fetch_assoc();
-						$wierszIV = $rezultatIV->fetch_assoc();
-							$_SESSION['AVG(kwota)'] = $wierszII['AVG(kwota)'];
-							$_SESSION['AVG(kwota)2'] = $wierszIII['AVG(kwota)'];
-							$_SESSION['AVG(kwota)3'] = $wierszIV['AVG(kwota)'];*/
+						$rezultatII = @$polaczenie->query($zapytanieII);
+						$wierszII = $rezultatII->fetch_assoc();
+						$_SESSION['kwota'] = $wierszII['kwota']; #!!!!!!!!!
+						
+						$_SESSION['Nick']=$wiersz['Nick']; 		  #!!!!!!!!!
+						
+						
+						$_SESSION['zalogowany']=true;
 						unset($_SESSION['blad']);
 						$rezultat->free_result();
 						header('Location: konto.php');

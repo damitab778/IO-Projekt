@@ -32,31 +32,24 @@
 		mysqli_report(MYSQLI_REPORT_STRICT);
 		try{
 				$polaczenie = new mysqli($host, $db_user, $db_password, $db_name); 
-					/*$zapytanieII="SELECT AVG(kwota) FROM uzytkownicy WHERE (ilosc_dzieci, woj, szkola) in (SELECT ilosc_dzieci, woj, szkola FROM uzytkownicy WHERE login='$nick')";
-					$zapytanieIII="SELECT AVG(kwota) FROM uzytkownicy WHERE (woj, szkola) in (SELECT woj, szkola FROM uzytkownicy WHERE login='$nick')";
-					$zapytanieIV="SELECT AVG(kwota) FROM uzytkownicy WHERE (woj, ilosc_dzieci) in (SELECT woj, ilosc_dzieci FROM uzytkownicy WHERE login='$nick')";*/
-		
-					if($polaczenie->connect_errno!=0){
-					throw new Exception(mysqli_connect_errno());
-				}
-				else{
+				
+				
+			if($polaczenie->connect_errno!=0){
+				throw new Exception(mysqli_connect_errno());
+		}
+			else{
 					//czy login juz istnieje
-					$rezultat=$polaczenie->query("SELECT ID_user FROM uzytkownicy WHERE login='$nick'");
-					if(!$rezultat) throw new Exception($polaczenie->error);
+				$rezultat=$polaczenie->query("SELECT ID_user FROM uzytkownicy WHERE Nick='$nick'");
+				if(!$rezultat) throw new Exception($polaczenie->error);
 			
 			//wsio ok			
 			if($wszystko_OK==true){
-				if($polaczenie->query("UPDATE uzytkownicy SET ilosc_dzieci='$iledzieci', woj='$woj', szkola='$szkola', kwota='$kwota' WHERE login='$nick'")){
+				
+				if($polaczenie->query("UPDATE uzytkownicy SET ilosc_dzieci='$iledzieci', woj='$woj', szkola='$szkola', kwota='$kwota' WHERE login='$nick'")){										/////DO ZROBIENIA
 					echo'<script> alert("Aktualizacja udała się")</script>';
-						/*$rezultatII = @$polaczenie->query($zapytanieII);
-						$rezultatIII = @$polaczenie->query($zapytanieIII);
-						$rezultatIV = @$polaczenie->query($zapytanieIV);
-							$wierszIV = $rezultatIV->fetch_assoc();
-							$wierszIII = $rezultatIII->fetch_assoc();
+						$rezultatII = @$polaczenie->query($zapytanieII);
 							$wierszII = $rezultatII->fetch_assoc();
-								$_SESSION['AVG(kwota)3'] = $wierszIV['AVG(kwota)'];
-								$_SESSION['AVG(kwota)2'] = $wierszIII['AVG(kwota)'];
-								$_SESSION['AVG(kwota)'] = $wierszII['AVG(kwota)'];*/
+								$_SESSION['kwota'] = $wierszII['kwota'];
 				}
 			else{
 				throw new Exception($polaczenie->error);
@@ -65,7 +58,7 @@
 					$polaczenie->close();
 	}}
 		catch(Exception $wyjatek){
-			echo '<script>alert("Wyebao serwera, nie powiem kiedy bd dzialal, elo")</script>';
+			echo '<script>alert("Problem z serwerem, spróbuj później.")</script>';
 			echo '<br />Info dev: '.$wyjatek;
 		}}
 ?>
@@ -74,20 +67,19 @@
 <head>
 	<meta charset="utf-8">
 	
-	<script type="text/javascript">
+	<!--<script type="text/javascript">
     function chrum () { document.getElementById('play').play(); }
 	</script>
 	<audio id="play" src="swinka.mp3"></audio>
-
+	-->
 </head>
 <body onload="chrum ();">
 <a href="wyloguj.php"><input type="button" value="Wyloguj"></a></br>
-<?php   echo"dziala wrzucanie na baze, wyswietlanie ogarne jutro";
-	/*
+<?php  
+	
 	echo"<b>Witaj: </b>".$_SESSION['Nick']."<br>";
-	echo"<b>Wysokość kieszonkowego(Wszystkie warunki)</b>: ".$_SESSION['AVG(kwota)']."<br>";
-	echo"<b>Wysokość kieszonkowego(Woj, Szkoła)</b>: ".$_SESSION['AVG(kwota)2']."<br>";
-	echo"<b>Wysokość kieszonkowego(Woj, liczba dzieci)</b>: ".$_SESSION['AVG(kwota)3']."<br";*/
+	echo"<b>Twoja propozycja kwoty</b>: ".$_SESSION['kwota']."<br>";
+
 ?>
 
 <br><br><input type="button" value="zaktualizuj dane" id="klawisz" onClick="document.getElementById('ukryty').style.display='block';">

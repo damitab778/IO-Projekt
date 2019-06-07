@@ -49,11 +49,8 @@
 		
 		try{
 				$polaczenie = new mysqli($host, $db_user, $db_password, $db_name); 
-					$zapytanieII="SELECT * FROM uzytkownicy WHERE Nick='$nick'";
+				$zapytanieII="SELECT * FROM uzytkownicy WHERE Nick='$nick'";
 					
-					/*$zapytanieIII="SELECT AVG(kwota) FROM uzytkownicy WHERE (woj, szkola) in (SELECT woj, szkola FROM uzytkownicy WHERE login='$nick')";
-					$zapytanieIV="SELECT AVG(kwota) FROM uzytkownicy WHERE (woj, ilosc_dzieci) in (SELECT woj, ilosc_dzieci FROM uzytkownicy WHERE login='$nick')";*/
-		
 				if($polaczenie->connect_errno!=0){
 					throw new Exception(mysqli_connect_errno());
 				}
@@ -71,11 +68,11 @@
 			if($wszystko_OK==true){
 			
 			
-			////Petla za duzego switcha ale cos nie dziala///
+			/*////Petla za duzego switcha ale cos nie dziala///
 				for($i=1;$i<=$iledzieci;$i++){
 				$kwota[$i]=$_POST["kwota.'$i'"]; // <- problem 
 				$szkola[$i]=$_POST["szkola.'$i'"];
-				}
+				}*/
 					
 					$IDusera=$polaczenie->query("SELECT ID_user FROM uzytkownicy ORDER BY ID_user DESC");
 					$wiersze = $IDusera->fetch_assoc();
