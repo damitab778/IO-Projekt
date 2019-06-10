@@ -5,24 +5,15 @@
 	}
 	if(isset($_POST['liczba'])){
 		//udana walidacja
-		$wszystko_OK=true;
-		
-		//Ilosc dzieci
+			$wszystko_OK=true;
 			$iledzieci=$_POST['liczba'];
+			$woj=$_POST['woj'];
+			$nick=$_SESSION['Nick'];
+			
 		if(!is_numeric($iledzieci)){
 			$wszystko_OK=false;
 			$_SESSION['e_ldzieci']="Podaj liczbe dzieci wpisując odpowiedni numer!";	
 			}
-			
-			if($iledzieci==0){
-			$wszystko_OK=false;
-			$_SESSION['e_ldzieci']="Strona przeznaczona, dla opiekunów z dziecmi!";	
-			}
-			
-			$kwota=$_POST['kwota'];
-			$szkola=$_POST['szkola'];
-			$woj=$_POST['woj'];
-			$nick=$_SESSION['login'];
 			
 			if(!isset($_POST['regulamin'])){
 			$wszystko=false;
@@ -31,9 +22,8 @@
 		require_once "connect.php";
 		mysqli_report(MYSQLI_REPORT_STRICT);
 		try{
-				$polaczenie = new mysqli($host, $db_user, $db_password, $db_name); 
-				
-				
+			$polaczenie = new mysqli($host, $db_user, $db_password, $db_name); 
+
 			if($polaczenie->connect_errno!=0){
 				throw new Exception(mysqli_connect_errno());
 		}
@@ -45,11 +35,74 @@
 			//wsio ok			
 			if($wszystko_OK==true){
 				
-				if($polaczenie->query("UPDATE uzytkownicy SET ilosc_dzieci='$iledzieci', woj='$woj', szkola='$szkola', kwota='$kwota' WHERE login='$nick'")){										/////DO ZROBIENIA
-					echo'<script> alert("Aktualizacja udała się")</script>';
+				switch($woj){
+				case "dolnoślaskie":
+				$idwojew=1;
+				break;
+				case "kujawsko-pomorskie":
+				$idwojew=2;
+				break;
+				case "małopolskie":
+				$idwojew=3;
+				break;
+				case "łódzkie":
+				$idwojew=4;
+				break;
+				case "wielkopolskie":
+				$idwojew=5;
+				break;
+				case "lubelskie":
+				$idwojew=6;
+				break;
+				case "lubuskie":
+				$idwojew=7;
+				break;
+				case "mazowieckie":
+				$idwojew=8;
+				break;
+				case "opolskie":
+				$idwojew=9;
+				break;
+				case "podlaskie":
+				$idwojew=10;
+				break;
+				case "pomorskie":
+				$idwojew=11;
+				break;
+				case "śląskie":
+				$idwojew=12;
+				break;
+				case "podkarpackie":
+				$idwojew=13;
+				break;
+				case "świętokrzyskie":
+				$idwojew=14;
+				break;
+				case "warmińsko-mazurskie":
+				$idwojew=15;
+				break;
+				case "zachodniopomorskie":
+				$idwojew=16;
+				break;
+				}
+				
+				
+				for($i=1;$i<=$iledzieci;$i++){
+				$j=$i-1;
+				$kwota[$i]=$_POST['kwota'.$j]; 
+				$szkola[$i]=$_POST["szkola".$j];
+				}
+				
+				if($polaczenie->query("UPDATE uzytkownicy SET Liczba_dzieci='$iledzieci', ID_woj='$idwojew' WHERE Nick='$nick'")){
+					for($i=1; $i<=$iledzieci; $i++){
+					($polaczenie->query("UPDATE szkola SET  szkola='$szkola[$i]' WHERE ID_dziecko=85"))&&   //NA SZTYWNO ID TRZA POMYSLEC 
+					($polaczenie->query("UPDATE kwota SET kwota='$kwota[$i]' WHERE ID_dziecko=85"));
+				}
+						echo'<script> alert("Aktualizacja udała się")</script>';
+						$zapytanieII="SELECT kwota FROM kwota k INNER JOIN dziecko d ON d.ID_dziecko=k.ID_dziecko INNER JOIN uzytkownicy u ON d.ID_user=u.ID_user WHERE Nick='$nick'";
 						$rezultatII = @$polaczenie->query($zapytanieII);
-							$wierszII = $rezultatII->fetch_assoc();
-								$_SESSION['kwota'] = $wierszII['kwota'];
+						$wierszII = $rezultatII->fetch_assoc();
+						$_SESSION['kwota'] = $wierszII['kwota'];  //Wyświetla się gówno, tzn ostatni rekord z tablicy z selecta, trza pomyśleć
 				}
 			else{
 				throw new Exception($polaczenie->error);
@@ -73,13 +126,15 @@
 	<audio id="play" src="swinka.mp3"></audio>
 	-->
 </head>
-<body onload="chrum ();">
+<!--<body onload="chrum ();">-->
 <a href="wyloguj.php"><input type="button" value="Wyloguj"></a></br>
 <?php  
 	
 	echo"<b>Witaj: </b>".$_SESSION['Nick']."<br>";
 	echo"<b>Twoja propozycja kwoty</b>: ".$_SESSION['kwota']."<br>";
+	echo"<b>Ile dzieci</b>: ".$_SESSION['Iledzieci']."<br>";
 
+	
 ?>
 
 <br><br><input type="button" value="zaktualizuj dane" id="klawisz" onClick="document.getElementById('ukryty').style.display='block';">
@@ -88,8 +143,10 @@
 <form method="post">
 <table id="tabela">
 <tr>
-	<td>Ile dzieci:</td><td>
-		<select name="liczba">
+	<td>Ile dzieci:</td>
+	<td>
+		<select class="custom-select" name="liczba" id="ld"  onchange="ilebachorow2()">
+		<option>Wybierz</option>
 		<option>1</option>
 		<option>2</option>
 		<option>3</option>
@@ -101,11 +158,20 @@
 		<option>9</option>
 		<option>Za dużo</option>
 		</select>
+		<td>
+		<?php
+							if (isset($_SESSION['e_ldzieci']))
+							{
+								echo '<div class="error">'.$_SESSION['e_ldzieci'].'</div>';
+								unset($_SESSION['e_ldzieci']);
+							}
+						?></td>
+		</td>
 		</td>
 </tr>
 <tr>
 	<td>Województwo:</td><td>
-		<select name="woj" style="width:173px">
+		<select class="custom-select" name="woj">
 		<option>dolnoślaskie</option>
 		<option>kujawsko-pomorskie</option>
 		<option>lubelskie</option>
@@ -126,33 +192,22 @@
 		</td>
 </tr>
 <tr>
-	<td>Szkoła dziecka:</td><td>
-		<select name="szkola" style="width:173px">
-		<option>Podstawówka</option>
-		<option>Gimnazjum</option>
-		<option>Liceum lub Technikum</option>
-		<option>Szkoła wyższa</option></select>
-		</td>
+<td><div id="wynik2"></div></td>		
 </tr>
-<tr>
-	<td>Kwota:</td><td>
-		<select name="kwota" style="width:173px">
-	<option>0</option>
-	<option>10</option>
-	<option>20</option>
-	<option>40</option>
-	<option>60</option>
-	<option>80</option>
-	<option>100</option>
-	<option>110</option></select>
-</td><td><?php
-			if (isset($_SESSION['e_kwota']))
-			{
-					echo '<script>alert("Nie ucinaj dzieciakowi kieszonkowego plz // psst: i tak nie pozwole")</script>';
-				unset($_SESSION['e_kwota']);
-			}
-		?></td>
-</tr>
+	<script type="text/javascript">
+				function ilebachorow2(){
+				var liczba = document.getElementById("ld").value;
+				var tekst="";
+					if(liczba>0){
+						for(i=0;i<liczba;i++){
+						tekst+='Dziecko '+(i+1)+'. Szkoła: <select class="custom-select" name="szkola'+i+'"><option>Podstawówka</option><option>Gimnazjum</option><option>Liceum lub Technikum</option><option>Szkoła wyższa</option></td><td></select>Kwota: <select class="custom-select" name="kwota'+i+'" ><option>10</option><option>20</option><option>40</option><option>60</option><option>80</option><option>100</option></select><br>';
+						}
+							document.getElementById("wynik2").innerHTML=tekst;
+						
+					}
+					else document.getElementById("wynik2").innerHTML="Nie masz dzieci!";
+				}
+				</script>
 <tr>
 <td><input type="submit" value="Potwierdz"></td>
 <td><input type="button" value="anuluj" id="klawisz" onClick="document.getElementById('ukryty').style.display='none';"></td>

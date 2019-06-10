@@ -4,39 +4,29 @@
 	if(isset($_POST['liczba']))
 	{
 		//udana walidacja
-		$wszystko_OK=true;
-		//poparawniosc loginu
+				$wszystko_OK=true;
 				$nick = $_POST['nick'];
-			
-		//sprawdzenie dlugosci nicka
+				$woj=$_POST['woj'];
+				$haslo=$_POST['haslo'];
+				$iledzieci=$_POST['liczba'];
+
 		if ((strlen($nick)<3) || (strlen($nick)>20)){
 			$wszystko_OK=false;
 			$_SESSION['e_nick']="Nick musi posiadać od 3 do 15 znaków!";	
 		}
-			//znaki
 		if (ctype_alnum($nick)==false){
 			$wszystko_OK=false;
 			$_SESSION['e_nick']="Nick może składać się tylko z liter (bez polskich znaków) i cyfr!";			
 		}
-			//haslo 
-			$haslo=$_POST['haslo'];
-				
 		if (strlen($haslo)<7){
 			$wszystko_OK=false;
 			$_SESSION['e_haslo']="Hasło za krótkie!";	
 		}	
 			$haslo_hash = password_hash($haslo, PASSWORD_DEFAULT);
-		
-		//Ilosc dzieci
-			$iledzieci=$_POST['liczba'];
+			
 		if(!is_numeric($iledzieci)){
 			$wszystko_OK=false;
-			$_SESSION['e_ldzieci']="Podaj liczbe dzieci wpisując odpowiedni numer";	
-			}
-			
-			if($iledzieci==0){
-			$wszystko_OK=false;
-			$_SESSION['e_ldzieci']="Strona przeznaczona, dla opiekunów z dziecmi!";	
+			$_SESSION['e_ldzieci']="Wybierz liczbe dzieci!";	
 			}
 		//Checkxbox
 		if(!isset($_POST['regulamin'])){
@@ -48,9 +38,7 @@
 		mysqli_report(MYSQLI_REPORT_STRICT);
 		
 		try{
-				$polaczenie = new mysqli($host, $db_user, $db_password, $db_name); 
-				$zapytanieII="SELECT * FROM uzytkownicy WHERE Nick='$nick'";
-					
+				$polaczenie = new mysqli($host, $db_user, $db_password, $db_name); 	
 				if($polaczenie->connect_errno!=0){
 					throw new Exception(mysqli_connect_errno());
 				}
@@ -63,24 +51,10 @@
 							$wszystko_OK=false;
 							$_SESSION['e_nick']="Podany login juz istnieje! Podaj inny!";	
 					}
-			$woj=$_POST['woj'];
+			
 			//wsio ok	
 			if($wszystko_OK==true){
-			
-			
-			/*////Petla za duzego switcha ale cos nie dziala///
-				for($i=1;$i<=$iledzieci;$i++){
-				$kwota[$i]=$_POST["kwota.'$i'"]; // <- problem 
-				$szkola[$i]=$_POST["szkola.'$i'"];
-				}*/
-					
-					$IDusera=$polaczenie->query("SELECT ID_user FROM uzytkownicy ORDER BY ID_user DESC");
-					$wiersze = $IDusera->fetch_assoc();
-					$ostatnieid=$wiersze['ID_user']+1;
-					
-					$IDdziecka=$polaczenie->query("SELECT ID_dziecko FROM dziecko ORDER BY ID_dziecko DESC");
-					$wierszedziecka=$IDdziecka->fetch_assoc();
-					
+
 				switch($woj){
 				case "dolnoślaskie":
 				$idwojew=1;
@@ -132,134 +106,48 @@
 				break;
 				}
 				
+				///Tworzenie ID dla uzytkownika///
+				$IDusera=$polaczenie->query("SELECT ID_user FROM uzytkownicy ORDER BY ID_user DESC");
+				$wiersze = $IDusera->fetch_assoc();
+				$ostatnieid=$wiersze['ID_user']+1;
 					
+				 ///Tworzenie ID dla dziecka///
+				$IDdziecka=$polaczenie->query("SELECT ID_dziecko FROM dziecko ORDER BY ID_dziecko DESC");
+				$wierszedziecka=$IDdziecka->fetch_assoc();
+				
+				///Petla do sprawdzania ostatniego ID dziecka///
 				for($i=1;$i<=$iledzieci;$i++){
 				$ostatnieiddziecka[$i]=$wierszedziecka['ID_dziecko']+$i;
 				}
 				
+				////Petla za duzego switcha///
+				for($i=1;$i<=$iledzieci;$i++){
+				$j=$i-1;
+				$kwota[$i]=$_POST['kwota'.$j]; 
+				$szkola[$i]=$_POST["szkola".$j];
+				}
 				
-				switch($iledzieci){
-				case 1:
-				$kwota[1]=$_POST['kwota0'];        
-				$szkola[1]=$_POST['szkola0'];
-				break;
-				case 2:
-				$kwota[1]=$_POST['kwota0'];
-				$szkola[1]=$_POST['szkola0'];
-				$kwota[2]=$_POST['kwota1'];
-				$szkola[2]=$_POST['szkola1'];
-				break;
-				case 3:
-				$kwota[1]=$_POST['kwota0'];
-				$szkola[1]=$_POST['szkola0'];
-				$kwota[2]=$_POST['kwota1'];
-				$szkola[2]=$_POST['szkola1'];
-				$kwota[3]=$_POST['kwota2'];
-				$szkola[3]=$_POST['szkola2'];
-				break;
-				case 4:
-				$kwota[1]=$_POST['kwota0'];
-				$szkola[1]=$_POST['szkola0'];
-				$kwota[2]=$_POST['kwota1'];
-				$szkola[2]=$_POST['szkola1'];
-				$kwota[3]=$_POST['kwota2'];
-				$szkola[3]=$_POST['szkola2'];
-				$kwota[4]=$_POST['kwota3'];
-				$szkola[4]=$_POST['szkola3'];
-				break;
-				case 5:
-				$kwota[1]=$_POST['kwota0'];
-				$szkola[1]=$_POST['szkola0'];
-				$kwota[2]=$_POST['kwota1'];
-				$szkola[2]=$_POST['szkola1'];
-				$kwota[3]=$_POST['kwota2'];
-				$szkola[3]=$_POST['szkola2'];
-				$kwota[4]=$_POST['kwota3'];
-				$szkola[4]=$_POST['szkola3'];
-				$kwota[5]=$_POST['kwota4'];
-				$szkola[5]=$_POST['szkola4'];
-				break;
-				case 6:
-				$kwota[1]=$_POST['kwota0'];
-				$szkola[1]=$_POST['szkola0'];
-				$kwota[2]=$_POST['kwota1'];
-				$szkola[2]=$_POST['szkola1'];
-				$kwota[3]=$_POST['kwota2'];
-				$szkola[3]=$_POST['szkola2'];
-				$kwota[4]=$_POST['kwota3'];
-				$szkola[4]=$_POST['szkola3'];
-				$kwota[5]=$_POST['kwota4'];
-				$szkola[5]=$_POST['szkola4'];
-				$kwota[6]=$_POST['kwota5'];
-				$szkola[6]=$_POST['szkola5'];
-				break;
-				case 7:
-				$kwota[1]=$_POST['kwota0'];
-				$szkola[1]=$_POST['szkola0'];
-				$kwota[2]=$_POST['kwota1'];
-				$szkola[2]=$_POST['szkola1'];
-				$kwota[3]=$_POST['kwota2'];
-				$szkola[3]=$_POST['szkola2'];
-				$kwota[4]=$_POST['kwota3'];
-				$szkola[4]=$_POST['szkola3'];
-				$kwota[5]=$_POST['kwota4'];
-				$szkola[5]=$_POST['szkola4'];
-				$kwota[6]=$_POST['kwota5'];
-				$szkola[6]=$_POST['szkola5'];
-				$kwota[7]=$_POST['kwota6'];
-				$szkola[7]=$_POST['szkola6'];
-				break;
-				case 8:
-				$kwota[1]=$_POST['kwota0'];
-				$szkola[1]=$_POST['szkola0'];
-				$kwota[2]=$_POST['kwota1'];
-				$szkola[2]=$_POST['szkola1'];
-				$kwota[3]=$_POST['kwota2'];
-				$szkola[3]=$_POST['szkola2'];
-				$kwota[4]=$_POST['kwota3'];
-				$szkola[4]=$_POST['szkola3'];
-				$kwota[5]=$_POST['kwota4'];
-				$szkola[5]=$_POST['szkola4'];
-				$kwota[6]=$_POST['kwota5'];
-				$szkola[6]=$_POST['szkola5'];
-				$kwota[7]=$_POST['kwota6'];
-				$szkola[7]=$_POST['szkola6'];
-				$kwota[8]=$_POST['kwota7'];
-				$szkola[8]=$_POST['szkola7'];
-				break;
-				case 9:
-				$kwota[1]=$_POST['kwota0'];
-				$szkola[1]=$_POST['szkola0'];
-				$kwota[2]=$_POST['kwota1'];
-				$szkola[2]=$_POST['szkola1'];
-				$kwota[3]=$_POST['kwota2'];
-				$szkola[3]=$_POST['szkola2'];
-				$kwota[4]=$_POST['kwota3'];
-				$szkola[4]=$_POST['szkola3'];
-				$kwota[5]=$_POST['kwota4'];
-				$szkola[5]=$_POST['szkola4'];
-				$kwota[6]=$_POST['kwota5'];
-				$szkola[6]=$_POST['szkola5'];
-				$kwota[7]=$_POST['kwota6'];
-				$szkola[7]=$_POST['szkola6'];
-				$kwota[8]=$_POST['kwota7'];
-				$szkola[8]=$_POST['szkola7'];
-				$kwota[9]=$_POST['kwota8'];
-				$szkola[9]=$_POST['szkola8'];
-				break;
-			}
+				
+				$ilosc="SELECT Liczba_dzieci FROM uzytkownicy WHERE Nick='$nick'";
 				if($polaczenie->query("INSERT INTO uzytkownicy VALUES (NULL,  '$nick', '$haslo_hash', '$iledzieci', '$idwojew')")){
 				for($i=1; $i<=$iledzieci; $i++){
 					($polaczenie->query("INSERT INTO dziecko VALUES(NULL, '$ostatnieid')"))&&
 					($polaczenie->query("INSERT INTO szkola VALUES(NULL, '$ostatnieiddziecka[$i]','$szkola[$i]')"))&&
 					($polaczenie->query("INSERT INTO kwota VALUES(NULL, '$kwota[$i]', '$ostatnieiddziecka[$i]')"));
 				}
+				///Ile dzieci po rejestracji///
+				$wyniczek= @$polaczenie->query($ilosc);
+				$wierszyk=$wyniczek->fetch_assoc();
+				$_SESSION['Iledzieci']=$wierszyk['Liczba_dzieci'];
+				
+				$wyniczek->free_result();
 				$rezultat->free_result();
+				$IDusera->free_result();
+				$IDdziecka->free_result();
 				$_SESSION['udalosie']=true;
+				
 				header('Location: udanarejestracaja.php');
 				}
-			
-		
 			else{
 				throw new Exception($polaczenie->error);
 			}}
@@ -381,6 +269,13 @@
 						<option>Za dużo</option>
 						</select>
 					</td>
+					<td><?php
+							if (isset($_SESSION['e_ldzieci']))
+							{
+								echo '<div class="error">'.$_SESSION['e_ldzieci'].'</div>';
+								unset($_SESSION['e_ldzieci']);
+							}
+						?></td>
 				</tr>
 				<tr>
 			

@@ -14,6 +14,8 @@
 			$haslo = $_POST['haslo'];
 			$login = htmlentities($login, ENT_QUOTES, "UTF-8"); 
 			$zapytanieII="SELECT kwota FROM kwota k INNER JOIN dziecko d ON d.ID_dziecko=k.ID_dziecko INNER JOIN uzytkownicy u ON d.ID_user=u.ID_user WHERE Nick='$login'";
+			$zapytanieIII="SELECT Liczba_dzieci FROM uzytkownicy WHERE Nick='$login'";
+			
 		if	($rezultat = @$polaczenie->query(sprintf("SELECT * FROM uzytkownicy WHERE Nick='%s'",
 		mysqli_real_escape_string($polaczenie, $login)))){
 			$ilu_userow = $rezultat->num_rows; 						//ile uzytkownikow  o podanym log i hasl ilosc wierszy
@@ -22,10 +24,15 @@
 					if(password_verify($haslo, $wiersz['Haslo'])){
 						
 						$rezultatII = @$polaczenie->query($zapytanieII);
+						$rezultatIII = @$polaczenie->query($zapytanieIII);
 						$wierszII = $rezultatII->fetch_assoc();
-						$_SESSION['kwota'] = $wierszII['kwota']; #!!!!!!!!!
+						$wierszIII = $rezultatIII->fetch_assoc();
 						
-						$_SESSION['Nick']=$wiersz['Nick']; 		  #!!!!!!!!!
+						$_SESSION['Nick']=$wiersz['Nick']; 		  					#!!!!!!!!!
+						$_SESSION['kwota'] = $wierszII['kwota']; 					#!!!!!!!!!
+						$_SESSION['Iledzieci'] = $wierszIII['Liczba_dzieci'];   #!!!!!!!!!
+						
+						
 						
 						
 						$_SESSION['zalogowany']=true;
