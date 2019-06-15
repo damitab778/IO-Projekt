@@ -92,7 +92,7 @@
 				$kwota[$i]=$_POST['kwota'.$j]; 
 				$szkola[$i]=$_POST["szkola".$j];
 				}
-				
+				//ZROBIĆ IF CZY DZIECI MNIEJ/WIECEJ CZY TYLE SAMO
 				if($polaczenie->query("UPDATE uzytkownicy SET Liczba_dzieci='$iledzieci', ID_woj='$idwojew' WHERE Nick='$nick'")){
 					for($i=1; $i<=$iledzieci; $i++){
 					($polaczenie->query("UPDATE szkola SET  szkola='$szkola[$i]' WHERE ID_dziecko=85"))&&   //NA SZTYWNO ID TRZA POMYSLEC 

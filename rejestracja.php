@@ -115,6 +115,7 @@
 				$IDdziecka=$polaczenie->query("SELECT ID_dziecko FROM dziecko ORDER BY ID_dziecko DESC");
 				$wierszedziecka=$IDdziecka->fetch_assoc();
 				
+				
 				///Petla do sprawdzania ostatniego ID dziecka///
 				for($i=1;$i<=$iledzieci;$i++){
 				$ostatnieiddziecka[$i]=$wierszedziecka['ID_dziecko']+$i;
@@ -289,7 +290,7 @@
 				var tekst="";
 					if(liczba>0){
 						for(i=0;i<liczba;i++){
-						tekst+='Dziecko '+(i+1)+'. Szkoła: <select class="custom-select" name="szkola'+i+'"><option>Podstawówka</option><option>Gimnazjum</option><option>Liceum lub Technikum</option><option>Szkoła wyższa</option></td><td></select>Kwota: <select class="custom-select" name="kwota'+i+'" ><option>10</option><option>20</option><option>40</option><option>60</option><option>80</option><option>100</option></select><br>';
+						tekst+='Dziecko '+(i+1)+'. Szkoła: <select class="custom-select" name="szkola'+i+'"><option>Podstawowka</option><option>Gimnazjum</option><option>Liceum lub Technikum</option><option>Szkola wyzsza</option></td><td></select>Kwota: <select class="custom-select" name="kwota'+i+'" ><option>10</option><option>20</option><option>40</option><option>60</option><option>80</option><option>100</option></select><br>';
 						}
 							document.getElementById("wynik2").innerHTML=tekst;
 						
