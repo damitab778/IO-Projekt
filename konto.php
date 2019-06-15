@@ -132,7 +132,13 @@
 	
 	echo"<b>Witaj: </b>".$_SESSION['Nick']."<br>";
 	echo"<b>Twoja propozycja kwoty</b>: ".$_SESSION['kwota']."<br>";
-	echo"<b>Ile dzieci</b>: ".$_SESSION['Iledzieci']."<br>";
+	//echo"<b>Ile dzieci</b>: ".$_SESSION['Iledzieci']."<br>";
+	echo"<b>Proponowana średnia kwota kieszonkowego ze względu na samą liczebność państwa potomków (".$_SESSION['Iledzieci'].") tj <i style='color:red;'>";echo round($_SESSION['AVG(kwota)2'],  2)."zł</i>. <br>";
+	echo"<b>Średnia ze względu tylko na twoje województwo</b>: <i style='color:red;'>";echo round($_SESSION['AVG(kwota)'],  2)."zł</i><br>";
+	echo"<b>Średnia ze względu na twoje podstawowke i ilość twoich pociech</b>: <i style='color:red;'>";echo round($_SESSION['AVG(kwota)4'],  2)."zł</i><br>";
+	echo"<b>Średnia ze względu na twoje Gimnazjum i ilość twoich pociech</b>: <i style='color:red;'>";echo round($_SESSION['AVG(kwota)3'],  2)."zł</i><br>";
+	echo"<b>Średnia ze względu na twoje liceum/technikum i ilość twoich pociech</b>: <i style='color:red;'>";echo round($_SESSION['AVG(kwota)5'],  2)."zł</i><br>";
+	echo"<b>Średnia ze względu na twoje szkole wyzsza i ilość twoich pociech</b>: <i style='color:red;'>";echo round($_SESSION['AVG(kwota)6'],  2)."zł</i><br>";
 
 	
 ?>
