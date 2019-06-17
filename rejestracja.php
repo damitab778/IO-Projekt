@@ -140,13 +140,14 @@
 				$wyniczek= @$polaczenie->query($ilosc);
 				$wierszyk=$wyniczek->fetch_assoc();
 				$_SESSION['Iledzieci']=$wierszyk['Liczba_dzieci'];
+
+					$wyniczek->free_result();
+					$rezultat->free_result();
+					$IDusera->free_result();
+					$IDdziecka->free_result();
+					$_SESSION['udalosie']=true;
 				
-				$wyniczek->free_result();
-				$rezultat->free_result();
-				$IDusera->free_result();
-				$IDdziecka->free_result();
-				$_SESSION['udalosie']=true;
-				
+
 				header('Location: udanarejestracaja.php');
 				}
 			else{
@@ -234,20 +235,20 @@
 				<td>Województwo:</td>
 					<td>
 						<select class="custom-select" name="woj">
-						<option>dolnoślaskie</option>
+						<option>dolnoslaskie</option>
 						<option>kujawsko-pomorskie</option>
 						<option>lubelskie</option>
 						<option>lubuskie</option>
-						<option>łódzkie</option>
+						<option>lodzkie</option>
 						<option>małopolskie</option>
 						<option>mazowieckie</option>
 						<option>opolskie</option>
 						<option>podkarpackie</option>
 						<option>podlaskie</option>
 						<option>pomorskie</option>
-						<option>śląskie</option>
-						<option>świętokrzyskie</option>
-						<option>warmińsko-mazurskie</option>
+						<option>slaskie</option>
+						<option>swietokrzyskie</option>
+						<option>warminsko-mazurskie</option>
 						<option>wielkopolskie</option>
 						<option>zachodniopomorskie</option>
 						</select>
