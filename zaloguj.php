@@ -43,7 +43,7 @@
 			WHERE (Liczba_dzieci, Szkola) in (SELECT Liczba_dzieci, Szkola from  szkola s join dziecko d on d.ID_dziecko=s.ID_dziecko join uzytkownicy u on u.ID_user=d.ID_user WHERE Nick = '$login' AND Szkola='Szkola wyzsza');";
 			####Wyswietlanie wojewodztwa####
 			$zapytanieX="SELECT Nazwa_Woj FROM wojewodztwa w JOIN uzytkownicy u ON u.ID_woj=w.ID_woj WHERE Nick='$login'";
-			
+			$zapytanieXII="SELECT ID_user FROM uzytkownicy where Nick='$login'";
 			
 		if	($rezultat = @$polaczenie->query(sprintf("SELECT * FROM uzytkownicy WHERE Nick='%s'",
 		mysqli_real_escape_string($polaczenie, $login)))){
@@ -70,10 +70,11 @@
 					$wierszIX = $rezultatIX->fetch_assoc();
 					$rezultatX = @$polaczenie->query($zapytanieX);
 					$wierszX = $rezultatX->fetch_assoc();
-					
-		
+					$rezultatXII = @$polaczenie->query($zapytanieXII);
+					$wierszXII = $rezultatXII->fetch_assoc();
 						$_SESSION['Nick']=$wiersz['Nick']; 		  					#!!!!!!!!!
 						$_SESSION['Iledzieci'] = $wierszIII['Liczba_dzieci'];   #!!!!!!!!!! 
+						$_SESSION['iloscbach'] = $wierszIII['Liczba_dzieci'];  	
 						$_SESSION['jakiewoj'] = $wierszX['Nazwa_Woj'];   #!!!!!!!!!! 
 
 						for($i=0;$i<=$_SESSION['Iledzieci'];$i++){
@@ -90,8 +91,11 @@
 						$_SESSION['AVG(kwota)4'] = $wierszVII['AVG(kwota)'];   #!!!!!!!!! SR podst
 						$_SESSION['AVG(kwota)5'] = $wierszVIII['AVG(kwota)'];   #!!!!!!!!! Sr lic/tech
 						$_SESSION['AVG(kwota)6'] = $wierszIX['AVG(kwota)'];   #!!!!!!!!! Sr szkola wyzsza
-						
+						$_SESSION['ID_user'] = $wierszXII['ID_user'];  	
 			
+		
+			
+		
 					$rezultat->free_result();     //ZWALNIANIE PAMIECI
 					$rezultatII->free_result();
 					$rezultatIII->free_result();
