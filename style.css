@@ -255,7 +255,7 @@ form label
 
 form label.dzieckoLabel
 {
-    padding: 100px 0;
+    padding: 120px 0;
 }
 
 form label.secondLabel
@@ -267,4 +267,10 @@ form label.secondLabel
 #listaDodawaniaDzieci
 {
     margin-top: 30px;
+}
+
+form div.dziecko
+{
+    border-top: 2px dashed #00aa96;
+    padding: 20px 0;
 }

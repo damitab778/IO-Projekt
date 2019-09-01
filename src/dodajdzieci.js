@@ -25,8 +25,7 @@ function ilebachorow(){
                        <option>100</option>
                     </select>
                 </div>
-            </div>
-            <br>`;
+            </div>`;
             }
             document.getElementById("listaDodawaniaDzieci").innerHTML=tekst;
             
