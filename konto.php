@@ -298,7 +298,7 @@
 		////////////////////////////////////
 		######    USUN DZIECKO     ######		
 		////////////////////////////////////
-		if((isset($_POST['dziecko_0']))OR(isset($_POST['dziecko_1']))OR(isset($_POST['dziecko_2']))OR(isset($_POST['dziecko_3']))OR(isset($_POST['dziecko_4']))OR(isset($_POST['dziecko_5']))){
+		if((isset($_POST['dziecko_0']))OR(isset($_POST['dziecko_1']))OR(isset($_POST['dziecko_2']))OR(isset($_POST['dziecko_3']))OR(isset($_POST['dziecko_4']))OR(isset($_POST['dziecko_5']))OR(isset($_POST['dziecko_4']))OR(isset($_POST['dziecko_6']))OR(isset($_POST['dziecko_7']))OR(isset($_POST['dziecko_8']))){
 		$wszystko_OK=true;
 		$nick=$_SESSION['Nick'];
 
@@ -587,9 +587,9 @@
 		<input type="checkbox" name="dziecko_3" value="dziecko4">Dziecko 4  |
 		<input type="checkbox" name="dziecko_4" value="dziecko5">Dziecko 5  |
 		<input type="checkbox" name="dziecko_5" value="dziecko6">Dziecko 6  |
-		<input type="checkbox" name="dziecko_6" value="dziecko4">Dziecko 7  |
-		<input type="checkbox" name="dziecko_7" value="dziecko5">Dziecko 8  |
-		<input type="checkbox" name="dziecko_8" value="dziecko6">Dziecko 9  
+		<input type="checkbox" name="dziecko_6" value="dziecko7">Dziecko 7  |
+		<input type="checkbox" name="dziecko_7" value="dziecko8">Dziecko 8  |
+		<input type="checkbox" name="dziecko_8" value="dziecko9">Dziecko 9  
 	
 <tr>
 
