@@ -202,12 +202,10 @@
 	<section>
 		<div class="rejestracja">
 			<form method="post">
-				<table>
 				
-				<tr>
-					<td>Login:</td>
-					<td><input type="text" name="nick" > </td>
-					<td>
+				<div class="row">
+					<label for="nick">Login:</label>
+					<input id="nick" type="text" name="nick" >
 					<?php
 							if (isset($_SESSION['e_nick']))
 							{
@@ -215,49 +213,44 @@
 								unset($_SESSION['e_nick']);
 							}
 					?>
-					</td>
-
-				</tr>
-				<tr>
-					<td>Hasło:</td><td><input type="password" name="haslo"></td>
-						<td>
-						<?php
-							if (isset($_SESSION['e_haslo']))
-							{
-								echo '<div class="error">'.$_SESSION['e_haslo'].'</div>';
+				</div>
+				<div class="row">
+					<label for="password">Hasło:</label>
+					<input id="password" type="password" name="haslo">
+					<?php
+						if (isset($_SESSION['e_haslo']))
+						{
+							echo '<div class="error">'.$_SESSION['e_haslo'].'</div>';
 								unset($_SESSION['e_haslo']);
-							}
-						?>
-						</td>
+						}
+					?>
 						
-				</tr>
-				<tr>
-				<td>Województwo:</td>
-					<td>
-						<select class="custom-select" name="woj">
-						<option>dolnoslaskie</option>
-						<option>kujawsko-pomorskie</option>
-						<option>lubelskie</option>
-						<option>lubuskie</option>
-						<option>lodzkie</option>
-						<option>małopolskie</option>
-						<option>mazowieckie</option>
-						<option>opolskie</option>
-						<option>podkarpackie</option>
-						<option>podlaskie</option>
-						<option>pomorskie</option>
-						<option>slaskie</option>
-						<option>swietokrzyskie</option>
-						<option>warminsko-mazurskie</option>
-						<option>wielkopolskie</option>
-						<option>zachodniopomorskie</option>
-						</select>
-					</td>
-				</tr>
-				<tr>
-					<td>Ile dzieci:</td>
-					<td>
-						<select class="custom-select" name="liczba" id="ld"  onchange="ilebachorow2()">
+				</div>
+				<div class="row">
+				<label for="region">Województwo:</label>
+				<select id="region" class="custom-select" name="woj">
+					<option>dolnośląskie</option>
+					<option>kujawsko-pomorskie</option>
+					<option>lubelskie</option>
+					<option>lubuskie</option>
+					<option>łódzkie</option>
+					<option>małopolskie</option>
+					<option>mazowieckie</option>
+					<option>opolskie</option>
+					<option>podkarpackie</option>
+					<option>podlaskie</option>
+					<option>pomorskie</option>
+					<option>śląskie</option>
+					<option>świętokrzyskie</option>
+					<option>warmińsko-mazurskie</option>
+					<option>wielkopolskie</option>
+					<option>zachodniopomorskie</option>
+				</select>
+
+				</div>
+				<div class="row">
+					<label for="ld">Ile dzieci:</label>
+					<select class="custom-select" name="liczba" id="ld"  onchange="ilebachorow()">
 						<option>Wybierz</option>
 						<option>1</option>
 						<option>2</option>
@@ -269,45 +262,24 @@
 						<option>8</option>
 						<option>9</option>
 						<option>Za dużo</option>
-						</select>
-					</td>
-					<td><?php
+					</select>
+					<?php
 							if (isset($_SESSION['e_ldzieci']))
 							{
 								echo '<div class="error">'.$_SESSION['e_ldzieci'].'</div>';
 								unset($_SESSION['e_ldzieci']);
 							}
-						?></td>
-				</tr>
-				<tr>
+					?>
+				</div>
 			
-					<td><div id="wynik2"></div></td>
+				<div id="listaDodawaniaDzieci"></div>
+				
+				
+				<div class="row">
 					
-				</tr>
-				
-				<script type="text/javascript">
-				function ilebachorow2(){
-				var liczba = document.getElementById("ld").value;
-				var tekst="";
-					if(liczba>0){
-						for(i=0;i<liczba;i++){
-						tekst+='Dziecko '+(i+1)+'. Szkoła: <select class="custom-select" name="szkola'+i+'"><option>Podstawowka</option><option>Gimnazjum</option><option>Liceum lub Technikum</option><option>Szkola wyzsza</option></td><td></select>Kwota: <select class="custom-select" name="kwota'+i+'" ><option>10</option><option>20</option><option>40</option><option>60</option><option>80</option><option>100</option></select><br>';
-						}
-							document.getElementById("wynik2").innerHTML=tekst;
-						
-					}
-					else document.getElementById("wynik2").innerHTML="Nie masz dzieci!";
-				}
-				</script>
-
-				
-				<tr>
-					<td colspan="2">
 						<input type="checkbox" name="regulamin">
-						 Akceptuję regulamin<br/>
+						 <div id="regulamin">Akceptuję regulamin</div><br/>
 						<input type="submit" value="Stwórz konto">
-					</td>
-					<td>
 					<?php
 							if (isset($_SESSION['e_regulamin']))
 							{
@@ -315,19 +287,18 @@
 								unset($_SESSION['e_regulamin']);
 							}
 					?>
-					</td>
-				</tr>
-			</table>	
+				</div>
 		</form>
 	</div>
 	</section>
-
 </main>
 </div>
 <footer>
 	Wszelkie prawa zastrzeżone &copy 2019
 </footer>
 
+
+<script src="src/dodajdzieci.js"></script>
 
 </body>
 </html>
