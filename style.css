@@ -73,7 +73,7 @@ nav
 {
     float:left;
     width:40%;
-    font-size:1em;
+    font-size:0.9em;
     line-height:1.5em;
     text-align: center;
     padding: 0 5%;
@@ -88,6 +88,7 @@ nav
 h3
 {
     margin-top:0px;
+    margin-bottom: 0.4rem;
     font-weight: normal;
     padding:10px 35px;
 }
@@ -96,7 +97,7 @@ h3
 {
     float:left;
     width:39%;
-    font-size:1em;
+    font-size:0.9em;
     line-height:1.5em;
     border-left:2px solid #00aa96;
     text-align:center;
@@ -273,4 +274,32 @@ form div.dziecko
 {
     border-top: 2px dashed #00aa96;
     padding: 20px 0;
+}
+
+/*nav>*/
+
+nav
+{
+    font-family: 'Baloo', cursive;
+    height:51px;
+    padding:0;
+}
+
+nav .linknav
+{
+    color: white;
+    text-decoration:none;
+}
+
+nav .linknav:hover 
+{
+    color:black;
+    background-color: white;
+}
+
+nav div#wyloguj
+{
+    position: relative;
+    float:right;
+    padding:10px;
 }

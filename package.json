@@ -1,0 +1,31 @@
+{
+  "name": "io-projekt-master",
+  "version": "1.0.0",
+  "description": "Projekt na IO kieszonkowe.pl",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --mode development",
+    "start:dev": "webpack-dev-server --mode production" 
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/damitab778/IO-Projekt.git"
+  },
+  "keywords": [
+    "kieszonkowe",
+    "pl",
+    "rodzice",
+    "dzieci",
+    "pieniadze"
+  ],
+  "author": "Adrian Bebel, Łukasz Pojda, Damian Tabaka, Michał Skorus",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/damitab778/IO-Projekt/issues"
+  },
+  "homepage": "https://github.com/damitab778/IO-Projekt#readme",
+  "devDependencies": {
+    "webpack": "^4.39.3"
+  }
+}

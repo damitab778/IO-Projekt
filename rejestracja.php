@@ -174,13 +174,6 @@
 
 	<link href="style.css" rel="stylesheet" type="text/css"/>
 	<link href="https://fonts.googleapis.com/css?family=Baloo&amp;subset=latin-ext" rel="stylesheet">
-	<style>
-	.error{
-		color:red;
-		margin-top: 10px;
-		margin-bottom: 10px;
-	}
-	</style>
 </head>
 <body>
 	<div class="status">
