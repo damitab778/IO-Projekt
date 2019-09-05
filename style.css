@@ -342,3 +342,8 @@ nav a:hover::after
 {
     width:100%;
 }
+
+h2
+{
+    color: #00aa96;
+}

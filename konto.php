@@ -470,7 +470,7 @@
 
 				?>
 
-				<br><br><input type="button" value="Edytuj" id="klawisz" 				onClick="document.getElementById('ukryty').style.display='block';">
+				<br><br><input type="button" value="Edytuj" id="klawisz" onClick="document.getElementById('ukryty').style.display='block';">
 				<div id="dane"></div>
 				<div style="display: none" id="ukryty">
 					<form method="post">
@@ -499,7 +499,7 @@
 
 						<div class="row">
 							<label for="ld">Ile dzieci:</label>
-							<select class="custom-select" name="liczba" id="ld"  		onchange="ilebachorow()">
+							<select class="custom-select" name="liczba" id="ld" onchange="ilebachorow()">
 								<option>Wybierz</option>
 								<option>1</option>
 								<option>2</option>
@@ -515,7 +515,7 @@
 								<?php
 									if (isset($_SESSION['e_ldzieci']))
 									{
-										echo '<div class="error">'.$_SESSION['e_ldzieci']	.'</					div>';
+										echo '<div class="error">'.$_SESSION['e_ldzieci'].'</div>';
 										unset($_SESSION['e_ldzieci']);
 									}
 								?>
@@ -526,12 +526,12 @@
 								
 						<div class="row">
 							<input type="submit" value="Potwierdz"></<input>
-							<input type="button" value="anuluj" id="klawisz" 		onClick="document.getElementById('ukryty').style.display='none';	" 	doubleClick="document.getElementById('ukryty')						.style.display='none';">
+							<input type="button" value="anuluj" id="klawisz" onClick="document.getElementById('ukryty').style.display='none';" doubleClick="document.getElementById('ukryty').style.display='none';">
 						</div>
 					</form>
 				</div>
 							
-				<br><br><input type="button" value="Dodaj dziecko" id="dodajdziecko" onClick="document.getElementById('schowane')		.style.display='block';">
+				<br><br><input type="button" value="Dodaj dziecko" id="dodajdziecko" onClick="document.getElementById('schowane').style.display='block';">
 				<div id="dane"></div>
 				<div style="display: none" id="schowane">
 
@@ -574,8 +574,6 @@
 
 					<form method="post">
 					
-									
-					<div id="listaDodawaniaDzieci"></div>
 					
 					<div class="row">				
 							Wybierz dziecko, którego już nie potrzebujesz <img 	src="img\ryj.jpg" alt="Tekst alternatywny"><br>
@@ -595,7 +593,7 @@
 
 					<div class="row">
 						<br><input type="submit" value="Potwierdz"><br>
-						<br><input type="button" value="anuluj" id="klawisz" 					onClick="document.getElementById('przyczajone')	.style.display='none';"><br>
+						<br><input type="button" value="anuluj" id="klawisz" onClick="document.getElementById('przyczajone').style.display='none';"><br>
 						</div>
 					
 					</form>
