@@ -18,6 +18,7 @@ header
 
 .logo
 {
+    padding:0.2em 0;
     font-size:49px;
     font-family: 'Baloo', cursive;
 }
@@ -25,6 +26,7 @@ header
 .logotext
 {
     padding: 30px 5px;
+    margin-top:5px;
     float:left;
 }
 
@@ -32,6 +34,8 @@ header
 {
     top:0px;
     padding: 0 5%;
+    position:absolute;
+    right: 1%;
 }
 
 .zalogowanyjako
@@ -46,14 +50,7 @@ header
     font-family: 'Baloo', cursive;
 }
 
-nav
-{ 
-	width: 100%;
-	padding: 10px 0;
-    background-color: #00aa96;
-    font-size: 20px;
-    color: white;
-}
+
 
 .container
 {
@@ -102,6 +99,11 @@ h3
     border-left:2px solid #00aa96;
     text-align:center;
     padding: 0 5%;
+}
+
+.form_logowanie
+{
+    margin-top:20px;
 }
 
 input[type=text],
@@ -179,6 +181,7 @@ input[type=submit]:hover
     border: 5px solid #00aa96;
     border-radius: 3px;
     padding: 10px 10px;
+    transition: all ease-in-out 400ms;
 }
 
 .linkprosty
@@ -216,7 +219,7 @@ footer
     margin-bottom: 10px;
 }
 
-.rejestracja
+.singlecon
 {
     margin-left:auto;
     margin-right: auto;
@@ -278,28 +281,64 @@ form div.dziecko
 
 /*nav>*/
 
+
 nav
-{
-    font-family: 'Baloo', cursive;
-    height:51px;
-    padding:0;
-}
-
-nav .linknav
-{
+{ 
+	width: 100%;
+    background-color: #00aa96;
+    font-size: 20px;
     color: white;
-    text-decoration:none;
+    font-family: 'Baloo', cursive;
+    text-align:center;
+    height: 55px;
 }
 
-nav .linknav:hover 
+nav ul
+{
+   list-style: none;
+}
+
+nav li
+{
+    display: inline-block;
+    margin-left: 70px;
+    padding: 12px 0;
+
+    position: relative;
+}
+
+nav li:first-child
+{
+    margin-left: 0;
+}
+
+nav a
+{
+    color:white;
+    text-decoration:none;
+    text-transform: uppercase;
+    transition: all ease-in-out 250ms;
+}
+
+nav a:hover 
 {
     color:black;
-    background-color: white;
 }
 
-nav div#wyloguj
+nav a::after
 {
-    position: relative;
-    float:right;
-    padding:10px;
+    content: '';
+    display: block;
+    height: 5px;
+    background-color: black;
+
+    position: absolute;
+    bottom:0;
+    width:0%;
+    transition: all ease-in-out 250ms;
+}
+
+nav a:hover::after
+{
+    width:100%;
 }

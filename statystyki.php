@@ -445,7 +445,7 @@
 		</div>
 	
 	
-	<nav>
+        <nav>
 		<ul>
 			<li><a href="konto.php">Moje konto</a></li>
 			<li><a href="statystyki.php">Statystyki</a></li>
@@ -453,154 +453,21 @@
 			<li><a href="wyloguj.php" class="linknav">Wyloguj</a></li>
 		</ul>
 	</nav>
-	</header>
+    </header>
 <div class="container">
 <main>
 	<section>
 		<div class="singlecon">
-					<?php  
-					echo"<b>DANE O UZYTKOWNKIU:</b><br>";
-					echo"<b>------------------------------------------------------</b><br>";
-					echo"<b>Witaj: </b><u>".$_SESSION['Nick']."!</u><br>";
-					echo"<b>Twoje wojewodztwo: </b>".$_SESSION['jakiewoj'].".<br>";
-					echo"<b>Ile dzieci</b>: ". ($_SESSION['iloscbach']).".<br>";
-					for($i=0;$i<$_SESSION['iloscbach'];$i++){
-						echo"<b>Kwota przeznaczona na dziecko ".($i+1).": </b> <i style='color:red;'>".$_SESSION['kwota'.$i]."zł</i><b>, oraz jego placówka edukacyjna:</b> <i style='color:red;'> ".$_SESSION['szkola'.$i]."</i>.<br>";
-					}
+                <?php
+					echo"<b>DANE STATYSTYCZNE:</b><br>";
+					echo"<b>Proponowana średnia kwota kieszonkowego ze względu na samą liczebność 				państwa potomków (".$_SESSION['Iledzieci'].") tj:</b> <i style='color:red;'>";				echo round($_SESSION['AVG(kwota)2'],  2)."zł</i>. <br>";
+					echo"<b>Średnia ze względu tylko na twoje województwo</b>: <i style='color:red;				'>";echo round($_SESSION['AVG(kwota)'],  2)."zł.</i><br>";
+					echo"<b>Średnia ze względu na twoje podstawowke i ilość twoich pociech</b>: <i 				style='color:red;'>";echo round($_SESSION['AVG(kwota)4'],  2)."zł.</i><br>";
+					echo"<b>Średnia ze względu na twoje Gimnazjum i ilość twoich pociech</b>: <i 				style='color:red;'>";echo round($_SESSION['AVG(kwota)3'],  2)."zł.</i><br>";
+					echo"<b>Średnia ze względu na twoje liceum/technikum i ilość twoich pociech</b>: 				<i style='color:red;'>";echo round($_SESSION['AVG(kwota)5'],  2)."zł.</i><br>";
+					echo"<b>Średnia ze względu na twoje szkole wyzsza i ilość twoich pociech</b>: <i 				style='color:red;'>";echo round($_SESSION['AVG(kwota)6'],  2)."zł.</i><br>";
 
 				?>
-
-				<br><br><input type="button" value="Edytuj" id="klawisz" 				onClick="document.getElementById('ukryty').style.display='block';">
-				<div id="dane"></div>
-				<div style="display: none" id="ukryty">
-					<form method="post">
-
-						<div class="row">
-						<label for="region">Województwo:</label>
-						<select id="region" class="custom-select" name="woj">
-							<option>dolnośląskie</option>
-							<option>kujawsko-pomorskie</option>
-							<option>lubelskie</option>
-							<option>lubuskie</option>
-							<option>łódzkie</option>
-							<option>małopolskie</option>
-							<option>mazowieckie</option>
-							<option>opolskie</option>
-							<option>podkarpackie</option>
-							<option>podlaskie</option>
-							<option>pomorskie</option>
-							<option>śląskie</option>
-							<option>świętokrzyskie</option>
-							<option>warmińsko-mazurskie</option>
-							<option>wielkopolskie</option>
-							<option>zachodniopomorskie</option>
-						</select>
-						</div>
-
-						<div class="row">
-							<label for="ld">Ile dzieci:</label>
-							<select class="custom-select" name="liczba" id="ld"  		onchange="ilebachorow()">
-								<option>Wybierz</option>
-								<option>1</option>
-								<option>2</option>
-								<option>3</option>
-								<option>4</option>
-								<option>5</option>
-								<option>6</option>
-								<option>7</option>
-								<option>8</option>
-								<option>9</option>
-								<option>Za dużo</option>
-							</select>
-								<?php
-									if (isset($_SESSION['e_ldzieci']))
-									{
-										echo '<div class="error">'.$_SESSION['e_ldzieci']	.'</					div>';
-										unset($_SESSION['e_ldzieci']);
-									}
-								?>
-						</div>
-								
-								
-						<div id="listaDodawaniaDzieci"></div>	
-								
-						<div class="row">
-							<input type="submit" value="Potwierdz"></<input>
-							<input type="button" value="anuluj" id="klawisz" 		onClick="document.getElementById('ukryty').style.display='none';	" 	doubleClick="document.getElementById('ukryty')						.style.display='none';">
-						</div>
-					</form>
-				</div>
-							
-				<br><br><input type="button" value="Dodaj dziecko" id="dodajdziecko" onClick="document.getElementById('schowane')		.style.display='block';">
-				<div id="dane"></div>
-				<div style="display: none" id="schowane">
-
-
-				<form method="post">
-					<div id="listaDodawaniaDzieci"></div>
-							<div class="row">	
-								<div class="dziecko">
-								<label for="szkola" class="secondLabel">Szkoła: </label>
-								<select class="custom-select" name="szkola">
-								<option>Podstawowka</option>
-								<option>Gimnazjum</option>
-								<option>Liceum lub Technikum</option>
-								<option>Szkola wyzsza</option>
-								
-								</select>
-								<label for="kwota" class="secondLabel">Kwota: </label>
-								<select class="custom-select" name="kwota" >
-								<option>10</option>
-								<option>20</option>
-								<option>40</option>
-								<option>60</option>
-								<option>80</option>
-								<option>100</option>
-								</select>
-								</div>
-							</div>
-					<div class="row">
-						<input type="submit" value="Potwierdz">
-						<input type="button" value="anuluj" id="klawisz" onClick="document.getElementById('schowane').style.display='none';">
-					</div>
-				</form>
-				</div>
-							
-							
-				<br><br><input type="button" value="Usun dziecko" id="usundziecko" onClick="document.getElementById('przyczajone').style.display='block';">
-				<div id="dane"></div>
-				<div style="display: none" id="przyczajone">
-
-
-					<form method="post">
-					
-									
-					<div id="listaDodawaniaDzieci"></div>
-					
-					<div class="row">				
-							Wybierz dziecko, którego już nie potrzebujesz <img 	src="img\ryj.jpg" alt="Tekst alternatywny"><br>
-									
-									
-							<input type="checkbox" name="dziecko_0" 	value="dziecko1">Dziecko 1  |
-							<input type="checkbox" name="dziecko_1" 	value="dziecko2">Dziecko 2  |
-							<input type="checkbox" name="dziecko_2" 	value="dziecko3">Dziecko 3  |
-							<input type="checkbox" name="dziecko_3" 	value="dziecko4">Dziecko 4  |
-							<input type="checkbox" name="dziecko_4" 	value="dziecko5">Dziecko 5  |
-							<input type="checkbox" name="dziecko_5" 	value="dziecko6">Dziecko 6  |
-							<input type="checkbox" name="dziecko_6" 	value="dziecko7">Dziecko 7  |
-							<input type="checkbox" name="dziecko_7" 	value="dziecko8">Dziecko 8  |
-							<input type="checkbox" name="dziecko_8" 	value="dziecko9">Dziecko 9  
-									
-					</div>
-
-					<div class="row">
-						<br><input type="submit" value="Potwierdz"><br>
-						<br><input type="button" value="anuluj" id="klawisz" 					onClick="document.getElementById('przyczajone')	.style.display='none';"><br>
-						</div>
-					
-					</form>
-							
-				</div>
 		</div>
 	</section>
 </main>

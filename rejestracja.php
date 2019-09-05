@@ -187,13 +187,14 @@
 			<div style="clear:both;"></div>
 		</a>
 		</div>
-	</header>
+	
 	
 	<nav><br/></nav>
+	</header>
 <div class="container">
 <main>
 	<section>
-		<div class="rejestracja">
+		<div class="singlecon">
 			<form method="post">
 				
 				<div class="row">
