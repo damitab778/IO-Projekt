@@ -1,12 +1,12 @@
 <?php
-	/*session_start();
+	session_start();
 	if(!isset($_SESSION['udalosie'])){
-		header('Location: index.php');
+		header('Location=index.php');
 		exit();
 	}
 	else{
 		unset($_SESSION['udalosie']);
-	}*/
+	}
 ?>
 
 <!DOCTYPE HTML>
@@ -18,10 +18,11 @@
 	<link href="style.css" rel="stylesheet" type="text/css"/>
 	<link href="timer.css" rel="stylesheet" type="text/css"/>
 	<link href="https://fonts.googleapis.com/css?family=Baloo&amp;subset=latin-ext" rel="stylesheet">
+	
 </head>
 
 <body>
-	
+	<audio src="swinka.wav" id="sound"></audio>
 	<div class="container">
 		<div class="textcon">
 			<h2>Udało się!</h2>
@@ -29,19 +30,18 @@
 
 			<div class=""><a href="index.php">[Zaloguj się na swoje nowe konto klikając tu]</a><br>lub zostaniesz automatycznie przeniesiony za:</div>
 		</div>
-			<div class="countdown" id="countdown">
-			<div class="countdown__fill" id="ticker">
-			
+			<div class="countdown" id="countdown">	
+				<div class="countdown__fill" id="ticker">
+				</div>
+					
+				<div class="countdown__digit" id="seconds">0</div>
+				
 			</div>
-			<div class="countdown__digit" id="seconds">00</div> 
-
-			
-			</div>
-		
-	</div>
+		</div>
 </body>
 <script src="src/hammer.min.js"></script>
 <script src="src/timer.js"></script>
+<script src="src/redirect.js"></script>
 
 </html>
 

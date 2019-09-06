@@ -39,7 +39,10 @@ html, body {
     cursor: pointer;
     transition: width, height, border-radius, font-size;
     transition-duration: 0.2s;
+    top:1vmin;
   }
+
+  
   .countdown--ended {
     animation: buzz 0.5s;
   }
@@ -71,6 +74,7 @@ html, body {
     background: #00aa96;
     opacity: 1;
   }
+
   .countdown__digit {
     width: 100%;
     color: #00aa96;
