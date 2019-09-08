@@ -468,6 +468,7 @@
 					echo"<b>Średnia ze względu na twoje szkole wyzsza i ilość twoich pociech</b>: <i 				style='color:red;'>";echo round($_SESSION['AVG(kwota)6'],  2)."zł.</i><br>";
 
 				?>
+				<div id="mapa"></div>
 		</div>
 	</section>
 </main>

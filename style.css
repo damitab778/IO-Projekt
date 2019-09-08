@@ -8,6 +8,7 @@ body
 {
     margin: 0;
     color: black;
+    font-size: 1.5rem;
 }
 
 header
@@ -21,11 +22,12 @@ header
     padding:0.2em 0;
     font-size:49px;
     font-family: 'Baloo', cursive;
+    max-width:700px;
 }
 
 .logotext
 {
-    padding: 30px 5px;
+    padding: 30px 4%;
     margin-top:5px;
     float:left;
 }
@@ -54,7 +56,7 @@ header
 
 .container
 {
-    font-size:24px;
+   
     min-width:600px;
     max-width:1900px;
     font-family: 'Baloo', cursive;
@@ -107,7 +109,8 @@ h3
 }
 
 input[type=text],
-input[type=password]
+input[type=password],
+input[type=number]
 {
     width:300px;
     height: 57px;
@@ -127,7 +130,6 @@ input[type="checkbox"]
     height: 25px;
     position: relative;
     top: 4px;
-
 }
 
 
@@ -264,8 +266,11 @@ form label.dzieckoLabel
 
 form label.secondLabel
 {
-    width: 20%;
-    max-width: 100px;
+    width: 60%;
+    max-width: 600px;
+    position: relative;
+    left: 5%;
+    text-align: left;
 }
 
 #listaDodawaniaDzieci
@@ -346,4 +351,66 @@ nav a:hover::after
 h2
 {
     color: #00aa96;
+}
+
+.singlecon .title
+{
+    padding: 1.5vmin 1.5%;
+    margin-bottom: 5vh;
+    width:10%;
+    min-width:425px;
+    margin-left:auto;
+    margin-right:auto;
+    color: #00aa96;
+    text-transform: uppercase;
+    border-bottom: 2px dashed #00aa96;
+    font-size: 1.1em;
+}
+
+.singlecon .line
+{
+    margin-left: auto;
+    margin-right: auto;
+    width:50%;
+    margin-bottom: 1vmin;
+}
+
+.singlecon .tabela
+{
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+#formEdit--hide
+{
+    display:none;
+}
+
+#tabela1--hide
+{
+    display:none;
+}
+
+#tabela2--hide
+{
+    display:none;
+}
+
+#btnEdit--hide
+{
+    display:none;
+}
+
+#btnEdit
+{
+    background-color: #00aa96;
+    background: url("img/editicon.png") no-repeat scroll 0 0 transparent;
+    width:115px;
+    height:115px;
+}
+
+#regionText--hide
+{
+    display:none;
 }
