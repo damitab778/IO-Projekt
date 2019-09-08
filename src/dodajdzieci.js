@@ -15,15 +15,16 @@ function ilebachorow(){
                        <option>Szkola wyzsza</option>
                     <td>
                     </select>
-                    <label for="kwota${i}" class="secondLabel">Kwota: </label>
-                    <select id="kwota${i}" class="custom-select" name="kwota${i}" >
+                    <label for="kwota${i}" class="secondLabel">Kwota kieszonkowego: </label>
+                    <!--<select id="kwota${i}" class="custom-select" name="kwota${i}" >
                        <option>10</option>
                        <option>20</option>
                        <option>40</option>
                        <option>60</option>
                        <option>80</option>
                        <option>100</option>
-                    </select>
+                    </select>-->
+                    <input type="number" min="10" max="5000" placeholder="[10-5000] zł" step="10" id="kwota${i}" name="kwota${i}">
                 </div>
             </div>`;
             }

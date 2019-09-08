@@ -170,7 +170,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
 	<meta name="description" content="Serwis pokazujący średnie kieszonkowe dla dziecka pod względem regioniu albo poziomu szkoły, do której uczęszcza. Nie wiesz czy twoje dziecko dostaje dobre kieszonkowe? Sprawdź szybko u nas jaka jest średnia!" />
-	<meta name="keywords" content="kieszonkowe, dziecko, średnia, region, jakie, ile dzieci, ile dać dziecku, szkoła podstawowa, liceum, technikum, studia, szkoła zawodowa, przedszkole" />
+	<meta name="keywords" content="kieszonkowe, dziecko, średnia, region, jakie, ile dzieci, ile dać dziecku, szkoła podstawowa, liceum, technikum, studia, szkoła zawodowa, przedszkole siema jestem michal" />
 
 	<link href="style.css" rel="stylesheet" type="text/css"/>
 	<link href="https://fonts.googleapis.com/css?family=Baloo&amp;subset=latin-ext" rel="stylesheet">
@@ -223,22 +223,22 @@
 				<div class="row">
 				<label for="region">Województwo:</label>
 				<select id="region" class="custom-select" name="woj">
-					<option>dolnośląskie</option>
-					<option>kujawsko-pomorskie</option>
+					<option>dolnoslaskie</option>
 					<option>lubelskie</option>
 					<option>lubuskie</option>
-					<option>łódzkie</option>
-					<option>małopolskie</option>
+					<option>lodzkie</option>
+					<option>malopolskie</option>
 					<option>mazowieckie</option>
 					<option>opolskie</option>
 					<option>podkarpackie</option>
 					<option>podlaskie</option>
 					<option>pomorskie</option>
-					<option>śląskie</option>
-					<option>świętokrzyskie</option>
-					<option>warmińsko-mazurskie</option>
+					<option>slaskie</option>
+					<option>swietokrzyskie</option>
+					<option>warminsko-mazurskie</option>
 					<option>wielkopolskie</option>
 					<option>zachodniopomorskie</option>
+					<option>kujawsko-pomorskie</option>
 				</select>
 
 				</div>
