@@ -469,15 +469,16 @@
 			</div>
 			<div class="line">
 				Twoje wojewodztwo: <span id="regionText" style="font-size: 1.05em; font-weight: 700;"><?php echo$_SESSION['jakiewoj']?></span>
+				<a id="btnEdit" onClick="showRegionEditor();"></a>
 			</div>
-			<input type="button" id="btnEdit" onClick="showRegionEditor();">
+			
 				<div id="dane"></div>
 				
 					<form method="post" id="formEdit--hide">
 						<div class="row">
 						
 
-						<select id="region" class="custom-select" name="woj">
+						<select id="region" class="custom-select2" name="woj">
 							<option>dolnoslaskie</option>
 							<option>kujawsko-pomorskie</option>
 							<option>lubelskie</option>
@@ -495,98 +496,40 @@
 							<option>wielkopolskie</option>
 							<option>zachodniopomorskie</option>
 						</select>
+						
 						</div>
 						<div class="row">
-							<input type="submit" value="Potwierdz"></<input>
-							<input type="button" value="Anuluj" id="btnDeclineEdit" onClick="hideRegionEditor();">
+							<input type="submit" value="Potwierdź" class="btnSmall">
+							<input type="button" value="Anuluj" id="btnDeclineEdit" class="btnSmall" onClick="hideRegionEditor();">
 						</div>
 					</form>
 				
 
 			<div class="tabela" id="tabela1">
+				<table>
 			<!--
 			///////////////////////////////////////////////////////////////////////////
 			///Tutaj tabelka danych z dzieciami, kwotą, szkołą i krzyżykiem usuwania///
 			///////////////////////////////////////////////////////////////////////////
 			 -->
+			 </table>
 			</div>
 			<div class="tabela" id="tabela2">
+				<table>
 			<!--
 			/////////////////////////////////
 			///Tutaj tabelka edycji danych///
 			/////////////////////////////////
 			-->
+				</table>
 			</div>
 			<?php 
 				for($i=0;$i<$_SESSION['iloscbach'];$i++){
 						echo"<b>Kwota przeznaczona na dziecko ".($i+1).": </b> <i style='color:red;'>".$_SESSION['kwota'.$i]."zł</i><b>, oraz jego placówka edukacyjna:</b> <i style='color:red;'> ".$_SESSION['szkola'.$i]."</i>.<br>";
 				}
-			?>
-
-				<br><input type="button" value="Edytuj" id="klawisz" onClick="document.getElementById('ukryty').style.display='block';">
-				<div id="dane"></div>
-				<div style="display: none" id="ukryty">
-					<form method="post">
-						
-						<!--<div class="row">
-						<label for="region">Województwo:</label>
-						
-
-						<select id="region" class="custom-select" name="woj">
-							<option>dolnoslaskie</option>
-							<option>kujawsko-pomorskie</option>
-							<option>lubelskie</option>
-							<option>lubuskie</option>
-							<option>lodzkie</option>
-							<option>malopolskie</option>
-							<option>mazowieckie</option>
-							<option>opolskie</option>
-							<option>podkarpackie</option>
-							<option>podlaskie</option>
-							<option>pomorskie</option>
-							<option>slaskie</option>
-							<option>swietokrzyskie</option>
-							<option>warminsko-mazurskie</option>
-							<option>wielkopolskie</option>
-							<option>zachodniopomorskie</option>
-						</select>
-						</div>-->
-
-						<div class="row">
-							<label for="ld">Ile dzieci:</label>
-							<select class="custom-select" name="liczba" id="ld" onchange="ilebachorow()">
-								<option>Wybierz</option>
-								<option>1</option>
-								<option>2</option>
-								<option>3</option>
-								<option>4</option>
-								<option>5</option>
-								<option>6</option>
-								<option>7</option>
-								<option>8</option>
-								<option>9</option>
-								<option>Za dużo</option>
-							</select>
-								<?php
-									if (isset($_SESSION['e_ldzieci']))
-									{
-										echo '<div class="error">'.$_SESSION['e_ldzieci'].'</div>';
-										unset($_SESSION['e_ldzieci']);
-									}
-								?>
-						</div>
-								
-								
-						<div id="listaDodawaniaDzieci"></div>	
-								
-						<div class="row">
-							<input type="submit" value="Potwierdz"></<input>
-							<input type="button" value="anuluj" id="klawisz" onClick="document.getElementById('ukryty').style.display='none';" doubleClick="document.getElementById('ukryty').style.display='none';">
-						</div>
-					</form>
-				</div>
+			?>		
 							
-				<br><br><input type="button" value="Dodaj dziecko" id="dodajdziecko" onClick="document.getElementById('schowane').style.display='block';">
+				<input type="button" value="Dodaj dziecko" id="dodajdziecko" onClick="document.getElementById('schowane').style.display='block';">
 				<div id="dane"></div>
 				<div style="display: none" id="schowane">
 
@@ -595,8 +538,8 @@
 					<div id="listaDodawaniaDzieci"></div>
 							<div class="row">	
 								<div class="dziecko">
-									<label for="szkola${i}" class="secondLabel" style="left:20%">Szkoła: </label>
-                    				<select id="szkola${i}" class="custom-select" name="szkola${i}">
+									<label for="szkola" class="secondLabel" style="left:20%">Szkoła: </label>
+                    				<select id="szkola" class="custom-select" name="szkola">
                      			  	<option>Podstawowka</option>
                      			  	<option>Gimnazjum</option>
                      			  	<option>Liceum lub Technikum</option>
@@ -604,14 +547,6 @@
 
                     				</select>
                     				<label for="kwota" class="secondLabel" style="left:20%">Kwota kieszonkowego: </label>
-                    				<!--<select id="kwota${i}" class="custom-select" name="kwota${i}" >
-                      			 	<option>10</option>
-                     			 	<option>20</option>
-                      			 	<option>40</option>
-                      			 	<option>60</option>
-                       				<option>80</option>
-                       				<option>100</option>
-                    				</select>-->
                     				<input type="number" min="10" max="5000" placeholder="[10-5000] zł" step="10" id="kwota" name="kwota">
 								</div>
 							</div>
@@ -622,8 +557,7 @@
 				</form>
 				</div>
 							
-							
-				<br><br><input type="button" value="Usun dziecko" id="usundziecko" onClick="document.getElementById('przyczajone').style.display='block';">
+				<input type="button" value="Usun dziecko" id="usundziecko" onClick="document.getElementById('przyczajone').style.display='block';">
 				<div id="dane"></div>
 				<div style="display: none" id="przyczajone">
 
