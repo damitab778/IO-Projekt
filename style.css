@@ -8,6 +8,7 @@ body
 {
     margin: 0;
     color: black;
+    font-size: 1.5rem;
 }
 
 header
@@ -18,13 +19,16 @@ header
 
 .logo
 {
+    padding:0.2em 0;
     font-size:49px;
     font-family: 'Baloo', cursive;
+    max-width:700px;
 }
 
 .logotext
 {
-    padding: 30px 5px;
+    padding: 30px 4%;
+    margin-top:5px;
     float:left;
 }
 
@@ -32,6 +36,8 @@ header
 {
     top:0px;
     padding: 0 5%;
+    position:absolute;
+    right: 1%;
 }
 
 .zalogowanyjako
@@ -46,18 +52,11 @@ header
     font-family: 'Baloo', cursive;
 }
 
-nav
-{ 
-	width: 100%;
-	padding: 10px 0;
-    background-color: #00aa96;
-    font-size: 20px;
-    color: white;
-}
+
 
 .container
 {
-    font-size:24px;
+   
     min-width:600px;
     max-width:1900px;
     font-family: 'Baloo', cursive;
@@ -73,7 +72,7 @@ nav
 {
     float:left;
     width:40%;
-    font-size:1em;
+    font-size:0.9em;
     line-height:1.5em;
     text-align: center;
     padding: 0 5%;
@@ -88,6 +87,7 @@ nav
 h3
 {
     margin-top:0px;
+    margin-bottom: 0.4rem;
     font-weight: normal;
     padding:10px 35px;
 }
@@ -96,15 +96,21 @@ h3
 {
     float:left;
     width:39%;
-    font-size:1em;
+    font-size:0.9em;
     line-height:1.5em;
     border-left:2px solid #00aa96;
     text-align:center;
     padding: 0 5%;
 }
 
+.form_logowanie
+{
+    margin-top:20px;
+}
+
 input[type=text],
-input[type=password]
+input[type=password],
+input[type=number]
 {
     width:300px;
     height: 57px;
@@ -124,7 +130,6 @@ input[type="checkbox"]
     height: 25px;
     position: relative;
     top: 4px;
-
 }
 
 
@@ -133,14 +138,15 @@ form div#regulamin
     display: inline-block;
 }
 
-input[type=submit]
+input[type=submit],
+input[type=button]
 {
     width:300px;
     background-color: #00aa96;
     font-size:22px;
     color: white;
     padding: 15px 10px;
-    margin: 20px 4px 30px 0px;
+    margin: 20px 2px 30px 2px;
     border: none;
     border-radius: 3px;
     cursor: pointer;
@@ -171,13 +177,15 @@ input[type=submit]
     font-size:25px;
 }
 
-input[type=submit]:hover
+input[type=submit]:hover,
+input[type=button]:hover
 {
     background-color:white;
     color: black;
     border: 5px solid #00aa96;
     border-radius: 3px;
     padding: 10px 10px;
+    transition: all ease-in-out 400ms;
 }
 
 .linkprosty
@@ -215,7 +223,7 @@ footer
     margin-bottom: 10px;
 }
 
-.rejestracja
+.singlecon
 {
     margin-left:auto;
     margin-right: auto;
@@ -260,8 +268,11 @@ form label.dzieckoLabel
 
 form label.secondLabel
 {
-    width: 20%;
-    max-width: 100px;
+    width: 60%;
+    max-width: 600px;
+    position: relative;
+    left: 5%;
+    text-align: left;
 }
 
 #listaDodawaniaDzieci
@@ -273,4 +284,174 @@ form div.dziecko
 {
     border-top: 2px dashed #00aa96;
     padding: 20px 0;
+}
+
+/*nav>*/
+
+
+nav
+{ 
+	width: 100%;
+    background-color: #00aa96;
+    font-size: 20px;
+    color: white;
+    font-family: 'Baloo', cursive;
+    text-align:center;
+    height: 55px;
+}
+
+nav ul
+{
+   list-style: none;
+}
+
+nav li
+{
+    display: inline-block;
+    margin-left: 70px;
+    padding: 12px 0;
+
+    position: relative;
+}
+
+nav li:first-child
+{
+    margin-left: 0;
+}
+
+nav a
+{
+    color:white;
+    text-decoration:none;
+    text-transform: uppercase;
+    transition: all ease-in-out 250ms;
+}
+
+nav a:hover 
+{
+    color:black;
+}
+
+nav a::after
+{
+    content: '';
+    display: block;
+    height: 5px;
+    background-color: black;
+
+    position: absolute;
+    bottom:0;
+    width:0%;
+    transition: all ease-in-out 250ms;
+}
+
+nav a:hover::after
+{
+    width:100%;
+}
+
+h2
+{
+    color: #00aa96;
+}
+
+.singlecon .title
+{
+    padding: 1.5vmin 1.5%;
+    margin-bottom: 5vh;
+    width:10%;
+    min-width:425px;
+    margin-left:auto;
+    margin-right:auto;
+    color: #00aa96;
+    text-transform: uppercase;
+    border-bottom: 2px dashed #00aa96;
+    font-size: 1.1em;
+}
+
+.singlecon .line
+{
+    margin-left: auto;
+    margin-right: auto;
+    width:50%;
+    margin-bottom: 1vmin;
+}
+
+.singlecon .tabela
+{
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+#formEdit--hide
+{
+    display:none;
+}
+
+#tabela1--hide
+{
+    display:none;
+}
+
+#tabela2--hide
+{
+    display:none;
+}
+
+#btnEdit--hide
+{
+    display:none;
+}
+
+#btnEdit
+{
+    display:block;
+    width:30px;
+    height:30px;
+    background-repeat: no-repeat;
+    background-position: 5px 5px;
+    background-size: 20px 20px;
+    font-size: 0;
+    background-image: url(img/editicon.png);
+    border-radius: 10%;
+    display: inline-block;
+    background-color: #00aa96;
+    position: absolute;
+    margin-left: 15px;
+    border:none;
+    cursor:pointer;
+}
+
+.btnSmall
+{
+    
+    width:132px !important;
+    height: 55px;
+    font-size: 0.8em !important;
+    margin-top:0 !important;
+    margin-bottom:20px !important;
+}
+
+
+
+.custom-select2
+{
+    height: 57px;
+    border:2px solid #ddd;
+    border-radius: 3px;
+    padding:10px;
+    box-sizing: border-box;
+    outline: none;
+    width:275px;
+    text-align-last: center;
+    padding-right: 29px;
+    font-size: 1.45rem;
+    font-family: 'Baloo', cursive;
+    margin:0;
+}
+
+#regionText--hide
+{
+    display:none;
 }

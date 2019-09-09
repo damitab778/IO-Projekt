@@ -10,7 +10,7 @@
 		//udana walidacja
 			$wszystko_OK=true;
 			$iledzieci=$_POST['liczba'];
-			$woj=$_POST['woj'];
+			//$woj=$_POST['woj'];
 			$nick=$_SESSION['Nick'];
 	
 		if(!is_numeric($iledzieci)){
@@ -282,6 +282,7 @@
 						$_SESSION['AVG(kwota)5'] = $wierszVIII['AVG(kwota)'];    #!!!!!!!!! Sr lic/tech
 						$_SESSION['AVG(kwota)6'] = $wierszIX['AVG(kwota)'];      #!!!!!!!!! Sr szkola wyzsza
 			////////////////////////////////////////////////////////////////////////////////
+						header('Location: konto.php');
 	}
 			else{
 				throw new Exception($polaczenie->error);
@@ -404,6 +405,7 @@
 						$_SESSION['AVG(kwota)5'] = $wierszVIII['AVG(kwota)'];    #!!!!!!!!! Sr lic/tech
 						$_SESSION['AVG(kwota)6'] = $wierszIX['AVG(kwota)'];      #!!!!!!!!! Sr szkola wyzsza
 			////////////////////////////////////////////////////////////////////////////////
+				header('Location: konto.php');
 	}
 			else{
 				throw new Exception($polaczenie->error);
@@ -420,186 +422,242 @@
 <!DOCTYPE HTML>
 <html lang="pl">
 <head>
+	<title>jakiekieszonkowe.pl - Rejestracja</title>
 	<meta charset="utf-8">
-	
-	<!--<script type="text/javascript">
-    function chrum () { document.getElementById('play').play(); }
-	</script>
-	<audio id="play" src="swinka.mp3"></audio>
-	-->
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+	<meta name="description" content="Serwis pokazujący średnie kieszonkowe dla dziecka pod względem regioniu albo poziomu szkoły, do której uczęszcza. Nie wiesz czy twoje dziecko dostaje dobre kieszonkowe? Sprawdź szybko u nas jaka jest średnia!" />
+	<meta name="keywords" content="kieszonkowe, dziecko, średnia, region, jakie, ile dzieci, ile dać dziecku, szkoła podstawowa, liceum, technikum, studia, szkoła zawodowa, przedszkole" />
+
+	<link href="style.css" rel="stylesheet" type="text/css"/>
+	<link href="https://fonts.googleapis.com/css?family=Baloo&amp;subset=latin-ext" rel="stylesheet">
+
 </head>
-<!--<body onload="chrum ();">-->
 <body>
-<a href="wyloguj.php"><input type="button" value="Wyloguj"></a></br>
-<?php  
-	echo"<b><br>DANE O UZYTKOWNKIU:</b><br>";
-	echo"<b>------------------------------------------------------</b><br>";
-	echo"<b>Witaj: </b><u>".$_SESSION['Nick']."!</u><br>";
-	echo"<b>Twoje wojewodztwo: </b>".$_SESSION['jakiewoj'].".<br>";
-	echo"<b>Ile dzieci</b>: ". ($_SESSION['iloscbach']).".<br>";
-	for($i=0;$i<$_SESSION['iloscbach'];$i++){
-		echo"<b>Kwota przeznaczona na dziecko ".($i+1).": </b> <i style='color:red;'>".$_SESSION['kwota'.$i]."zł</i><b>, oraz jego placówka edukacyjna:</b> <i style='color:red;'> ".$_SESSION['szkola'.$i]."</i>.<br>";
-	}
-	echo"<b>------------------------------------------------------</b><br>";
-	echo"<b>DANE STATYSTYCZNE:</b><br>";
-	echo"<b>Proponowana średnia kwota kieszonkowego ze względu na samą liczebność państwa potomków (".$_SESSION['Iledzieci'].") tj:</b> <i style='color:red;'>";echo round($_SESSION['AVG(kwota)2'],  2)."zł</i>. <br>";
-	echo"<b>Średnia ze względu tylko na twoje województwo</b>: <i style='color:red;'>";echo round($_SESSION['AVG(kwota)'],  2)."zł.</i><br>";
-	echo"<b>Średnia ze względu na twoje podstawowke i ilość twoich pociech</b>: <i style='color:red;'>";echo round($_SESSION['AVG(kwota)4'],  2)."zł.</i><br>";
-	echo"<b>Średnia ze względu na twoje Gimnazjum i ilość twoich pociech</b>: <i style='color:red;'>";echo round($_SESSION['AVG(kwota)3'],  2)."zł.</i><br>";
-	echo"<b>Średnia ze względu na twoje liceum/technikum i ilość twoich pociech</b>: <i style='color:red;'>";echo round($_SESSION['AVG(kwota)5'],  2)."zł.</i><br>";
-	echo"<b>Średnia ze względu na twoje szkole wyzsza i ilość twoich pociech</b>: <i style='color:red;'>";echo round($_SESSION['AVG(kwota)6'],  2)."zł.</i><br>";
-
+	<div class="status">
+		<div class="zalogowanyjako"><?php echo$_SESSION['Nick'];?></div>
+	</div>
+	<header>
+		<div class="logo">
+		<a href="index.php">
+			<img src="img/pig.jpg" style="float: left;"/>
+			<div class="logotext"><span style="color: #00aa96">jakie</span>kieszonkowe.pl</div>
+			<div style="clear:both;"></div>
+		</a>
+		</div>
 	
-?>
-
-<br><br><input type="button" value="Edytuj" id="klawisz" onClick="document.getElementById('ukryty').style.display='block';">
-<div id="dane"></div>
-<div style="display: none" id="ukryty">
-<form method="post">
-<table id="tabela">
-<tr>
-	<td>Ile dzieci:</td>
-	<td>
-		<select class="custom-select" name="liczba" id="ld"  onchange="ilebachorow2()">
-		<option>Wybierz</option>
-		<option>1</option>
-		<option>2</option>
-		<option>3</option>
-		<option>4</option>
-		<option>5</option>
-		<option>6</option>
-		<option>7</option>
-		<option>8</option>
-		<option>9</option>
-		<option>Za dużo</option>
-		</select>
-		<td>
-		<?php
-							if (isset($_SESSION['e_ldzieci']))
-							{
-								echo '<div class="error">'.$_SESSION['e_ldzieci'].'</div>';
-								unset($_SESSION['e_ldzieci']);
-							}
-						?></td>
-		</td>
-		</td>
-</tr>
-<tr>
-	<td>Województwo:</td><td>
-		<select class="custom-select" name="woj">
-		<option>dolnoslaskie</option>
-		<option>kujawsko-pomorskie</option>
-		<option>lubelskie</option>
-		<option>lubuskie</option>
-		<option>lodzkie</option>
-		<option>malopolskie</option>
-		<option>mazowieckie</option>
-		<option>opolskie</option>
-		<option>podkarpackie</option>
-		<option>podlaskie</option>
-		<option>pomorskie</option>
-		<option>slaskie</option>
-		<option>swietokrzyskie</option>
-		<option>warminsko-mazurskie</option>
-		<option>wielkopolskie</option>
-		<option>zachodniopomorskie</option>
-		</select>
-		</td>
-</tr>
-<tr>
-<td><div id="wynik2"></div></td>		
-</tr>
-	<script type="text/javascript">
-				function ilebachorow2(){
-				var liczba = document.getElementById("ld").value;
-				var tekst="";
-					if(liczba>0){
-						for(i=0;i<liczba;i++){
-						tekst+='Dziecko '+(i+1)+'. Szkoła: <select class="custom-select" name="szkola'+i+'"><option>Podstawowka</option><option>Gimnazjum</option><option>Liceum lub Technikum</option><option>Szkola wyzsza</option></td><td></select>Kwota: <select class="custom-select" name="kwota'+i+'" ><option>10</option><option>20</option><option>40</option><option>60</option><option>80</option><option>100</option></select><br>';
-						}
-							document.getElementById("wynik2").innerHTML=tekst;
+	
+	<nav>
+		<ul>
+			<li><a href="konto.php">Moje konto</a></li>
+			<li><a href="statystyki.php">Statystyki</a></li>
+			<li><a href="#">O nas</a></li>
+			<li><a href="wyloguj.php">Wyloguj</a></li>
+		</ul>
+	</nav>
+	</header>
+<div class="container">
+<main>
+	<section>
+		<div class="singlecon">
+			<div class="title">
+				Dane o użytkowniku:
+			</div>
+			<div class="line">
+				Witaj: <span style="font-size: 1.05em; font-weight: 700;"><?php echo$_SESSION['Nick']?></span>!
+			</div>
+			<div class="line">
+				Liczba dzieci: <span style="font-size: 1.05em; font-weight: 700;"><?php echo$_SESSION['iloscbach']?></span>
+			</div>
+			<div class="line">
+				Twoje wojewodztwo: <span id="regionText" style="font-size: 1.05em; font-weight: 700;"><?php echo$_SESSION['jakiewoj']?></span>
+				<a id="btnEdit" onClick="showRegionEditor();"></a>
+			</div>
+			
+				<div id="dane"></div>
+				
+					<form method="post" id="formEdit--hide">
+						<div class="row">
 						
+
+						<select id="region" class="custom-select2" name="woj">
+							<option>dolnoslaskie</option>
+							<option>kujawsko-pomorskie</option>
+							<option>lubelskie</option>
+							<option>lubuskie</option>
+							<option>lodzkie</option>
+							<option>malopolskie</option>
+							<option>mazowieckie</option>
+							<option>opolskie</option>
+							<option>podkarpackie</option>
+							<option>podlaskie</option>
+							<option>pomorskie</option>
+							<option>slaskie</option>
+							<option>swietokrzyskie</option>
+							<option>warminsko-mazurskie</option>
+							<option>wielkopolskie</option>
+							<option>zachodniopomorskie</option>
+						</select>
+						
+						</div>
+						<div class="row">
+							<input type="submit" value="Potwierdź" class="btnSmall">
+							<input type="button" value="Anuluj" id="btnDeclineEdit" class="btnSmall" onClick="hideRegionEditor();">
+						</div>
+					</form>
+				
+
+			<div class="tabela" id="tabela1">
+				<table>
+			<!--
+			///////////////////////////////////////////////////////////////////////////
+			///Tutaj tabelka danych z dzieciami, kwotą, szkołą i krzyżykiem usuwania///
+			///////////////////////////////////////////////////////////////////////////
+			 -->
+			 </table>
+			</div>
+			<div class="tabela" id="tabela2">
+				<table>
+			<!--
+			/////////////////////////////////
+			///Tutaj tabelka edycji danych///
+			/////////////////////////////////
+			-->
+				</table>
+			</div>
+			<?php 
+					echo'<form method="post">';
+					for($i=0;$i<$_SESSION['iloscbach'];$i++){
+						echo"<b>Kwota przeznaczona na dziecko ".($i+1).": </b> <i style='color:red;'>".$_SESSION['kwota'.$i]."zł</i><b>, oraz jego placówka edukacyjna:</b> <i style='color:red;'> ".$_SESSION['szkola'.$i]."</i>  -> Usuń dziecko. <input type='checkbox' name='dziecko_".$i. "'	value='dziecko".($i+1)."'><br>";
 					}
-					else document.getElementById("wynik2").innerHTML="Nie masz dzieci!";
-				}
-				</script>
-<tr>
-<td><input type="submit" value="Potwierdz"></td>
-<td><input type="button" value="anuluj" id="klawisz" onClick="document.getElementById('ukryty').style.display='none';" doubleClick="document.getElementById('ukryty').style.display='none';"></td>
-</tr>
-</table>
-</form>
+					echo'<br><input type="submit" value="Sajonara"><br></form>';
+				?>	
+				
+				<br><br><input type="button" value="Edytuj" id="klawisz" onClick="document.getElementById('ukryty').style.display='block';">
+				<div id="dane"></div>
+				<div style="display: none" id="ukryty">
+
+
+			<?php
+				
+						echo'<form method="post" >';
+						echo"<div class='row'>
+						<label for='region'>Województwo:</label>
+						<select id='region' class='custom-select' name='woj'>
+							<option>dolnośląskie</option>
+							<option>kujawsko-pomorskie</option>
+							<option>lubelskie</option>
+							<option>lubuskie</option>
+							<option>łódzkie</option>
+							<option>małopolskie</option>
+							<option>mazowieckie</option>
+							<option>opolskie</option>
+							<option>podkarpackie</option>
+							<option>podlaskie</option>
+							<option>pomorskie</option>
+							<option>śląskie</option>
+							<option>świętokrzyskie</option>
+							<option>warmińsko-mazurskie</option>
+							<option>wielkopolskie</option>
+							<option>zachodniopomorskie</option>
+						</select>
+						</div>";
+							for($i=0;$i<$_SESSION['iloscbach'];$i++){
+								echo'Dziecko '.($i+1).'. Szkoła: <select class="custom-select" name="szkola'.$i.'">
+								<option>Podstawowka</option>
+								<option>Gimnazjum</option>
+								<option>Liceum lub Technikum</option>
+								<option>Szkola wyzsza</option>
+								</select> 
+								Kwota: <select class="custom-select" name="kwota'.$i.'" >
+								<option>10</option>
+								<option>20</option>
+								<option>40</option>
+								<option>60</option>
+								<option>80</option>
+								<option>100</option>
+								</select><br>';	
+					}
+					echo'<input type="submit"  value="Zatwierdz zmiane"></form>';				
+				?>
+				<input type="button" value="anuluj" id="klawisz" onClick="document.getElementById('ukryty').style.display='none';" >
+				</div>	
+				
+							
+				<input type="button" value="Dodaj dziecko" id="dodajdziecko" onClick="document.getElementById('schowane').style.display='block';">
+				<div id="dane"></div>
+				<div style="display: none" id="schowane">
+
+
+				<form method="post">
+					<div id="listaDodawaniaDzieci"></div>
+							<div class="row">	
+								<div class="dziecko">
+									<label for="szkola" class="secondLabel" style="left:20%">Szkoła: </label>
+                    				<select id="szkola" class="custom-select" name="szkola">
+                     			  	<option>Podstawowka</option>
+                     			  	<option>Gimnazjum</option>
+                     			  	<option>Liceum lub Technikum</option>
+                    			   	<option>Szkola wyzsza</option>
+
+                    				</select>
+                    				<label for="kwota" class="secondLabel" style="left:20%">Kwota kieszonkowego: </label>
+                    				<input type="number" min="10" max="5000" placeholder="[10-5000] zł" step="10" id="kwota" name="kwota">
+								</div>
+							</div>
+						<div class="row">
+						<input type="submit" value="Potwierdz">
+						<input type="button" value="anuluj" id="klawisz" onClick="document.getElementById('schowane').style.display='none';">
+					</div>
+				</form>
+				</div>
+							
+			<!--<input type="button" value="Usun dziecko" id="usundziecko" onClick="document.getElementById('przyczajone').style.display='block';">
+				<div id="dane"></div>
+				<div style="display: none" id="przyczajone">
+
+
+					<form method="post">
+					
+					
+					<div class="row">				
+							Wybierz dziecko, którego już nie potrzebujesz <img 	src="img\ryj.jpg" alt="Tekst alternatywny"><br>
+									
+									
+							<input type="checkbox" name="dziecko_0" 	value="dziecko1">Dziecko 1  |
+							<input type="checkbox" name="dziecko_1" 	value="dziecko2">Dziecko 2  |
+							<input type="checkbox" name="dziecko_2" 	value="dziecko3">Dziecko 3  |
+							<input type="checkbox" name="dziecko_3" 	value="dziecko4">Dziecko 4  |
+							<input type="checkbox" name="dziecko_4" 	value="dziecko5">Dziecko 5  |
+							<input type="checkbox" name="dziecko_5" 	value="dziecko6">Dziecko 6  |
+							<input type="checkbox" name="dziecko_6" 	value="dziecko7">Dziecko 7  |
+							<input type="checkbox" name="dziecko_7" 	value="dziecko8">Dziecko 8  |
+							<input type="checkbox" name="dziecko_8" 	value="dziecko9">Dziecko 9  
+					</div>
+
+					<div class="row">
+						<br><input type="submit" value="Potwierdz"><br>
+						<br><input type="button" value="anuluj" id="klawisz" onClick="document.getElementById('przyczajone').style.display='none';"><br>
+						</div>
+					
+					</form>
+							
+				</div>-->
+		</div>
+	</section>
+</main>
 </div>
-
-<br><br><input type="button" value="Dodaj dziecko" id="dodajdziecko" onClick="document.getElementById('schowane').style.display='block';">
-<div id="dane"></div>
-<div style="display: none" id="schowane">
-<form method="post">
-<table id="tabela">
-
-<td><div id="wynik2"></div></td>		
-</tr>
-			<td>
-			Szkoła: 
-			<select class="custom-select" name="szkola">
-			<option>Podstawowka</option>
-			<option>Gimnazjum</option>
-			<option>Liceum lub Technikum</option>
-			<option>Szkola wyzsza</option>
-			</td>
-			<td>
-			</select>
-			Kwota: 
-			<select class="custom-select" name="kwota" >
-			<option>10</option>
-			<option>20</option>
-			<option>40</option>
-			<option>60</option>
-			<option>80</option>
-			<option>100</option>
-			</select>
-			<br>
-			<td>
-<tr>
-<td><br><input type="submit" value="Potwierdz"></td>
-<td><br><input type="button" value="anuluj" id="klawisz" onClick="document.getElementById('schowane').style.display='none';"></td>
-</tr>
-</table>
-</form>
-</div>
+<footer>
+	Wszelkie prawa zastrzeżone &copy 2019
+</footer>
 
 
-<br><br><input type="button" value="Usun dziecko" id="usundziecko" onClick="document.getElementById('przyczajone').style.display='block';">
-<div id="dane"></div>
-<div style="display: none" id="przyczajone">
-<form method="post">
-<table id="tabela">
-
-<td><div id="wynik2"></div></td>		
-</tr>
-
-		Wybierz dziecko, którego już nie potrzebujesz <img src="img\ryj.jpg" alt="Tekst alternatywny"> <br>
-		
-
-		<input type="checkbox" name="dziecko_0" value="dziecko1">Dziecko 1  |
-		<input type="checkbox" name="dziecko_1" value="dziecko2">Dziecko 2  |
-		<input type="checkbox" name="dziecko_2" value="dziecko3">Dziecko 3  |
-		<input type="checkbox" name="dziecko_3" value="dziecko4">Dziecko 4  |
-		<input type="checkbox" name="dziecko_4" value="dziecko5">Dziecko 5  |
-		<input type="checkbox" name="dziecko_5" value="dziecko6">Dziecko 6  |
-		<input type="checkbox" name="dziecko_6" value="dziecko7">Dziecko 7  |
-		<input type="checkbox" name="dziecko_7" value="dziecko8">Dziecko 8  |
-		<input type="checkbox" name="dziecko_8" value="dziecko9">Dziecko 9  
-	
-<tr>
-
-<td><br><input type="submit" value="Potwierdz"></td>
-<td><br><input type="button" value="anuluj" id="klawisz" onClick="document.getElementById('przyczajone').style.display='none';"></td>
-</tr>
-</table>
-</form>
-
-</div>
+<script src="src/dodajdzieci.js"></script>
+<script src="src/defaultRegion.js"></script>
+<script>
+	var woj = "<?php echo$_SESSION['jakiewoj'] ?>";
+	document.getElementById("btnEdit").addEventListener("click",()=>whichOption(woj));
+</script>
 
 </body>
 </html>

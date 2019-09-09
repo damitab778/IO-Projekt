@@ -31,9 +31,10 @@
 			<div style="clear:both;"></div>
 		</a>
 		</div>
-	</header>
+	
 	
 	<nav><br/></nav>
+	</header>
 	<div class="container">
 <main>
 	
