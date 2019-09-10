@@ -5,13 +5,89 @@
 	exit();
 	}
 
-		////////////////////////////////////
-		######AKTUALIZACJA CAL######		
-		////////////////////////////////////
-	if(isset($_POST['woj'])){
+					////////////////////////////////////
+						     ####Edycja dzieci####
+					////////////////////////////////////
+	if(isset($_POST['szkola1'])){
+		//udana walidacja
+			$wszystko_OK=true;
+			$nick=$_SESSION['Nick'];
+			$ID_user=$_SESSION['ID_user'];
+		require_once "connect.php";
+		mysqli_report(MYSQLI_REPORT_STRICT);
+		try{
+			$polaczenie = new mysqli($host, $db_user, $db_password, $db_name); 
+			if($polaczenie->connect_errno!=0){
+				throw new Exception(mysqli_connect_errno());
+	}
+		else{		
+			if($wszystko_OK==true){
+				
+					////////////////////////////////////
+								####ZAPYTANIA####
+					////////////////////////////////////
+					
+					####Ilość dzieci usera####
+			$zapytanieIII="SELECT Liczba_dzieci FROM uzytkownicy WHERE Nick='$nick'";
+			$rezultatIII = @$polaczenie->query($zapytanieIII);
+			$wierszIII = $rezultatIII->fetch_assoc();
+			$_SESSION['iloscbach'] = $wierszIII['Liczba_dzieci'];  		
+			$iloscbach = $_SESSION['iloscbach']+1;
+			
+					####ID_dzieci####
+			$zapytanieXI="SELECT ID_dziecko from Dziecko d join uzytkownicy u on d.ID_user=u.ID_user where Nick='$nick'"; 
+			$rezultatXI = @$polaczenie->query($zapytanieXI);
+				for($i=1;$i<=$iloscbach;$i++){
+				$wierszXI = $rezultatXI->fetch_assoc();
+				$id_dziecka[$i] = $wierszXI['ID_dziecko']; }
+		
+					####Pobieranie postów####
+				for($i=1;$i<=$iloscbach;$i++){
+					$j=$i-1;
+					$kwota[$i]=$_POST['kwota'.$j]; 
+					$szkola[$i]=$_POST["szkola".$j]; }
 
+					####Główne czary aktualizacji####
+				if($polaczenie->connect_errno==0){ 
+						for($i=1; $i<=$iloscbach; $i++){
+							($polaczenie->query("UPDATE szkola SET  szkola='$szkola[$i]' WHERE ID_dziecko='$id_dziecka[$i]'"))&& 
+							($polaczenie->query("UPDATE kwota SET kwota='$kwota[$i]' WHERE ID_dziecko='$id_dziecka[$i]'"));}							
+							echo'<script> alert("Aktualizacja udała się")</script>';
 
+					
+					####Kwota zaproponowana przez usera na dziecko####
+			$zapytanieII="SELECT kwota FROM kwota k INNER JOIN dziecko d ON d.ID_dziecko=k.ID_dziecko INNER JOIN uzytkownicy u ON d.ID_user=u.ID_user WHERE Nick='$nick'";
+			$rezultatII = @$polaczenie->query($zapytanieII);
+				for($i=0;$i<=$iloscbach;$i++){
+				$wierszII = $rezultatII->fetch_assoc();
+				$_SESSION['kwota'.$i] = $wierszII['kwota']; }
+				
+					####Wyswietlanie szkoly dla dziecka####
+			$zapytanieXI="SELECT szkola FROM szkola s INNER JOIN dziecko d ON d.ID_dziecko=s.ID_dziecko INNER JOIN uzytkownicy u ON d.ID_user=u.ID_user WHERE Nick='$nick'";
+			$rezultatXI = @$polaczenie->query($zapytanieXI);
+				for($i=0;$i<=$iloscbach;$i++){
+				$wierszXI = $rezultatXI->fetch_assoc();
+				$_SESSION['szkola'.$i] = $wierszXI['szkola']; }
 
+				header('Location: konto.php');
+	}
+			else{
+				throw new Exception($polaczenie->error);
+	}}
+					$polaczenie->close();
+	}}
+		catch(Exception $wyjatek){
+			echo '<script>alert("Problem z serwerem, spróbuj później.")</script>';
+			echo '<br />Info dev: '.$wyjatek;
+	}}
+		
+		
+		
+					////////////////////////////////////
+							  ####Zmiana woj####
+					////////////////////////////////////
+	
+		if(isset($_POST['woj'])){
 		//udana walidacja
 			$wszystko_OK=true;
 			$woj=$_POST['woj'];
@@ -77,105 +153,17 @@
 				$idwojew=16;
 				break;
 	}
-				####Zapytania####
-				
-					####Ilość dzieci usera####
-			$zapytanieIII="SELECT Liczba_dzieci FROM uzytkownicy WHERE Nick='$nick'";
-			$rezultatIII = @$polaczenie->query($zapytanieIII);
-			$wierszIII = $rezultatIII->fetch_assoc();
-			$_SESSION['iloscbach'] = $wierszIII['Liczba_dzieci'];  		
-			$iloscbach = $_SESSION['iloscbach']+1;
-			
-			####ID_dzieci####
-			$zapytanieXI="SELECT ID_dziecko from Dziecko d join uzytkownicy u on d.ID_user=u.ID_user where Nick='$nick'"; 
-			$rezultatXI = @$polaczenie->query($zapytanieXI);
-				for($i=1;$i<=$iloscbach;$i++){
-				$wierszXI = $rezultatXI->fetch_assoc();
-				$id_dziecka[$i] = $wierszXI['ID_dziecko']; 
-	}
-		
-				
-				for($i=1;$i<=$iloscbach;$i++){
-					$j=$i-1;
-					$kwota[$i]=$_POST['kwota'.$j]; 
-					$szkola[$i]=$_POST["szkola".$j];
-	}
 
-			
-			
-			$ID_user=$_SESSION['ID_user'];
-				####Główne czary aktualizacji####
+				####Aktualizacja woj####
 				if($polaczenie->query("UPDATE uzytkownicy SET ID_woj='$idwojew' WHERE Nick='$nick'")) {
-						for($i=1; $i<=$iloscbach; $i++){
-							($polaczenie->query("UPDATE szkola SET  szkola='$szkola[$i]' WHERE ID_dziecko='$id_dziecka[$i]'"))&& 
-							($polaczenie->query("UPDATE kwota SET kwota='$kwota[$i]' WHERE ID_dziecko='$id_dziecka[$i]'"));
-	}							echo'<script> alert("Aktualizacja udała się")</script>';
-
-					
-			####Jaka kwote user zaproponował na dziecko####
-			$zapytanieII="SELECT kwota FROM kwota k INNER JOIN dziecko d ON d.ID_dziecko=k.ID_dziecko INNER JOIN uzytkownicy u ON d.ID_user=u.ID_user WHERE Nick='$nick'";
-			$rezultatII = @$polaczenie->query($zapytanieII);
-				for($i=0;$i<=$iloscbach;$i++){
-				$wierszII = $rezultatII->fetch_assoc();
-				$_SESSION['kwota'.$i] = $wierszII['kwota'];  
-	}
-			####Wyswietlanie szkoly dla dziecka####
-			$zapytanieXI="SELECT szkola FROM szkola s INNER JOIN dziecko d ON d.ID_dziecko=s.ID_dziecko INNER JOIN uzytkownicy u ON d.ID_user=u.ID_user WHERE Nick='$nick'";
-			$rezultatXI = @$polaczenie->query($zapytanieXI);
-				for($i=0;$i<=$iloscbach;$i++){
-				$wierszXI = $rezultatXI->fetch_assoc();
-				$_SESSION['szkola'.$i] = $wierszXI['szkola'];  
-	}
-			////DO "ODŚWIEZANIA" DANYCH//// 
-			#####Ilość dzieci usera#####
-			$zapytanieIII="SELECT Liczba_dzieci FROM uzytkownicy WHERE Nick='$nick'";
-			####Średnie w województwach####
-			$zapytanieIV="SELECT AVG(kwota) FROM kwota k join dziecko d ON d.ID_dziecko=k.ID_dziecko 
-			JOIN uzytkownicy u on u.ID_user=d.ID_user 
-			WHERE (ID_woj) in (SELECT ID_woj from  kwota k join dziecko d ON d.ID_dziecko=k.ID_dziecko JOIN uzytkownicy u on u.ID_user=d.ID_user WHERE Nick = '$nick');";
-			####Średnia ze względu na ilosc dzieci####
-			$zapytanieV="SELECT AVG(kwota) FROM kwota k join dziecko d ON d.ID_dziecko=k.ID_dziecko 
-			JOIN uzytkownicy u on u.ID_user=d.ID_user 
-			WHERE (Liczba_dzieci) in (SELECT Liczba_dzieci from  uzytkownicy WHERE Nick = '$nick');";
-			####Średnia ze względu na gimnazjum i ilość dzieci#####
-			$zapytanieVI="SELECT AVG(kwota) FROM kwota k join szkola s ON k.ID_dziecko=s.ID_dziecko JOIN dziecko d on d.ID_dziecko=k.ID_dziecko join  uzytkownicy u on d.ID_user=u.ID_user 
-			WHERE (Liczba_dzieci, Szkola) in (SELECT Liczba_dzieci, Szkola from  szkola s join dziecko d on d.ID_dziecko=s.ID_dziecko join uzytkownicy u on u.ID_user=d.ID_user WHERE Nick = '$nick' AND Szkola='Gimnazjum');";
-			####Średnia ze względu na podstawowke i ilość dzieci#####
-			$zapytanieVII="SELECT AVG(kwota) FROM kwota k join szkola s ON k.ID_dziecko=s.ID_dziecko JOIN dziecko d on d.ID_dziecko=k.ID_dziecko join  uzytkownicy u on d.ID_user=u.ID_user 
-			WHERE (Liczba_dzieci, Szkola) in (SELECT Liczba_dzieci, Szkola from  szkola s join dziecko d on d.ID_dziecko=s.ID_dziecko join uzytkownicy u on u.ID_user=d.ID_user WHERE Nick = '$nick' AND Szkola='Podstawowka');";
-			####Średnia ze względu na liceum/technikum i ilość dzieci#####
-			$zapytanieVIII="SELECT AVG(kwota) FROM kwota k join szkola s ON k.ID_dziecko=s.ID_dziecko JOIN dziecko d on d.ID_dziecko=k.ID_dziecko join  uzytkownicy u on d.ID_user=u.ID_user 
-			WHERE (Liczba_dzieci, Szkola) in (SELECT Liczba_dzieci, Szkola from  szkola s join dziecko d on d.ID_dziecko=s.ID_dziecko join uzytkownicy u on u.ID_user=d.ID_user WHERE Nick = '$nick' AND Szkola='Liceum lub Technikum');";
-			####Średnia ze względu na szkole wyzsza i ilość dzieci#####
-			$zapytanieIX="SELECT AVG(kwota) FROM kwota k join szkola s ON k.ID_dziecko=s.ID_dziecko JOIN dziecko d on d.ID_dziecko=k.ID_dziecko join  uzytkownicy u on d.ID_user=u.ID_user 
-			WHERE (Liczba_dzieci, Szkola) in (SELECT Liczba_dzieci, Szkola from  szkola s join dziecko d on d.ID_dziecko=s.ID_dziecko join uzytkownicy u on u.ID_user=d.ID_user WHERE Nick = '$nick' AND Szkola='Szkola wyzsza');";
-			####Aktualne województwo####
-			$zapytanieX="SELECT Nazwa_Woj FROM wojewodztwa w JOIN uzytkownicy u ON u.ID_woj=w.ID_woj WHERE Nick='$nick'";
-					$rezultatIII = @$polaczenie->query($zapytanieIII);
-					$wierszIII = $rezultatIII->fetch_assoc();
-					$rezultatIV = @$polaczenie->query($zapytanieIV);
-					$wierszIV = $rezultatIV->fetch_assoc();
-					$rezultatV = @$polaczenie->query($zapytanieV);
-					$wierszV = $rezultatV->fetch_assoc();
-					$rezultatVI = @$polaczenie->query($zapytanieVI);
-					$wierszVI = $rezultatVI->fetch_assoc();
-					$rezultatVII = @$polaczenie->query($zapytanieVII);
-					$wierszVII = $rezultatVII->fetch_assoc();
-					$rezultatVIII = @$polaczenie->query($zapytanieVIII);
-					$wierszVIII = $rezultatVIII->fetch_assoc();
-					$rezultatIX = @$polaczenie->query($zapytanieIX);
-					$wierszIX = $rezultatIX->fetch_assoc();		
+				echo'<script> alert("Aktualizacja udała się")</script>';
+				
+				####Aktualne województwo####
+					$zapytanieX="SELECT Nazwa_Woj FROM wojewodztwa w JOIN uzytkownicy u ON u.ID_woj=w.ID_woj WHERE Nick='$nick'";
 					$rezultatX = @$polaczenie->query($zapytanieX);
 					$wierszX = $rezultatX->fetch_assoc();
-						$_SESSION['Iledzieci'] = $wierszIII['Liczba_dzieci'];  			 	#!!!!!!!!!! 
-						$_SESSION['jakiewoj'] = $wierszX['Nazwa_Woj'];					#!!!!!!!!!! 
-						$_SESSION['AVG(kwota)'] = $wierszIV['AVG(kwota)'];   	 	#!!!!!!!!! SR z woj
-						$_SESSION['AVG(kwota)2'] = $wierszV['AVG(kwota)'];   	#!!!!!!!!! SR sama ilosc dzieci
-						$_SESSION['AVG(kwota)3'] = $wierszVI['AVG(kwota)'];   	#!!!!!!!!!  SR gim
-						$_SESSION['AVG(kwota)4'] = $wierszVII['AVG(kwota)'];     #!!!!!!!!! SR podst
-						$_SESSION['AVG(kwota)5'] = $wierszVIII['AVG(kwota)'];    #!!!!!!!!! Sr lic/tech
-						$_SESSION['AVG(kwota)6'] = $wierszIX['AVG(kwota)'];      #!!!!!!!!! Sr szkola wyzsza
-		  /////////////////////////////////////////////////////////////////////////////////////////////////////
+					$_SESSION['jakiewoj'] = $wierszX['Nazwa_Woj'];					
+					
 						header('Location: konto.php');
 	}
 			else{
@@ -187,6 +175,7 @@
 			echo '<script>alert("Problem z serwerem, spróbuj później.")</script>';
 			echo '<br />Info dev: '.$wyjatek;
 	}}
+		
 		
 		////////////////////////////////////
 		######   DODAJ DZIECKO   ######		
@@ -332,10 +321,6 @@
 		
 		
 		$ID_user=$_SESSION['ID_user'];
-		 //	<input type="checkbox" name="dziecko_0" value="dziecko1">Dziecko 1 
-		//<input type="checkbox" name="dziecko_1" value="dziecko2">Dziecko 2 
-		//<input type="checkbox" name="dziecko_2" value="dziecko3">Dziecko 3
-			####Magia dodawania dzieciaka#### ////SKAD WZIAC ID KTOREGO DZIECIAKA USUNAC?
 			if($polaczenie->query("UPDATE uzytkownicy SET Liczba_dzieci='$iloscbach' WHERE Nick='$nick'")){
 				for($i=0;$i<=$iloscbach;$i++){  ///SPRAWDZANIE CZY CHECKED
 				$wierszXI = $rezultatXI->fetch_assoc();
@@ -486,20 +471,20 @@
 						
 
 						<select id="region" class="custom-select2" name="woj">
-							<option>dolnoslaskie</option>
+							<option>dolnośląskie</option>
 							<option>kujawsko-pomorskie</option>
 							<option>lubelskie</option>
 							<option>lubuskie</option>
-							<option>lodzkie</option>
-							<option>malopolskie</option>
+							<option>łódzkie</option>
+							<option>małopolskie</option>
 							<option>mazowieckie</option>
 							<option>opolskie</option>
 							<option>podkarpackie</option>
 							<option>podlaskie</option>
 							<option>pomorskie</option>
-							<option>slaskie</option>
-							<option>swietokrzyskie</option>
-							<option>warminsko-mazurskie</option>
+							<option>śląskie</option>
+							<option>świętokrzyskie</option>
+							<option>warmińsko-mazurskie</option>
 							<option>wielkopolskie</option>
 							<option>zachodniopomorskie</option>
 						</select>
@@ -547,27 +532,6 @@
 				
 						
 						echo'<form method="post">';
-						echo"<div class='row'>
-						<label for='region'>Województwo:</label>
-						<select id='region' class='custom-select' name='woj' >
-							<option>dolnośląskie</option>
-							<option>kujawsko-pomorskie</option>
-							<option>lubelskie</option>
-							<option selected>lubuskie</option>
-							<option>łódzkie</option>
-							<option>małopolskie</option>
-							<option>mazowieckie</option>
-							<option>opolskie</option>
-							<option>podkarpackie</option>
-							<option>podlaskie</option>
-							<option>pomorskie</option>
-							<option>śląskie</option>
-							<option>świętokrzyskie</option>
-							<option>warmińsko-mazurskie</option>
-							<option>wielkopolskie</option>
-							<option>zachodniopomorskie</option>
-						</select>
-						</div>";
 							for($i=0;$i<$_SESSION['iloscbach'];$i++){
 								echo'Dziecko '.($i+1).'. Szkoła: <select class="custom-select" name="szkola'.$i.'">
 								<option>Podstawowka</option>
@@ -575,14 +539,8 @@
 								<option>Liceum lub Technikum</option>
 								<option>Szkola wyzsza</option>
 								</select> 
-								Kwota: <select class="custom-select" name="kwota'.$i.'" >
-								<option>10</option>
-								<option>20</option>
-								<option>40</option>
-								<option>60</option>
-								<option>80</option>
-								<option>100</option>
-								</select><br>';	
+								Kwota:	<input type="number" min="10" max="5000" placeholder="[10-5000] zł" step="10" id="kwota" name="kwota'.$i.'" >
+								<br>';	
 					}
 					echo'<input type="submit"  value="Zatwierdz zmiane"></form>';				
 				?>
@@ -625,37 +583,7 @@
 				</form>
 				</div>
 							
-			<!--<input type="button" value="Usun dziecko" id="usundziecko" onClick="document.getElementById('przyczajone').style.display='block';">
-				<div id="dane"></div>
-				<div style="display: none" id="przyczajone">
-
-
-					<form method="post">
-					
-					
-					<div class="row">				
-							Wybierz dziecko, którego już nie potrzebujesz <img 	src="img\ryj.jpg" alt="Tekst alternatywny"><br>
-									
-									
-							<input type="checkbox" name="dziecko_0" 	value="dziecko1">Dziecko 1  |
-							<input type="checkbox" name="dziecko_1" 	value="dziecko2">Dziecko 2  |
-							<input type="checkbox" name="dziecko_2" 	value="dziecko3">Dziecko 3  |
-							<input type="checkbox" name="dziecko_3" 	value="dziecko4">Dziecko 4  |
-							<input type="checkbox" name="dziecko_4" 	value="dziecko5">Dziecko 5  |
-							<input type="checkbox" name="dziecko_5" 	value="dziecko6">Dziecko 6  |
-							<input type="checkbox" name="dziecko_6" 	value="dziecko7">Dziecko 7  |
-							<input type="checkbox" name="dziecko_7" 	value="dziecko8">Dziecko 8  |
-							<input type="checkbox" name="dziecko_8" 	value="dziecko9">Dziecko 9  
-					</div>
-
-					<div class="row">
-						<br><input type="submit" value="Potwierdz"><br>
-						<br><input type="button" value="anuluj" id="klawisz" onClick="document.getElementById('przyczajone').style.display='none';"><br>
-						</div>
-					
-					</form>
-							
-				</div>-->
+		
 		</div>
 	</section>
 </main>
