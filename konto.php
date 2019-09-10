@@ -510,7 +510,7 @@
 								<div style='order:0;' class='Rtable-cell Rtable-cell--head Rtable-cell--delete'>Usuń</div>";
 						}
 						echo"<div style='order:".($i+1).";' class='Rtable-cell'>".($i+1)."</div>
-						<div style='order:".($i+1).";' class='Rtable-cell'>".$_SESSION['kwota'.$i]."</div>
+						<div style='order:".($i+1).";' class='Rtable-cell'>".$_SESSION['kwota'.$i]." zł</div>
 						<div style='order:".($i+1).";' class='Rtable-cell'>".$_SESSION['szkola'.$i]."</div>
 						<div style='order:".($i+1).";' class='Rtable-cell Rtable-cell--delete'><input type='checkbox' name='dziecko_".$i. "'	value='dziecko".($i+1)."'></div>";
 					}
@@ -535,7 +535,7 @@
 								<option>Liceum lub Technikum</option>
 								<option>Szkola wyzsza</option>
 								</select> 
-								Kwota:	<input type="number" min="10" max="5000" placeholder="[10-5000] zł" step="10" id="kwota" name="kwota'.$i.'" >
+								Kwota:	<input type="number" min="10" max="5000" placeholder="[10-5000] zł" step="10" id="kwota" name="kwota'.$i.'" required>
 								<br>';	
 					}
 					echo'<input type="submit"  value="Zatwierdz zmiane"></form>';				
