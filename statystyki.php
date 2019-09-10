@@ -478,8 +478,6 @@
 </footer>
 
 
-<script src="src/dodajdzieci.js"></script>
-
 </body>
 </html>
 
