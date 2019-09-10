@@ -1,22 +1,22 @@
 <?php
 	session_start();
+	
 	if(!isset($_SESSION['zalogowany'])){ header('Location: index.php');
 	exit();
 	}
+
 		////////////////////////////////////
 		######AKTUALIZACJA CAL######		
 		////////////////////////////////////
-	if(isset($_POST['liczba'])){
+	if(isset($_POST['woj'])){
+
+
+
 		//udana walidacja
 			$wszystko_OK=true;
-			$iledzieci=$_POST['liczba'];
-			//$woj=$_POST['woj'];
+			$woj=$_POST['woj'];
 			$nick=$_SESSION['Nick'];
 	
-		if(!is_numeric($iledzieci)){
-			$wszystko_OK=false;
-			$_SESSION['e_ldzieci']="Podaj liczbe dzieci wpisując odpowiedni numer!";	
-	}
 		require_once "connect.php";
 		mysqli_report(MYSQLI_REPORT_STRICT);
 		try{
@@ -28,16 +28,16 @@
 			if($wszystko_OK==true){
 				
 				switch($woj){
-				case "dolnoslaskie":
+				case "dolnośląskie":
 				$idwojew=1;
 				break;
 				case "kujawsko-pomorskie":
 				$idwojew=2;
 				break;
-				case "malopolskie":
+				case "małopolskie":
 				$idwojew=3;
 				break;
-				case "lodzkie":
+				case "łódzkie":
 				$idwojew=4;
 				break;
 				case "wielkopolskie":
@@ -61,65 +61,68 @@
 				case "pomorskie":
 				$idwojew=11;
 				break;
-				case "slaskie":
+				case "śląskie":
 				$idwojew=12;
 				break;
 				case "podkarpackie":
 				$idwojew=13;
 				break;
-				case "swietokrzyskie":
+				case "świętokrzyskie":
 				$idwojew=14;
 				break;
-				case "warminsko-mazurskie":
+				case "warmińsko-mazurskie":
 				$idwojew=15;
 				break;
 				case "zachodniopomorskie":
 				$idwojew=16;
 				break;
 	}
+				####Zapytania####
 				
-				for($i=1;$i<=$iledzieci;$i++){
-					$j=$i-1;
-					$kwota[$i]=$_POST['kwota'.$j]; 
-					$szkola[$i]=$_POST["szkola".$j];
-	}
-
-			####Zapytania####
-			####ID_dzieci####
-			$zapytanieXI="SELECT ID_dziecko from Dziecko d join uzytkownicy u on d.ID_user=u.ID_user where Nick='$nick'"; 
-			$rezultatXI = @$polaczenie->query($zapytanieXI);
-				for($i=1;$i<=$iledzieci;$i++){
-				$wierszXI = $rezultatXI->fetch_assoc();
-				$id_dziecka[$i] = $wierszXI['ID_dziecko']; 
-	}
-			####Ilość dzieci usera####
+					####Ilość dzieci usera####
 			$zapytanieIII="SELECT Liczba_dzieci FROM uzytkownicy WHERE Nick='$nick'";
 			$rezultatIII = @$polaczenie->query($zapytanieIII);
 			$wierszIII = $rezultatIII->fetch_assoc();
 			$_SESSION['iloscbach'] = $wierszIII['Liczba_dzieci'];  		
 			$iloscbach = $_SESSION['iloscbach']+1;
 			
+			####ID_dzieci####
+			$zapytanieXI="SELECT ID_dziecko from Dziecko d join uzytkownicy u on d.ID_user=u.ID_user where Nick='$nick'"; 
+			$rezultatXI = @$polaczenie->query($zapytanieXI);
+				for($i=1;$i<=$iloscbach;$i++){
+				$wierszXI = $rezultatXI->fetch_assoc();
+				$id_dziecka[$i] = $wierszXI['ID_dziecko']; 
+	}
+		
+				
+				for($i=1;$i<=$iloscbach;$i++){
+					$j=$i-1;
+					$kwota[$i]=$_POST['kwota'.$j]; 
+					$szkola[$i]=$_POST["szkola".$j];
+	}
+
+			
+			
 			$ID_user=$_SESSION['ID_user'];
 				####Główne czary aktualizacji####
 				if($polaczenie->query("UPDATE uzytkownicy SET ID_woj='$idwojew' WHERE Nick='$nick'")) {
-					if($iledzieci<=$_SESSION['iloscbach']){
-						for($i=1; $i<=$iledzieci; $i++){
+						for($i=1; $i<=$iloscbach; $i++){
 							($polaczenie->query("UPDATE szkola SET  szkola='$szkola[$i]' WHERE ID_dziecko='$id_dziecka[$i]'"))&& 
 							($polaczenie->query("UPDATE kwota SET kwota='$kwota[$i]' WHERE ID_dziecko='$id_dziecka[$i]'"));
 	}							echo'<script> alert("Aktualizacja udała się")</script>';
-	}				else echo'<script> alert("Nie masz aż tylu dzieci, proszę skorzystać z funkcji dodawania dzieci!")</script>';
+
 					
 			####Jaka kwote user zaproponował na dziecko####
 			$zapytanieII="SELECT kwota FROM kwota k INNER JOIN dziecko d ON d.ID_dziecko=k.ID_dziecko INNER JOIN uzytkownicy u ON d.ID_user=u.ID_user WHERE Nick='$nick'";
 			$rezultatII = @$polaczenie->query($zapytanieII);
-				for($i=0;$i<=$iledzieci;$i++){
+				for($i=0;$i<=$iloscbach;$i++){
 				$wierszII = $rezultatII->fetch_assoc();
 				$_SESSION['kwota'.$i] = $wierszII['kwota'];  
 	}
 			####Wyswietlanie szkoly dla dziecka####
 			$zapytanieXI="SELECT szkola FROM szkola s INNER JOIN dziecko d ON d.ID_dziecko=s.ID_dziecko INNER JOIN uzytkownicy u ON d.ID_user=u.ID_user WHERE Nick='$nick'";
 			$rezultatXI = @$polaczenie->query($zapytanieXI);
-				for($i=0;$i<=$iledzieci;$i++){
+				for($i=0;$i<=$iloscbach;$i++){
 				$wierszXI = $rezultatXI->fetch_assoc();
 				$_SESSION['szkola'.$i] = $wierszXI['szkola'];  
 	}
@@ -173,6 +176,7 @@
 						$_SESSION['AVG(kwota)5'] = $wierszVIII['AVG(kwota)'];    #!!!!!!!!! Sr lic/tech
 						$_SESSION['AVG(kwota)6'] = $wierszIX['AVG(kwota)'];      #!!!!!!!!! Sr szkola wyzsza
 		  /////////////////////////////////////////////////////////////////////////////////////////////////////
+						header('Location: konto.php');
 	}
 			else{
 				throw new Exception($polaczenie->error);
@@ -417,6 +421,7 @@
 			echo '<script>alert("Problem z serwerem, spróbuj później.")</script>';
 			echo '<br />Info dev: '.$wyjatek;
 	}}
+	
 				
 ?>
 <!DOCTYPE HTML>
@@ -540,14 +545,15 @@
 
 			<?php
 				
-						echo'<form method="post" >';
+						
+						echo'<form method="post">';
 						echo"<div class='row'>
 						<label for='region'>Województwo:</label>
-						<select id='region' class='custom-select' name='woj'>
+						<select id='region' class='custom-select' name='woj' >
 							<option>dolnośląskie</option>
 							<option>kujawsko-pomorskie</option>
 							<option>lubelskie</option>
-							<option>lubuskie</option>
+							<option selected>lubuskie</option>
 							<option>łódzkie</option>
 							<option>małopolskie</option>
 							<option>mazowieckie</option>
@@ -580,8 +586,15 @@
 					}
 					echo'<input type="submit"  value="Zatwierdz zmiane"></form>';				
 				?>
+				
+			
 				<input type="button" value="anuluj" id="klawisz" onClick="document.getElementById('ukryty').style.display='none';" >
 				</div>	
+					
+			
+			
+			
+		
 				
 							
 				<input type="button" value="Dodaj dziecko" id="dodajdziecko" onClick="document.getElementById('schowane').style.display='block';">
