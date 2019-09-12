@@ -24,7 +24,7 @@ function ilebachorow(){
                        <option>80</option>
                        <option>100</option>
                     </select>-->
-                    <input type="number" min="10" max="5000" placeholder="[10-5000] zł" step="10" id="kwota${i}" name="kwota${i}">
+                    <input type="number" min="10" max="5000" placeholder="[10-5000] zł" step="10" id="kwota${i}" name="kwota${i}" required>
                 </div>
             </div>`;
             }

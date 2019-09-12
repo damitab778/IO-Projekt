@@ -497,33 +497,29 @@
 					</form>
 				
 
-			<div class="tabela" id="tabela1">
-				<table>
-			<!--
-			///////////////////////////////////////////////////////////////////////////
-			///Tutaj tabelka danych z dzieciami, kwotą, szkołą i krzyżykiem usuwania///
-			///////////////////////////////////////////////////////////////////////////
-			 -->
-			 </table>
-			</div>
-			<div class="tabela" id="tabela2">
-				<table>
-			<!--
-			/////////////////////////////////
-			///Tutaj tabelka edycji danych///
-			/////////////////////////////////
-			-->
-				</table>
-			</div>
-			<?php 
-					echo'<form method="post">';
-					for($i=0;$i<$_SESSION['iloscbach'];$i++){
-						echo"<b>Kwota przeznaczona na dziecko ".($i+1).": </b> <i style='color:red;'>".$_SESSION['kwota'.$i]."zł</i><b>, oraz jego placówka edukacyjna:</b> <i style='color:red;'> ".$_SESSION['szkola'.$i]."</i>  -> Usuń dziecko. <input type='checkbox' name='dziecko_".$i. "'	value='dziecko".($i+1)."'><br>";
+					
+					
+					<?php 
+						echo'<form method="post">';
+						echo'<div class="Rtable Rtable--4cols">';
+						for($i=0;$i<$_SESSION['iloscbach'];$i++){
+							if($i==0){
+								echo"<div style='order:0;' class='Rtable-cell Rtable-cell--head'>Dziecko nr:</div>
+								<div style='order:0'; class='Rtable-cell Rtable-cell--head'>Kieszonkowe</div>
+								<div style='order:0;' class='Rtable-cell Rtable-cell--head'>Szkoła</div>
+								<div style='order:0;' class='Rtable-cell Rtable-cell--head Rtable-cell--delete'>Usuń</div>";
+						}
+						echo"<div style='order:".($i+1).";' class='Rtable-cell'>".($i+1)."</div>
+						<div style='order:".($i+1).";' class='Rtable-cell'>".$_SESSION['kwota'.$i]." zł</div>
+						<div style='order:".($i+1).";' class='Rtable-cell'>".$_SESSION['szkola'.$i]."</div>
+						<div style='order:".($i+1).";' class='Rtable-cell Rtable-cell--delete'><input type='checkbox' name='dziecko_".$i. "'	value='dziecko".($i+1)."'></div>";
 					}
-					echo'<br><input type="submit" value="Sajonara"><br></form>';
-				?>	
-				
-				<br><br><input type="button" value="Edytuj" id="klawisz" onClick="document.getElementById('ukryty').style.display='block';">
+					echo'</div>';
+					echo'<input type="submit" value="Sajonara"></form>';
+					?>	
+					
+
+				<input type="button" value="Edytuj" id="klawisz" onClick="document.getElementById('ukryty').style.display='block';">
 				<div id="dane"></div>
 				<div style="display: none" id="ukryty">
 
@@ -539,7 +535,7 @@
 								<option>Liceum lub Technikum</option>
 								<option>Szkola wyzsza</option>
 								</select> 
-								Kwota:	<input type="number" min="10" max="5000" placeholder="[10-5000] zł" step="10" id="kwota" name="kwota'.$i.'" >
+								Kwota:	<input type="number" min="10" max="5000" placeholder="[10-5000] zł" step="10" id="kwota" name="kwota'.$i.'" required>
 								<br>';	
 					}
 					echo'<input type="submit"  value="Zatwierdz zmiane"></form>';				
@@ -594,11 +590,7 @@
 
 
 <script src="src/dodajdzieci.js"></script>
-<script src="src/defaultRegion.js"></script>
-<script>
-	var woj = "<?php echo$_SESSION['jakiewoj'] ?>";
-	document.getElementById("btnEdit").addEventListener("click",()=>whichOption(woj));
-</script>
+<script src="src/regionHelper.js"></script>
 
 </body>
 </html>
