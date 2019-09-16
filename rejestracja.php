@@ -56,7 +56,7 @@
 			if($wszystko_OK==true){
 
 				switch($woj){
-				case "dolnoślaskie":
+				case "dolnośląskie":
 				$idwojew=1;
 				break;
 				case "kujawsko-pomorskie":
@@ -223,22 +223,22 @@
 				<div class="row">
 				<label for="region">Województwo:</label>
 				<select id="region" class="custom-select" name="woj">
-							<option>dolnośląskie</option>
-							<option>kujawsko-pomorskie</option>
-							<option>lubelskie</option>
-							<option>lubuskie</option>
-							<option>łódzkie</option>
-							<option>małopolskie</option>
-							<option>mazowieckie</option>
-							<option>opolskie</option>
-							<option>podkarpackie</option>
-							<option>podlaskie</option>
-							<option>pomorskie</option>
-							<option>śląskie</option>
-							<option>świętokrzyskie</option>
-							<option>warmińsko-mazurskie</option>
-							<option>wielkopolskie</option>
-							<option>zachodniopomorskie</option>
+				<option>dolnośląskie</option>
+					<option>kujawsko-pomorskie</option>
+					<option>lubelskie</option>
+					<option>lubuskie</option>
+					<option>łódzkie</option>
+					<option>małopolskie</option>
+					<option>mazowieckie</option>
+					<option>opolskie</option>
+					<option>podkarpackie</option>
+					<option>podlaskie</option>
+					<option>pomorskie</option>
+					<option>śląskie</option>
+					<option>świętokrzyskie</option>
+					<option>warmińsko-mazurskie</option>
+					<option>wielkopolskie</option>
+					<option>zachodniopomorskie</option>
 				</select>
 
 				</div>
