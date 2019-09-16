@@ -223,6 +223,7 @@
 				<div class="row">
 				<label for="region">Województwo:</label>
 				<select id="region" class="custom-select" name="woj">
+<<<<<<< Updated upstream
 				<option>dolnośląskie</option>
 					<option>kujawsko-pomorskie</option>
 					<option>lubelskie</option>
@@ -239,6 +240,24 @@
 					<option>warmińsko-mazurskie</option>
 					<option>wielkopolskie</option>
 					<option>zachodniopomorskie</option>
+=======
+							<option>dolnośląskie</option>
+							<option>kujawsko-pomorskie</option>
+							<option>lubelskie</option>
+							<option>lubuskie</option>
+							<option>łódzkie</option>
+							<option>małopolskie</option>
+							<option>mazowieckie</option>
+							<option>opolskie</option>
+							<option>podkarpackie</option>
+							<option>podlaskie</option>
+							<option>pomorskie</option>
+							<option>śląskie</option>
+							<option>świętokrzyskie</option>
+							<option>warmińsko-mazurskie</option>
+							<option>wielkopolskie</option>
+							<option>zachodniopomorskie</option>
+>>>>>>> Stashed changes
 				</select>
 
 				</div>

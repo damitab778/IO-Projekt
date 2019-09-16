@@ -8,7 +8,16 @@
 					////////////////////////////////////
 						     ####Edycja dzieci####
 					////////////////////////////////////
+<<<<<<< Updated upstream
 	if(isset($_POST['szkola1'])){
+=======
+					$iloscbach = $_SESSION['iloscbach']+1;
+			  if((isset($_POST['kwota0']))AND(!isset($_POST['dziecko_0']))
+	AND(!isset($_POST['dziecko_1']))AND(!isset($_POST['dziecko_2']))
+	AND(!isset($_POST['dziecko_3']))AND(!isset($_POST['dziecko_4']))
+	AND(!isset($_POST['dziecko_5']))AND(!isset($_POST['dziecko_6']))
+	AND(!isset($_POST['dziecko_7']))AND(!isset($_POST['dziecko_8']))){ 
+>>>>>>> Stashed changes
 		//udana walidacja
 			$wszystko_OK=true;
 			$nick=$_SESSION['Nick'];
@@ -81,7 +90,11 @@
 			echo '<br />Info dev: '.$wyjatek;
 	}}
 		
+<<<<<<< Updated upstream
 		
+=======
+
+>>>>>>> Stashed changes
 		
 					////////////////////////////////////
 							  ####Zmiana woj####
@@ -293,6 +306,7 @@
 		######    USUN DZIECKO     ######		
 		////////////////////////////////////
 		if((isset($_POST['dziecko_0']))OR(isset($_POST['dziecko_1']))OR(isset($_POST['dziecko_2']))OR(isset($_POST['dziecko_3']))OR(isset($_POST['dziecko_4']))OR(isset($_POST['dziecko_5']))OR(isset($_POST['dziecko_4']))OR(isset($_POST['dziecko_6']))OR(isset($_POST['dziecko_7']))OR(isset($_POST['dziecko_8']))){
+			
 		$wszystko_OK=true;
 		$nick=$_SESSION['Nick'];
 
@@ -326,7 +340,7 @@
 				$wierszXI = $rezultatXI->fetch_assoc();
 				if(isset($_POST['dziecko_'.$i])){
 					$id_dziecka[$i] = $wierszXI['ID_dziecko']; 
-				/////USUWA 1 TYLKO!
+		
 				$zapytanieXIII="SELECT ID_szkola FROM szkola s join dziecko d ON s.ID_dziecko=d.ID_dziecko join uzytkownicy u on d.ID_user=u.ID_user  WHERE Nick='$nick' AND d.ID_dziecko='$id_dziecka[$i]';";
 				$rezultatXIII = @$polaczenie->query($zapytanieXIII);
 				$wierszXIII = $rezultatXIII->fetch_assoc();
@@ -497,6 +511,7 @@
 					</form>
 				
 
+<<<<<<< Updated upstream
 					
 					
 					<?php 
@@ -520,6 +535,47 @@
 					
 
 				<input type="button" value="Edytuj" id="klawisz" onClick="document.getElementById('ukryty').style.display='block';">
+=======
+			<div class="tabela" id="tabela1">
+				<table>
+			<!--
+			///////////////////////////////////////////////////////////////////////////
+			///Tutaj tabelka danych z dzieciami, kwotą, szkołą i krzyżykiem usuwania///
+			///////////////////////////////////////////////////////////////////////////
+			 -->
+			 </table>
+			</div>
+			<div class="tabela" id="tabela2">
+				<table>
+			<!--
+			/////////////////////////////////
+			///Tutaj tabelka edycji danych///
+			/////////////////////////////////
+			-->
+				</table>
+			</div>
+	<?php 
+					
+			for($i=0;$i<$_SESSION['iloscbach'];$i++){
+						echo"<b>Kwota przeznaczona na dziecko ".($i+1).": </b> <i style='color:red;'>".$_SESSION['kwota'.$i]."zł</i><b>, oraz jego placówka edukacyjna:</b> <i style='color:red;'> ".$_SESSION['szkola'.$i]."</i>";
+							echo'<form method="post" onsubmit="myFunction()"> -> Usuń dziecko. <input type="submit"  name="dziecko_'.$i. '"	value="X"><br></from>';
+					}
+	
+				//	echo'<br><input type="submit" value="Sajonara"><br></form>';
+				?>	
+				<script>
+function myFunction() {
+ if (confirm("Podejmij decyzję!")) {
+   alert("Usunięto bachora");
+   } else {
+	   
+
+ } 
+
+}
+</script>
+				<br><br><input type="button" value="Edytuj" id="klawisz" onClick="document.getElementById('ukryty').style.display='block';">
+>>>>>>> Stashed changes
 				<div id="dane"></div>
 				<div style="display: none" id="ukryty">
 
@@ -535,7 +591,11 @@
 								<option>Liceum lub Technikum</option>
 								<option>Szkola wyzsza</option>
 								</select> 
+<<<<<<< Updated upstream
 								Kwota:	<input type="number" min="10" max="5000" placeholder="[10-5000] zł" step="10" id="kwota" name="kwota'.$i.'" required>
+=======
+								Kwota:	<input type="number" min="10" max="5000" placeholder="[10-5000] zł" step="10" id="kwota" name="kwota'.$i.'" >
+>>>>>>> Stashed changes
 								<br>';	
 					}
 					echo'<input type="submit"  value="Zatwierdz zmiane"></form>';				
@@ -590,7 +650,15 @@
 
 
 <script src="src/dodajdzieci.js"></script>
+<<<<<<< Updated upstream
 <script src="src/regionHelper.js"></script>
+=======
+<script src="src/defaultRegion.js"></script>
+<script>
+	var woj = "<?php echo$_SESSION['jakiewoj'] ?>";
+	document.getElementById("btnEdit").addEventListener("click",()=>whichOption(woj));
+</script>
+>>>>>>> Stashed changes
 
 </body>
 </html>
