@@ -33,3 +33,15 @@ function ilebachorow(){
         }
         else document.getElementById("listaDodawaniaDzieci").innerHTML="Nie masz dzieci!";
     }
+
+    const showChildAdder = function() {
+        document.getElementById("childAdder--hide").id="childAdder";
+        document.getElementById("dodajdziecko").id="dodajdziecko--hide";
+        document.getElementById("declineAdding--hide").id="declineAdding";
+    }
+
+    const hideChildAdder = function() {
+        document.getElementById("childAdder").id="childAdder--hide";
+        document.getElementById("dodajdziecko--hide").id="dodajdziecko";
+        document.getElementById("declineAdding").id="declineAdding--hide";
+    }

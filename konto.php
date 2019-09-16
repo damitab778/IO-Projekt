@@ -465,11 +465,11 @@
 				Liczba dzieci: <span style="font-size: 1.05em; font-weight: 700;"><?php echo$_SESSION['iloscbach']?></span>
 			</div>
 			<div class="line">
-				Twoje wojewodztwo: <span id="regionText" style="font-size: 1.05em; font-weight: 700;"><?php echo$_SESSION['jakiewoj']?></span>
+				Twoje województwo: <span id="regionText" style="font-size: 1.05em; font-weight: 700;"><?php echo$_SESSION['jakiewoj']?></span>
 				<a id="btnEdit" onClick="showRegionEditor();"></a>
 			</div>
 			
-				<div id="dane"></div>
+				
 				
 					<form method="post" id="formEdit--hide">
 						<div class="row">
@@ -513,11 +513,11 @@
 								<div style='order:0'; class='Rtable-cell Rtable-cell--head'>Kieszonkowe</div>
 								<div style='order:0;' class='Rtable-cell Rtable-cell--head'>Szkoła</div>
 								<div style='order:0;' class='Rtable-cell Rtable-cell--head Rtable-cell--delete'>Usuń</div>";
-						}
-						echo"<div style='order:".($i+1).";' class='Rtable-cell'>".($i+1)."</div>
-						<div style='order:".($i+1).";' class='Rtable-cell' id='kwota".($i)."'>".$_SESSION['kwota'.$i]." zł</div>
-						<div style='order:".($i+1).";' class='Rtable-cell' id='szkola".($i)."'>".$_SESSION['szkola'.$i]."</div>
-						<div style='order:".($i+1).";' class='Rtable-cell Rtable-cell--delete'><input type='submit' name='dziecko_".$i. "'	value='X'></div>";
+							}
+							echo"<div style='order:".($i+1).";' class='Rtable-cell'>".($i+1)."</div>
+							<div style='order:".($i+1).";' class='Rtable-cell' id='kwota".($i)."'>".$_SESSION['kwota'.$i]." zł</div>
+							<div style='order:".($i+1).";' class='Rtable-cell' id='szkola".($i)."'>".$_SESSION['szkola'.$i]."</div>
+							<div style='order:".($i+1).";' class='Rtable-cell Rtable-cell--delete'><input type='submit' name='dziecko_".$i."' value='X'></div>";
 					}
 					echo'</div>';
 					echo'</form>';
@@ -552,39 +552,34 @@
 			echo'<div id="btnEditDecision--hide"><input type="submit"  value="Zatwierdź edycję"><input type="button" value="Anuluj" id="declineEdit" onClick="hideTableEditor();resetEditTable();" ></div>';
 			echo'</form>';			
 				?>
-				
-			
-					
-			<div id="dane"></div>		
-								
-				<input type="button" value="Dodaj dziecko" id="dodajdziecko" onClick="document.getElementById('schowane').style.display='block';">
-				<div id="dane"></div>
-				<div style="display: none" id="schowane">
-
-
-				<form method="post">
-					<div id="listaDodawaniaDzieci"></div>
-							<div class="row">	
-								<div class="dziecko">
-									<label for="szkola" class="secondLabel" style="left:20%">Szkoła: </label>
-                    				<select id="szkola" class="custom-select" name="szkola">
-                     			  	<option>Podstawowka</option>
-                     			  	<option>Gimnazjum</option>
-                     			  	<option>Liceum lub Technikum</option>
-                    			   	<option>Szkola wyzsza</option>
-
-                    				</select>
-                    				<label for="kwota" class="secondLabel" style="left:20%">Kwota kieszonkowego: </label>
-                    				<input type="number" min="10" max="1500" placeholder="[10-1500] zł" step="10" id="kwota" name="kwota" required>
-								</div>
-							</div>
-						<div class="row">
-						<input type="submit" value="Potwierdz">
-						<input type="button" value="anuluj" id="klawisz" onClick="document.getElementById('schowane').style.display='none';">
-					</div>
-				</form>
+						
+				<div class="btnAdd">
+					<div class="addText">Dodaj dziecko</div>				
+					<input type="button" value="+" id="dodajdziecko" onClick="showChildAdder();">
 				</div>
-							
+				
+				<form method="post">
+					<div class="Rtable Rtable--4cols" id="childAdder--hide">
+						<div style='order:1;' class='Rtable-cell'>*</div>
+
+						<div style='order:1;' class='Rtable-cell'>
+							<input type='number' min='10' max='1500' placeholder='[10-1500] zł' step='10' id='kwota' name='kwota' required></div>
+				
+						<div style='order:1;' class='Rtable-cell'>
+							<select class='custom-select' name='szkola' id='szkola'>
+								<option>Podstawowka</option>
+								<option>Gimnazjum</option>
+								<option>Liceum lub Technikum</option>
+								<option>Szkola wyzsza</option>
+							</select>
+						</div>
+						<div style='order:1;' class='Rtable-cell Rtable-cell--delete'><input type="submit" value="+"></div>
+					</div>	
+						
+						<input type="button" value="Anuluj" id="declineAdding--hide" onClick="hideChildAdder();">
+					
+				</form>
+				</div>	
 		
 		</div>
 	</section>
