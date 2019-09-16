@@ -8,6 +8,7 @@
 					////////////////////////////////////
 						     ####Edycja dzieci####
 					////////////////////////////////////
+					
 	  if((isset($_POST['kwota0']))AND(!isset($_POST['dziecko_0']))
 	AND(!isset($_POST['dziecko_1']))AND(!isset($_POST['dziecko_2']))
 	AND(!isset($_POST['dziecko_3']))AND(!isset($_POST['dziecko_4']))
