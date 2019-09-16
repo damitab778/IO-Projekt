@@ -8,8 +8,7 @@
 					////////////////////////////////////
 						     ####Edycja dzieci####
 					////////////////////////////////////
-					$iloscbach = $_SESSION['iloscbach']+1;
-			  if((isset($_POST['kwota0']))AND(!isset($_POST['dziecko_0']))
+	  if((isset($_POST['kwota0']))AND(!isset($_POST['dziecko_0']))
 	AND(!isset($_POST['dziecko_1']))AND(!isset($_POST['dziecko_2']))
 	AND(!isset($_POST['dziecko_3']))AND(!isset($_POST['dziecko_4']))
 	AND(!isset($_POST['dziecko_5']))AND(!isset($_POST['dziecko_6']))
@@ -86,7 +85,7 @@
 			echo '<br />Info dev: '.$wyjatek;
 	}}
 		
-
+		
 		
 					////////////////////////////////////
 							  ####Zmiana woj####
@@ -298,7 +297,6 @@
 		######    USUN DZIECKO     ######		
 		////////////////////////////////////
 		if((isset($_POST['dziecko_0']))OR(isset($_POST['dziecko_1']))OR(isset($_POST['dziecko_2']))OR(isset($_POST['dziecko_3']))OR(isset($_POST['dziecko_4']))OR(isset($_POST['dziecko_5']))OR(isset($_POST['dziecko_4']))OR(isset($_POST['dziecko_6']))OR(isset($_POST['dziecko_7']))OR(isset($_POST['dziecko_8']))){
-			
 		$wszystko_OK=true;
 		$nick=$_SESSION['Nick'];
 
@@ -332,7 +330,7 @@
 				$wierszXI = $rezultatXI->fetch_assoc();
 				if(isset($_POST['dziecko_'.$i])){
 					$id_dziecka[$i] = $wierszXI['ID_dziecko']; 
-		
+				/////USUWA 1 TYLKO!
 				$zapytanieXIII="SELECT ID_szkola FROM szkola s join dziecko d ON s.ID_dziecko=d.ID_dziecko join uzytkownicy u on d.ID_user=u.ID_user  WHERE Nick='$nick' AND d.ID_dziecko='$id_dziecka[$i]';";
 				$rezultatXIII = @$polaczenie->query($zapytanieXIII);
 				$wierszXIII = $rezultatXIII->fetch_assoc();
@@ -503,45 +501,29 @@
 					</form>
 				
 
-			<div class="tabela" id="tabela1">
-				<table>
-			<!--
-			///////////////////////////////////////////////////////////////////////////
-			///Tutaj tabelka danych z dzieciami, kwotą, szkołą i krzyżykiem usuwania///
-			///////////////////////////////////////////////////////////////////////////
-			 -->
-			 </table>
-			</div>
-			<div class="tabela" id="tabela2">
-				<table>
-			<!--
-			/////////////////////////////////
-			///Tutaj tabelka edycji danych///
-			/////////////////////////////////
-			-->
-				</table>
-			</div>
-	<?php 
 					
-			for($i=0;$i<$_SESSION['iloscbach'];$i++){
-						echo"<b>Kwota przeznaczona na dziecko ".($i+1).": </b> <i style='color:red;'>".$_SESSION['kwota'.$i]."zł</i><b>, oraz jego placówka edukacyjna:</b> <i style='color:red;'> ".$_SESSION['szkola'.$i]."</i>";
-							echo'<form method="post" onsubmit="myFunction()"> -> Usuń dziecko. <input type="submit"  name="dziecko_'.$i. '"	value="X"><br></from>';
+					
+					<?php 
+						echo'<form method="post">';
+						echo'<div class="Rtable Rtable--4cols">';
+						for($i=0;$i<$_SESSION['iloscbach'];$i++){
+							if($i==0){
+								echo"<div style='order:0;' class='Rtable-cell Rtable-cell--head'>Dziecko nr:</div>
+								<div style='order:0'; class='Rtable-cell Rtable-cell--head'>Kieszonkowe</div>
+								<div style='order:0;' class='Rtable-cell Rtable-cell--head'>Szkoła</div>
+								<div style='order:0;' class='Rtable-cell Rtable-cell--head Rtable-cell--delete'>Usuń</div>";
+						}
+						echo"<div style='order:".($i+1).";' class='Rtable-cell'>".($i+1)."</div>
+						<div style='order:".($i+1).";' class='Rtable-cell'>".$_SESSION['kwota'.$i]." zł</div>
+						<div style='order:".($i+1).";' class='Rtable-cell'>".$_SESSION['szkola'.$i]."</div>
+						<div style='order:".($i+1).";' class='Rtable-cell Rtable-cell--delete'><input type='submit' name='dziecko_".$i. "'	value='X'></div>";
 					}
-	
-				//	echo'<br><input type="submit" value="Sajonara"><br></form>';
-				?>	
-				<script>
-function myFunction() {
- if (confirm("Podejmij decyzję!")) {
-   alert("Usunięto bachora");
-   } else {
-	   
+					echo'</div>';
+					echo'</form>';
+					?>	
+					
 
- } 
-
-}
-</script>
-				<br><br><input type="button" value="Edytuj" id="klawisz" onClick="document.getElementById('ukryty').style.display='block';">
+				<input type="button" value="Edytuj" id="klawisz" onClick="document.getElementById('ukryty').style.display='block';">
 				<div id="dane"></div>
 				<div style="display: none" id="ukryty">
 
@@ -557,7 +539,7 @@ function myFunction() {
 								<option>Liceum lub Technikum</option>
 								<option>Szkola wyzsza</option>
 								</select> 
-								Kwota:	<input type="number" min="10" max="5000" placeholder="[10-5000] zł" step="10" id="kwota" name="kwota'.$i.'" >
+								Kwota:	<input type="number" min="10" max="5000" placeholder="[10-5000] zł" step="10" id="kwota" name="kwota'.$i.'" required>
 								<br>';	
 					}
 					echo'<input type="submit"  value="Zatwierdz zmiane"></form>';				
@@ -612,11 +594,7 @@ function myFunction() {
 
 
 <script src="src/dodajdzieci.js"></script>
-<script src="src/defaultRegion.js"></script>
-<script>
-	var woj = "<?php echo$_SESSION['jakiewoj'] ?>";
-	document.getElementById("btnEdit").addEventListener("click",()=>whichOption(woj));
-</script>
+<script src="src/regionHelper.js"></script>
 
 </body>
 </html>
