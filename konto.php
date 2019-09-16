@@ -506,7 +506,7 @@
 					
 					<?php 
 						echo'<form method="post">';
-						echo'<div class="Rtable Rtable--4cols">';
+						echo'<div class="Rtable Rtable--4cols" id="userTable">';
 						for($i=0;$i<$_SESSION['iloscbach'];$i++){
 							if($i==0){
 								echo"<div style='order:0;' class='Rtable-cell Rtable-cell--head'>Dziecko nr:</div>
@@ -515,8 +515,8 @@
 								<div style='order:0;' class='Rtable-cell Rtable-cell--head Rtable-cell--delete'>Usuń</div>";
 						}
 						echo"<div style='order:".($i+1).";' class='Rtable-cell'>".($i+1)."</div>
-						<div style='order:".($i+1).";' class='Rtable-cell'>".$_SESSION['kwota'.$i]." zł</div>
-						<div style='order:".($i+1).";' class='Rtable-cell'>".$_SESSION['szkola'.$i]."</div>
+						<div style='order:".($i+1).";' class='Rtable-cell' id='kwota".($i)."'>".$_SESSION['kwota'.$i]." zł</div>
+						<div style='order:".($i+1).";' class='Rtable-cell' id='szkola".($i)."'>".$_SESSION['szkola'.$i]."</div>
 						<div style='order:".($i+1).";' class='Rtable-cell Rtable-cell--delete'><input type='submit' name='dziecko_".$i. "'	value='X'></div>";
 					}
 					echo'</div>';
@@ -524,38 +524,39 @@
 					?>	
 					
 
-				<input type="button" value="Edytuj" id="klawisz" onClick="document.getElementById('ukryty').style.display='block';">
-				<div id="dane"></div>
-				<div style="display: none" id="ukryty">
+				<input type="button" value="Edytuj" id="btnEditTable" onClick="showTableEditor()">
 
 
 			<?php
+				echo'<form method="post">';
+				echo'<div class="Rtable Rtable--3cols" id="userTableEditor--hide">';
+				for($i=0;$i<$_SESSION['iloscbach'];$i++){
+					if($i==0){
+						echo"<div style='order:0;' class='Rtable-cell Rtable-cell--head'>Dziecko nr:</div>
+						<div style='order:0'; class='Rtable-cell Rtable-cell--head'>Kieszonkowe</div>
+						<div style='order:0;' class='Rtable-cell Rtable-cell--head'>Szkoła</div>";
+				}
+				echo"<div style='order:".($i+1).";' class='Rtable-cell'>".($i+1)."</div>
+				<div style='order:".($i+1).";' class='Rtable-cell'><input type='number' min='10' max='1500' placeholder='[10-1500] zł' step='10' id='kwotaDoEdycji".$i."' name='kwota".$i."' required></div>
 				
-						
-						echo'<form method="post">';
-							for($i=0;$i<$_SESSION['iloscbach'];$i++){
-								echo'Dziecko '.($i+1).'. Szkoła: <select class="custom-select" name="szkola'.$i.'">
-								<option>Podstawowka</option>
-								<option>Gimnazjum</option>
-								<option>Liceum lub Technikum</option>
-								<option>Szkola wyzsza</option>
-								</select> 
-								Kwota:	<input type="number" min="10" max="5000" placeholder="[10-5000] zł" step="10" id="kwota" name="kwota'.$i.'" required>
-								<br>';	
-					}
-					echo'<input type="submit"  value="Zatwierdz zmiane"></form>';				
+				<div style='order:".($i+1).";' class='Rtable-cell'>
+					<select class='custom-select' name='szkola".$i."' id='szkolaDoEdycji".$i."'>
+						<option>Podstawowka</option>
+						<option>Gimnazjum</option>
+						<option>Liceum lub Technikum</option>
+						<option>Szkola wyzsza</option>
+					</select>
+				</div>";
+			}
+			echo'</div>';
+			echo'<div id="btnEditDecision--hide"><input type="submit"  value="Zatwierdź edycję"><input type="button" value="Anuluj" id="declineEdit" onClick="hideTableEditor();resetEditTable();" ></div>';
+			echo'</form>';			
 				?>
 				
 			
-				<input type="button" value="anuluj" id="klawisz" onClick="document.getElementById('ukryty').style.display='none';" >
-				</div>	
 					
-			
-			
-			
-		
-				
-							
+			<div id="dane"></div>		
+								
 				<input type="button" value="Dodaj dziecko" id="dodajdziecko" onClick="document.getElementById('schowane').style.display='block';">
 				<div id="dane"></div>
 				<div style="display: none" id="schowane">
@@ -574,7 +575,7 @@
 
                     				</select>
                     				<label for="kwota" class="secondLabel" style="left:20%">Kwota kieszonkowego: </label>
-                    				<input type="number" min="10" max="5000" placeholder="[10-5000] zł" step="10" id="kwota" name="kwota">
+                    				<input type="number" min="10" max="1500" placeholder="[10-1500] zł" step="10" id="kwota" name="kwota" required>
 								</div>
 							</div>
 						<div class="row">
@@ -596,6 +597,7 @@
 
 <script src="src/dodajdzieci.js"></script>
 <script src="src/regionHelper.js"></script>
+<script src="src/editTableHelper.js"></script>
 
 </body>
 </html>

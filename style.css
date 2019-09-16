@@ -384,25 +384,6 @@ h2
 
 }
 
-#formEdit--hide
-{
-    display:none;
-}
-
-#tabela1--hide
-{
-    display:none;
-}
-
-#tabela2--hide
-{
-    display:none;
-}
-
-#btnEdit--hide
-{
-    display:none;
-}
 
 #btnEdit
 {
@@ -451,11 +432,6 @@ h2
     margin:0;
 }
 
-#regionText--hide
-{
-    display:none;
-}
-
 
 /* Tables
 ================================== */
@@ -471,6 +447,7 @@ h2
   box-sizing: border-box;
   flex-grow: 1;
   width: 100%;
+  max-height:50px;
   padding: 0.2em 0.2em;
   overflow: hidden;
   list-style: none;
@@ -495,3 +472,40 @@ h2
 .Rtable--4cols > .Rtable-cell  { width: 25%; }
 .Rtable--5cols > .Rtable-cell  { width: 20%; }
 .Rtable--6cols > .Rtable-cell  { width: 16.6%; }
+
+
+.Rtable-cell--delete>input[type="submit"] {
+    color:red;
+    background-color: #00000000;
+    width: 40px;
+    height: 40px;
+    margin: 0;
+    padding: 0;
+    letter-spacing: 0;
+}
+
+.Rtable-cell--delete>input[type="submit"]:hover {
+    color:white;
+    background-color: #00000000;
+    width: 40px;
+    height: 40px;
+    margin: 0;
+    padding: 0;
+    border: none;
+    transition: none;
+    font-size: 1.1em;
+}
+
+.Rtable-cell>input[type="number"],
+.Rtable-cell>.custom-select{
+    width:90%;
+    height:40px;
+    margin:0;
+    font-size: 1.45rem;
+    font-family: 'Baloo', cursive;
+    padding: 0 5px;
+}
+
+[id$="--hide"]{
+    display:none;
+}

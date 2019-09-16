@@ -46,4 +46,5 @@ const whichOption = function(region){
 }
 
 var woj = document.getElementById("regionText").innerHTML;
+
 document.getElementById("btnEdit").addEventListener("click",()=>whichOption(woj));
