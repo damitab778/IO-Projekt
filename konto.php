@@ -8,7 +8,11 @@
 					////////////////////////////////////
 						     ####Edycja dzieci####
 					////////////////////////////////////
-	if(isset($_POST['szkola1'])){
+	  if((isset($_POST['kwota0']))AND(!isset($_POST['dziecko_0']))
+	AND(!isset($_POST['dziecko_1']))AND(!isset($_POST['dziecko_2']))
+	AND(!isset($_POST['dziecko_3']))AND(!isset($_POST['dziecko_4']))
+	AND(!isset($_POST['dziecko_5']))AND(!isset($_POST['dziecko_6']))
+	AND(!isset($_POST['dziecko_7']))AND(!isset($_POST['dziecko_8']))){ 
 		//udana walidacja
 			$wszystko_OK=true;
 			$nick=$_SESSION['Nick'];
@@ -512,10 +516,10 @@
 						echo"<div style='order:".($i+1).";' class='Rtable-cell'>".($i+1)."</div>
 						<div style='order:".($i+1).";' class='Rtable-cell'>".$_SESSION['kwota'.$i]." zł</div>
 						<div style='order:".($i+1).";' class='Rtable-cell'>".$_SESSION['szkola'.$i]."</div>
-						<div style='order:".($i+1).";' class='Rtable-cell Rtable-cell--delete'><input type='checkbox' name='dziecko_".$i. "'	value='dziecko".($i+1)."'></div>";
+						<div style='order:".($i+1).";' class='Rtable-cell Rtable-cell--delete'><input type='submit' name='dziecko_".$i. "'	value='X'></div>";
 					}
 					echo'</div>';
-					echo'<input type="submit" value="Sajonara"></form>';
+					echo'</form>';
 					?>	
 					
 
