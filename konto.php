@@ -8,16 +8,12 @@
 					////////////////////////////////////
 						     ####Edycja dzieci####
 					////////////////////////////////////
-<<<<<<< Updated upstream
-	if(isset($_POST['szkola1'])){
-=======
 					$iloscbach = $_SESSION['iloscbach']+1;
 			  if((isset($_POST['kwota0']))AND(!isset($_POST['dziecko_0']))
 	AND(!isset($_POST['dziecko_1']))AND(!isset($_POST['dziecko_2']))
 	AND(!isset($_POST['dziecko_3']))AND(!isset($_POST['dziecko_4']))
 	AND(!isset($_POST['dziecko_5']))AND(!isset($_POST['dziecko_6']))
 	AND(!isset($_POST['dziecko_7']))AND(!isset($_POST['dziecko_8']))){ 
->>>>>>> Stashed changes
 		//udana walidacja
 			$wszystko_OK=true;
 			$nick=$_SESSION['Nick'];
@@ -90,11 +86,7 @@
 			echo '<br />Info dev: '.$wyjatek;
 	}}
 		
-<<<<<<< Updated upstream
-		
-=======
 
->>>>>>> Stashed changes
 		
 					////////////////////////////////////
 							  ####Zmiana woj####
@@ -511,31 +503,6 @@
 					</form>
 				
 
-<<<<<<< Updated upstream
-					
-					
-					<?php 
-						echo'<form method="post">';
-						echo'<div class="Rtable Rtable--4cols">';
-						for($i=0;$i<$_SESSION['iloscbach'];$i++){
-							if($i==0){
-								echo"<div style='order:0;' class='Rtable-cell Rtable-cell--head'>Dziecko nr:</div>
-								<div style='order:0'; class='Rtable-cell Rtable-cell--head'>Kieszonkowe</div>
-								<div style='order:0;' class='Rtable-cell Rtable-cell--head'>Szkoła</div>
-								<div style='order:0;' class='Rtable-cell Rtable-cell--head Rtable-cell--delete'>Usuń</div>";
-						}
-						echo"<div style='order:".($i+1).";' class='Rtable-cell'>".($i+1)."</div>
-						<div style='order:".($i+1).";' class='Rtable-cell'>".$_SESSION['kwota'.$i]." zł</div>
-						<div style='order:".($i+1).";' class='Rtable-cell'>".$_SESSION['szkola'.$i]."</div>
-						<div style='order:".($i+1).";' class='Rtable-cell Rtable-cell--delete'><input type='checkbox' name='dziecko_".$i. "'	value='dziecko".($i+1)."'></div>";
-					}
-					echo'</div>';
-					echo'<input type="submit" value="Sajonara"></form>';
-					?>	
-					
-
-				<input type="button" value="Edytuj" id="klawisz" onClick="document.getElementById('ukryty').style.display='block';">
-=======
 			<div class="tabela" id="tabela1">
 				<table>
 			<!--
@@ -575,7 +542,6 @@ function myFunction() {
 }
 </script>
 				<br><br><input type="button" value="Edytuj" id="klawisz" onClick="document.getElementById('ukryty').style.display='block';">
->>>>>>> Stashed changes
 				<div id="dane"></div>
 				<div style="display: none" id="ukryty">
 
@@ -591,11 +557,7 @@ function myFunction() {
 								<option>Liceum lub Technikum</option>
 								<option>Szkola wyzsza</option>
 								</select> 
-<<<<<<< Updated upstream
-								Kwota:	<input type="number" min="10" max="5000" placeholder="[10-5000] zł" step="10" id="kwota" name="kwota'.$i.'" required>
-=======
 								Kwota:	<input type="number" min="10" max="5000" placeholder="[10-5000] zł" step="10" id="kwota" name="kwota'.$i.'" >
->>>>>>> Stashed changes
 								<br>';	
 					}
 					echo'<input type="submit"  value="Zatwierdz zmiane"></form>';				
@@ -650,15 +612,11 @@ function myFunction() {
 
 
 <script src="src/dodajdzieci.js"></script>
-<<<<<<< Updated upstream
-<script src="src/regionHelper.js"></script>
-=======
 <script src="src/defaultRegion.js"></script>
 <script>
 	var woj = "<?php echo$_SESSION['jakiewoj'] ?>";
 	document.getElementById("btnEdit").addEventListener("click",()=>whichOption(woj));
 </script>
->>>>>>> Stashed changes
 
 </body>
 </html>
