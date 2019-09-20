@@ -60,7 +60,8 @@ header
     min-width:600px;
     max-width:1900px;
     font-family: 'Baloo', cursive;
-    margin: 80px auto;
+    margin: 30px auto;
+    margin-bottom: 70px;
 }
 
 .zielony
@@ -146,7 +147,7 @@ input[type=button]
     font-size:22px;
     color: white;
     padding: 15px 10px;
-    margin: 20px 2px 30px 2px;
+    margin: 20px 2px 20px 2px;
     border: none;
     border-radius: 3px;
     cursor: pointer;
@@ -438,7 +439,7 @@ h2
 .Rtable {
   display: flex;
   flex-wrap: wrap;
-  margin: 1.5em auto;
+  margin: .9em auto;
   padding: 0;
   width:70%;
   
@@ -463,21 +464,22 @@ h2
   }
 
 .Rtable-cell--first{
-    width:10% !important;
+    width:15% !important;
 }
 
 .Rtable-cell--delete{
-    width:5% !important;
+    width:15% !important;
 }
 /* Table column sizing
 ================================== */
 
-.Rtable--3cols > .Rtable-cell  { width: 45%; }
-.Rtable--4cols > .Rtable-cell  { width: 42.5%; }
+.Rtable--3cols > .Rtable-cell  { width: 42.5%; }
+.Rtable--4cols > .Rtable-cell  { width: 35%; }
 
 
 
-.Rtable-cell--delete>input[type="submit"] {
+.Rtable-cell--delete>input[type="submit"],
+.Rtable-cell--delete>input[type="button"]{
     color:red;
     background-color: #00000000;
     width: 40px;
@@ -487,7 +489,8 @@ h2
     letter-spacing: 0;
 }
 
-.Rtable-cell--delete>input[type="submit"]:hover {
+.Rtable-cell--delete>input[type="submit"]:hover,
+.Rtable-cell--delete>input[type="button"]:hover{
     color:white;
     background-color: #00000000;
     width: 40px;
@@ -513,28 +516,56 @@ h2
     display:none;
 }
 
-#dodajdziecko{
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    padding:5px;
-    padding-left:8px;
-    font-size:1.3em;
+.przyciski{
+    display:flex;
+    justify-content: space-between;
+    width:70%;
+    margin-left:auto;
+    margin-right:auto;
+    margin-top: 1.5rem;
 }
 
-#dodajdziecko:hover{
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    padding:0px;
-    padding-bottom:10px;
-    padding-left:3px;
+#btnEditTable::after{
+    content:"";
+    width:30px;
+    height:30px;
+    background-repeat: no-repeat;
+    background-position: 5px 5px;
+    background-size: 20px 20px;
+    font-size: 0;
+    background-image: url(img/editicon.png);
+    border-radius: 10%;
+    float:left;
+    background-color: #00aa96;
+    border:none;
+    margin:2px 8px;
 }
 
-.addChild{
-    
+#btnAdd::before{
+    content:"+";
+    width:30px;
+    height:30px;
+    font-size:20px;
+    color:white;
+    border-radius: 10%;
+    float:right;
+    background-color: #00aa96;
+    border:none;
+    margin: 2px 8px;
 }
 
-.addText{
-
+#btnAdd{
+    cursor:pointer;
 }
+
+#btnEditTable{
+    cursor:pointer;
+}
+
+#childAdder{
+    border-top: 2px dashed #00aa96;
+    padding-top: 1.2rem;
+}
+
+
+

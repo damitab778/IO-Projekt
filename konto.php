@@ -569,23 +569,19 @@
 								<option>Szkola wyzsza</option>
 							</select>
 						</div>
-						<div style='order:1;' class='Rtable-cell Rtable-cell--delete'><input type="submit" value="+"></div>
+						<div style='order:1;' class='Rtable-cell Rtable-cell--delete'><input type="button" value="X" id="declineAdding" onClick="hideChildAdder();"></div>
 					</div>	
+						<input type="submit" id="addChild--hide" value="Dodaj dziecko">
 						
-						<input type="button" value="Anuluj" id="declineAdding--hide" onClick="hideChildAdder();">
 					
 				</form>
-				
-				<div id="editTable">
-					<div id="editText">Edytuj</div>
-					<input type="button" value="Edytuj" id="btnEditTable" onClick="showTableEditor()">	
-				</div>	
-				
-				<div class="addChild">
-					<div id="addText">Dodaj dziecko</div>				
-					<input type="button" value="+" id="dodajdziecko" onClick="showChildAdder();">
-				</div>
-
+					<div class="przyciski">
+					
+						<a id="btnEditTable" onClick="showTableEditor();">Edytuj</a>	
+						
+						<a id="btnAdd" onClick="showChildAdder();">Dodaj dziecko</a>
+					
+					</div>
 				</div>	
 		
 		</div>

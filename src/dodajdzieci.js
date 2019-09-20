@@ -36,12 +36,12 @@ function ilebachorow(){
 
     const showChildAdder = function() {
         document.getElementById("childAdder--hide").id="childAdder";
-        document.getElementById("dodajdziecko").id="dodajdziecko--hide";
-        document.getElementById("declineAdding--hide").id="declineAdding";
+        document.getElementById("btnAdd").id="btnAdd--hide";
+        document.getElementById("addChild--hide").id="addChild";
     }
 
     const hideChildAdder = function() {
         document.getElementById("childAdder").id="childAdder--hide";
-        document.getElementById("dodajdziecko--hide").id="dodajdziecko";
-        document.getElementById("declineAdding").id="declineAdding--hide";
+        document.getElementById("btnAdd--hide").id="btnAdd";
+        document.getElementById("addChild").id="addChild--hide";
     }
