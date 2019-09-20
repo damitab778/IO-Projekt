@@ -509,12 +509,12 @@
 						echo'<div class="Rtable Rtable--4cols" id="userTable">';
 						for($i=0;$i<$_SESSION['iloscbach'];$i++){
 							if($i==0){
-								echo"<div style='order:0;' class='Rtable-cell Rtable-cell--head'>Dziecko nr:</div>
+								echo"<div style='order:0;' class='Rtable-cell Rtable-cell--head Rtable-cell--first'>Dziecko nr:</div>
 								<div style='order:0'; class='Rtable-cell Rtable-cell--head'>Kieszonkowe</div>
 								<div style='order:0;' class='Rtable-cell Rtable-cell--head'>Szkoła</div>
 								<div style='order:0;' class='Rtable-cell Rtable-cell--head Rtable-cell--delete'>Usuń</div>";
 							}
-							echo"<div style='order:".($i+1).";' class='Rtable-cell'>".($i+1)."</div>
+							echo"<div style='order:".($i+1).";' class='Rtable-cell Rtable-cell--first'>".($i+1)."</div>
 							<div style='order:".($i+1).";' class='Rtable-cell' id='kwota".($i)."'>".$_SESSION['kwota'.$i]." zł</div>
 							<div style='order:".($i+1).";' class='Rtable-cell' id='szkola".($i)."'>".$_SESSION['szkola'.$i]."</div>
 							<div style='order:".($i+1).";' class='Rtable-cell Rtable-cell--delete'><input type='submit' name='dziecko_".$i."' value='X'></div>";
@@ -524,7 +524,7 @@
 					?>	
 					
 
-				<input type="button" value="Edytuj" id="btnEditTable" onClick="showTableEditor()">
+				
 
 
 			<?php
@@ -532,11 +532,11 @@
 				echo'<div class="Rtable Rtable--3cols" id="userTableEditor--hide">';
 				for($i=0;$i<$_SESSION['iloscbach'];$i++){
 					if($i==0){
-						echo"<div style='order:0;' class='Rtable-cell Rtable-cell--head'>Dziecko nr:</div>
+						echo"<div style='order:0;' class='Rtable-cell Rtable-cell--head Rtable-cell--first'>Dziecko nr:</div>
 						<div style='order:0'; class='Rtable-cell Rtable-cell--head'>Kieszonkowe</div>
 						<div style='order:0;' class='Rtable-cell Rtable-cell--head'>Szkoła</div>";
 				}
-				echo"<div style='order:".($i+1).";' class='Rtable-cell'>".($i+1)."</div>
+				echo"<div style='order:".($i+1).";' class='Rtable-cell Rtable-cell--first'>".($i+1)."</div>
 				<div style='order:".($i+1).";' class='Rtable-cell'><input type='number' min='10' max='1500' placeholder='[10-1500] zł' step='10' id='kwotaDoEdycji".$i."' name='kwota".$i."' required></div>
 				
 				<div style='order:".($i+1).";' class='Rtable-cell'>
@@ -552,15 +552,11 @@
 			echo'<div id="btnEditDecision--hide"><input type="submit"  value="Zatwierdź edycję"><input type="button" value="Anuluj" id="declineEdit" onClick="hideTableEditor();resetEditTable();" ></div>';
 			echo'</form>';			
 				?>
-						
-				<div class="btnAdd">
-					<div class="addText">Dodaj dziecko</div>				
-					<input type="button" value="+" id="dodajdziecko" onClick="showChildAdder();">
-				</div>
+				
 				
 				<form method="post">
 					<div class="Rtable Rtable--4cols" id="childAdder--hide">
-						<div style='order:1;' class='Rtable-cell'>*</div>
+						<div style='order:1;' class='Rtable-cell Rtable-cell--first'>*</div>
 
 						<div style='order:1;' class='Rtable-cell'>
 							<input type='number' min='10' max='1500' placeholder='[10-1500] zł' step='10' id='kwota' name='kwota' required></div>
@@ -579,6 +575,17 @@
 						<input type="button" value="Anuluj" id="declineAdding--hide" onClick="hideChildAdder();">
 					
 				</form>
+				
+				<div id="editTable">
+					<div id="editText">Edytuj</div>
+					<input type="button" value="Edytuj" id="btnEditTable" onClick="showTableEditor()">	
+				</div>	
+				
+				<div class="addChild">
+					<div id="addText">Dodaj dziecko</div>				
+					<input type="button" value="+" id="dodajdziecko" onClick="showChildAdder();">
+				</div>
+
 				</div>	
 		
 		</div>
