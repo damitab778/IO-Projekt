@@ -31,7 +31,7 @@ function ilebachorow(){
             document.getElementById("listaDodawaniaDzieci").innerHTML=tekst;
             
         }
-        else document.getElementById("listaDodawaniaDzieci").innerHTML="Nie masz dzieci!";
+        else document.getElementById("listaDodawaniaDzieci").innerHTML="Za dużo dzieci!";
     }
 
     const showChildAdder = function() {
