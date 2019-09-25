@@ -255,7 +255,12 @@
 						<option>7</option>
 						<option>8</option>
 						<option>9</option>
-						<option>Za dużo</option>
+						<option>10</option>
+						<option>11</option>
+						<option>12</option>
+						<option>13</option>
+						<option>14</option>
+						<option>15</option>
 					</select>
 					<?php
 							if (isset($_SESSION['e_ldzieci']))

@@ -54,11 +54,15 @@ header
 
 .container
 {
+<<<<<<< Updated upstream
     font-size:24px;
+=======
+>>>>>>> Stashed changes
     min-width:600px;
     max-width:1900px;
     font-family: 'Baloo', cursive;
-    margin: 80px auto;
+    margin: 30px auto;
+    margin-bottom: 110px;
 }
 
 .zielony
@@ -143,7 +147,11 @@ input[type=submit]
     font-size:22px;
     color: white;
     padding: 15px 10px;
+<<<<<<< Updated upstream
     margin: 20px 4px 30px 0px;
+=======
+    margin: 20px 2px 20px 2px;
+>>>>>>> Stashed changes
     border: none;
     border-radius: 3px;
     cursor: pointer;
@@ -346,4 +354,273 @@ nav a:hover::after
 h2
 {
     color: #00aa96;
+<<<<<<< Updated upstream
 }
+=======
+}
+
+.singlecon .title
+{
+    padding: 1.5vmin 1.5%;
+    margin-bottom: 4vh;
+    width:10%;
+    min-width:425px;
+    margin-left:auto;
+    margin-right:auto;
+    color: #00aa96;
+    text-transform: uppercase;
+    border-bottom: 2px dashed #00aa96;
+    font-size: 1.1em;
+}
+
+.singlecon .line
+{
+    margin-left: auto;
+    margin-right: auto;
+    width:50%;
+    margin-bottom: 1vmin;
+}
+
+.singlecon .tabela
+{
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+
+#btnEdit
+{
+    display:block;
+    width:30px;
+    height:30px;
+    background-repeat: no-repeat;
+    background-position: 5px 5px;
+    background-size: 20px 20px;
+    font-size: 0;
+    background-image: url(img/editicon.png);
+    border-radius: 10%;
+    display: inline-block;
+    background-color: #00aa96;
+    position: absolute;
+    margin-left: 15px;
+    border:none;
+    cursor:pointer;
+}
+
+.btnSmall
+{
+    
+    width:132px !important;
+    height: 55px;
+    font-size: 0.8em !important;
+    margin-top:0 !important;
+    margin-bottom:20px !important;
+}
+
+
+
+.custom-select2
+{
+    height: 57px;
+    border:2px solid #ddd;
+    border-radius: 3px;
+    padding:10px;
+    box-sizing: border-box;
+    outline: none;
+    width:275px;
+    text-align-last: center;
+    padding-right: 29px;
+    font-size: 1.45rem;
+    font-family: 'Baloo', cursive;
+    margin:0;
+}
+
+
+/* Tables
+================================== */
+.Rtable {
+  display: flex;
+  flex-wrap: wrap;
+  margin: .9em auto;
+  padding: 0;
+  width:70%;
+  
+}
+.Rtable-cell {
+  box-sizing: border-box;
+  flex-grow: 1;
+  width: 100%;
+  max-height:50px;
+  padding: 0.2em 0.2em;
+  overflow: hidden;
+  list-style: none;
+  border: solid 1px white;
+  background: #EAEAEA;
+}
+
+.Rtable-cell--head{
+    border-top-left-radius: 5%;
+    border-top-right-radius: 5%;
+    background: #00aa96;
+    color:white;
+  }
+
+.Rtable-cell--first{
+    width:15% !important;
+}
+
+.Rtable-cell--delete{
+    width:15% !important;
+}
+/* Table column sizing
+================================== */
+
+.Rtable--3cols > .Rtable-cell  { width: 42.5%; }
+.Rtable--4cols > .Rtable-cell  { width: 35%; }
+
+
+
+.Rtable-cell--delete>input[type="submit"],
+.Rtable-cell--delete>input[type="button"]{
+    color:red;
+    background-color: #00000000;
+    width: 40px;
+    height: 40px;
+    margin: 0;
+    padding: 0;
+    letter-spacing: 0;
+}
+
+.Rtable-cell--delete>input[type="submit"]:hover,
+.Rtable-cell--delete>input[type="button"]:hover{
+    color:white;
+    background-color: #00000000;
+    width: 40px;
+    height: 40px;
+    margin: 0;
+    padding: 0;
+    border: none;
+    transition: none;
+    font-size: 1.1em;
+}
+
+.Rtable-cell>input[type="number"],
+.Rtable-cell>.custom-select{
+    width:90%;
+    height:40px;
+    margin:0;
+    font-size: 1.45rem;
+    font-family: 'Baloo', cursive;
+    padding: 0 5px;
+}
+
+[id$="--hide"]{
+    display:none;
+}
+
+.przyciski{
+    display:flex;
+    justify-content: space-between;
+    width:70%;
+    margin-left:auto;
+    margin-right:auto;
+    margin-top: 1.5rem;
+}
+
+#btnEditTable::after{
+    content:"";
+    width:30px;
+    height:30px;
+    background-repeat: no-repeat;
+    background-position: 5px 5px;
+    background-size: 20px 20px;
+    font-size: 0;
+    background-image: url(img/editicon.png);
+    border-radius: 10%;
+    float:left;
+    background-color: #00aa96;
+    border:none;
+    margin:2px 8px;
+}
+
+#btnAdd::before{
+    content:"+";
+    width:30px;
+    height:30px;
+    font-size:20px;
+    color:white;
+    border-radius: 10%;
+    float:right;
+    background-color: #00aa96;
+    border:none;
+    margin: 2px 8px;
+}
+
+#btnAdd{
+    cursor:pointer;
+}
+
+#btnEditTable{
+    cursor:pointer;
+}
+
+#childAdder{
+    border-top: 2px dashed #00aa96;
+    padding-top: 1.2rem;
+}
+
+.singlecon .features-wrapper{
+    width:70%;
+    display:flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin: 0 auto;
+}
+
+.singlecon .feature-item{
+    width:25%;
+    text-align: center;
+    padding: 2% 4%;
+}
+
+.singlecon .feature-item .image {
+    width:30%;
+    max-width:280px;
+    margin:0 auto;
+}
+
+.singlecon .feature-item .image svg{
+    width:100%;
+    height:100%;
+}
+
+.singlecon .feature-item .image svg path{
+    fill: #00aa96;
+}
+.singlecon .feature-item .image svg .green{
+    fill: #00aa96;
+}
+
+.singlecon .feature-item .title{
+    border:none;
+    color:black;
+    font-size: 0.9em;
+    margin-bottom:0;
+    padding:0;
+    min-width:20px;
+    width:100%;
+    text-align: center;
+}
+
+.singlecon .feature-item .value{
+    color:#00aa96;
+    font-size: 1.5em;
+}
+
+#mapa{
+    margin-top:40px;
+}
+
+
+>>>>>>> Stashed changes
