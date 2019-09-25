@@ -1,8 +1,11 @@
 const showTableEditor = function() {
+    const ld=new Number(document.getElementById("iledzieci").innerHTML);
+    if(ld>0){
     document.getElementById("userTable").id="userTable--hide";
     document.getElementById("btnEditTable").id="btnEditTable--hide";
     document.getElementById("userTableEditor--hide").id="userTableEditor";
     document.getElementById("btnEditDecision--hide").id="btnEditDecision";
+    }
 }
 
 const hideTableEditor = function() {

@@ -56,7 +56,6 @@ header
 
 .container
 {
-   
     min-width:600px;
     max-width:1900px;
     font-family: 'Baloo', cursive;
@@ -567,5 +566,56 @@ h2
     padding-top: 1.2rem;
 }
 
+.singlecon .features-wrapper{
+    width:70%;
+    display:flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin: 0 auto;
+}
+
+.singlecon .feature-item{
+    width:20%;
+    text-align: center;
+    padding:5%;
+}
+
+.singlecon .feature-item .image {
+    width:30%;
+    max-width:280px;
+    margin:0 auto;
+}
+
+.singlecon .feature-item .image svg{
+    width:100%;
+    height:100%;
+}
+
+.singlecon .feature-item .image svg path{
+    fill: #00aa96;
+}
+.singlecon .feature-item .image svg .green{
+    fill: #00aa96;
+}
+
+.singlecon .feature-item .title{
+    border:none;
+    color:black;
+    font-size: 0.9em;
+    margin-bottom:0;
+    padding:0;
+    min-width:20px;
+    width:100%;
+    text-align: center;
+}
+
+.singlecon .feature-item .value{
+    color:#00aa96;
+    font-size: 1.1em;
+}
+
+#mapa{
+    margin-top:40px;
+}
 
 
