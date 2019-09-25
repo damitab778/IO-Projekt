@@ -358,7 +358,7 @@ h2
 .singlecon .title
 {
     padding: 1.5vmin 1.5%;
-    margin-bottom: 5vh;
+    margin-bottom: 4vh;
     width:10%;
     min-width:425px;
     margin-left:auto;
@@ -575,9 +575,9 @@ h2
 }
 
 .singlecon .feature-item{
-    width:20%;
+    width:25%;
     text-align: center;
-    padding:5%;
+    padding: 2% 4%;
 }
 
 .singlecon .feature-item .image {
@@ -611,7 +611,7 @@ h2
 
 .singlecon .feature-item .value{
     color:#00aa96;
-    font-size: 1.1em;
+    font-size: 1.5em;
 }
 
 #mapa{

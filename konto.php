@@ -446,7 +446,6 @@
 		<ul>
 			<li><a href="konto.php">Moje konto</a></li>
 			<li><a href="statystyki.php">Statystyki</a></li>
-			<li><a href="#">O nas</a></li>
 			<li><a href="wyloguj.php">Wyloguj</a></li>
 		</ul>
 	</nav>
