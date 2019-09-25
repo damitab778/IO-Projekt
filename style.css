@@ -1,0 +1,621 @@
+*
+{
+    padding: 0;
+    margin:0;
+}
+
+body
+{
+    margin: 0;
+    color: black;
+    font-size: 1.5rem;
+}
+
+header
+{
+    width:100%;
+	padding: 0 0 20px 0;
+}
+
+.logo
+{
+    padding:0.2em 0;
+    font-size:49px;
+    font-family: 'Baloo', cursive;
+    max-width:700px;
+}
+
+.logotext
+{
+    padding: 30px 4%;
+    margin-top:5px;
+    float:left;
+}
+
+.status
+{
+    top:0px;
+    padding: 0 5%;
+    position:absolute;
+    right: 1%;
+}
+
+.zalogowanyjako
+{
+    padding: 3px 10px;
+    background-color: #00aa96;
+    margin-left: auto;
+    color: white;
+    font-size: 20px;
+    text-align: center;
+    width: 200px;
+    font-family: 'Baloo', cursive;
+}
+
+
+
+.container
+{
+    min-width:600px;
+    max-width:1900px;
+    font-family: 'Baloo', cursive;
+    margin: 30px auto;
+    margin-bottom: 110px;
+}
+
+.zielony
+{
+    color: #00aa96;
+}
+
+.zarejestruj
+{
+    float:left;
+    width:40%;
+    font-size:0.9em;
+    line-height:1.5em;
+    text-align: center;
+    padding: 0 5%;
+}
+
+.zarejestruj p 
+{
+    padding:35px;
+    margin:0;
+}
+
+h3
+{
+    margin-top:0px;
+    margin-bottom: 0.4rem;
+    font-weight: normal;
+    padding:10px 35px;
+}
+
+.logowanie 
+{
+    float:left;
+    width:39%;
+    font-size:0.9em;
+    line-height:1.5em;
+    border-left:2px solid #00aa96;
+    text-align:center;
+    padding: 0 5%;
+}
+
+.form_logowanie
+{
+    margin-top:20px;
+}
+
+input[type=text],
+input[type=password],
+input[type=number]
+{
+    width:300px;
+    height: 57px;
+    border:2px solid #ddd;
+    border-radius: 3px;
+    font-size: 20px;
+    padding:10px;
+    box-sizing: border-box;
+    outline: none;
+    margin-bottom:15px;
+}
+
+input[type="checkbox"] 
+{
+    margin:10px;
+    width: 25px;
+    height: 25px;
+    position: relative;
+    top: 4px;
+}
+
+
+form div#regulamin
+{
+    display: inline-block;
+}
+
+input[type=submit],
+input[type=button]
+{
+    width:300px;
+    background-color: #00aa96;
+    font-size:22px;
+    color: white;
+    padding: 15px 10px;
+    margin: 20px 2px 20px 2px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    letter-spacing: 2px;
+    font-family: 'Baloo', cursive;
+    outline: none;
+}
+
+.custom-select
+{
+    width:300px;
+    height: 57px;
+    border:2px solid #ddd;
+    border-radius: 3px;
+    font-size: 20px;
+    padding:10px;
+    box-sizing: border-box;
+    outline: none;
+    margin-bottom:15px;
+}
+
+.zarejestruj>p>a>input[type=submit]
+{
+    margin-top:40px;
+    width:70%;
+    min-width:300px;
+    max-width:500px;
+    font-size:25px;
+}
+
+input[type=submit]:hover,
+input[type=button]:hover
+{
+    background-color:white;
+    color: black;
+    border: 5px solid #00aa96;
+    border-radius: 3px;
+    padding: 10px 10px;
+    transition: all ease-in-out 400ms;
+}
+
+.linkprosty
+{
+    color: black;
+    text-decoration:none;
+}
+
+.linkprosty:hover
+{
+    color:#00aa96;
+}
+
+
+footer
+{
+    bottom:0px;
+    background-color: #00aa96;
+    height: 40px;
+    font-family: 'Baloo', cursive;
+    clear: both;
+    color: white;
+    padding: 10px 0 0 10px;
+    font-size: 20px;
+    position: fixed;
+    width: 100%;
+}
+
+/*rejestracja*/
+
+.error
+{
+    color:red;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.singlecon
+{
+    margin-left:auto;
+    margin-right: auto;
+    text-align:center;
+}
+
+.logo>a
+{
+    color: black;
+    text-decoration: none;
+}
+
+.logo>a:hover
+{
+    color: black;
+    text-decoration: none;
+}
+
+form div.row
+{
+    width: 45%;
+    max-width: 500px;
+    min-width: 480px;
+    margin: auto;
+    margin-bottom: 10px;
+}
+
+form label
+{
+    width:30%;
+    text-align: end;
+    display:block;
+    float:left;
+    margin-right:0px;
+    margin-top: 8px;
+}
+
+form label.dzieckoLabel
+{
+    padding: 110px 0;
+}
+
+form label.secondLabel
+{
+    width: 60%;
+    max-width: 600px;
+    position: relative;
+    left: 5%;
+    text-align: left;
+}
+
+#listaDodawaniaDzieci
+{
+    margin-top: 30px;
+}
+
+form div.dziecko
+{
+    border-top: 2px dashed #00aa96;
+    padding: 20px 0;
+}
+
+/*nav>*/
+
+
+nav
+{ 
+	width: 100%;
+    background-color: #00aa96;
+    font-size: 20px;
+    color: white;
+    font-family: 'Baloo', cursive;
+    text-align:center;
+    height: 55px;
+}
+
+nav ul
+{
+   list-style: none;
+}
+
+nav li
+{
+    display: inline-block;
+    margin-left: 70px;
+    padding: 12px 0;
+
+    position: relative;
+}
+
+nav li:first-child
+{
+    margin-left: 0;
+}
+
+nav a
+{
+    color:white;
+    text-decoration:none;
+    text-transform: uppercase;
+    transition: all ease-in-out 250ms;
+}
+
+nav a:hover 
+{
+    color:black;
+}
+
+nav a::after
+{
+    content: '';
+    display: block;
+    height: 5px;
+    background-color: black;
+
+    position: absolute;
+    bottom:0;
+    width:0%;
+    transition: all ease-in-out 250ms;
+}
+
+nav a:hover::after
+{
+    width:100%;
+}
+
+h2
+{
+    color: #00aa96;
+}
+
+.singlecon .title
+{
+    padding: 1.5vmin 1.5%;
+    margin-bottom: 4vh;
+    width:10%;
+    min-width:425px;
+    margin-left:auto;
+    margin-right:auto;
+    color: #00aa96;
+    text-transform: uppercase;
+    border-bottom: 2px dashed #00aa96;
+    font-size: 1.1em;
+}
+
+.singlecon .line
+{
+    margin-left: auto;
+    margin-right: auto;
+    width:50%;
+    margin-bottom: 1vmin;
+}
+
+.singlecon .tabela
+{
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+
+#btnEdit
+{
+    display:block;
+    width:30px;
+    height:30px;
+    background-repeat: no-repeat;
+    background-position: 5px 5px;
+    background-size: 20px 20px;
+    font-size: 0;
+    background-image: url(img/editicon.png);
+    border-radius: 10%;
+    display: inline-block;
+    background-color: #00aa96;
+    position: absolute;
+    margin-left: 15px;
+    border:none;
+    cursor:pointer;
+}
+
+.btnSmall
+{
+    
+    width:132px !important;
+    height: 55px;
+    font-size: 0.8em !important;
+    margin-top:0 !important;
+    margin-bottom:20px !important;
+}
+
+
+
+.custom-select2
+{
+    height: 57px;
+    border:2px solid #ddd;
+    border-radius: 3px;
+    padding:10px;
+    box-sizing: border-box;
+    outline: none;
+    width:275px;
+    text-align-last: center;
+    padding-right: 29px;
+    font-size: 1.45rem;
+    font-family: 'Baloo', cursive;
+    margin:0;
+}
+
+
+/* Tables
+================================== */
+.Rtable {
+  display: flex;
+  flex-wrap: wrap;
+  margin: .9em auto;
+  padding: 0;
+  width:70%;
+  
+}
+.Rtable-cell {
+  box-sizing: border-box;
+  flex-grow: 1;
+  width: 100%;
+  max-height:50px;
+  padding: 0.2em 0.2em;
+  overflow: hidden;
+  list-style: none;
+  border: solid 1px white;
+  background: #EAEAEA;
+}
+
+.Rtable-cell--head{
+    border-top-left-radius: 5%;
+    border-top-right-radius: 5%;
+    background: #00aa96;
+    color:white;
+  }
+
+.Rtable-cell--first{
+    width:15% !important;
+}
+
+.Rtable-cell--delete{
+    width:15% !important;
+}
+/* Table column sizing
+================================== */
+
+.Rtable--3cols > .Rtable-cell  { width: 42.5%; }
+.Rtable--4cols > .Rtable-cell  { width: 35%; }
+
+
+
+.Rtable-cell--delete>input[type="submit"],
+.Rtable-cell--delete>input[type="button"]{
+    color:red;
+    background-color: #00000000;
+    width: 40px;
+    height: 40px;
+    margin: 0;
+    padding: 0;
+    letter-spacing: 0;
+}
+
+.Rtable-cell--delete>input[type="submit"]:hover,
+.Rtable-cell--delete>input[type="button"]:hover{
+    color:white;
+    background-color: #00000000;
+    width: 40px;
+    height: 40px;
+    margin: 0;
+    padding: 0;
+    border: none;
+    transition: none;
+    font-size: 1.1em;
+}
+
+.Rtable-cell>input[type="number"],
+.Rtable-cell>.custom-select{
+    width:90%;
+    height:40px;
+    margin:0;
+    font-size: 1.45rem;
+    font-family: 'Baloo', cursive;
+    padding: 0 5px;
+}
+
+[id$="--hide"]{
+    display:none;
+}
+
+.przyciski{
+    display:flex;
+    justify-content: space-between;
+    width:70%;
+    margin-left:auto;
+    margin-right:auto;
+    margin-top: 1.5rem;
+}
+
+#btnEditTable::after{
+    content:"";
+    width:30px;
+    height:30px;
+    background-repeat: no-repeat;
+    background-position: 5px 5px;
+    background-size: 20px 20px;
+    font-size: 0;
+    background-image: url(img/editicon.png);
+    border-radius: 10%;
+    float:left;
+    background-color: #00aa96;
+    border:none;
+    margin:2px 8px;
+}
+
+#btnAdd::before{
+    content:"+";
+    width:30px;
+    height:30px;
+    font-size:20px;
+    color:white;
+    border-radius: 10%;
+    float:right;
+    background-color: #00aa96;
+    border:none;
+    margin: 2px 8px;
+}
+
+#btnAdd{
+    cursor:pointer;
+}
+
+#btnEditTable{
+    cursor:pointer;
+}
+
+#childAdder{
+    border-top: 2px dashed #00aa96;
+    padding-top: 1.2rem;
+}
+
+.singlecon .features-wrapper{
+    width:70%;
+    display:flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin: 0 auto;
+}
+
+.singlecon .feature-item{
+    width:25%;
+    text-align: center;
+    padding: 2% 4%;
+}
+
+.singlecon .feature-item .image {
+    width:30%;
+    max-width:280px;
+    margin:0 auto;
+}
+
+.singlecon .feature-item .image svg{
+    width:100%;
+    height:100%;
+}
+
+.singlecon .feature-item .image svg path{
+    fill: #00aa96;
+}
+.singlecon .feature-item .image svg .green{
+    fill: #00aa96;
+}
+
+.singlecon .feature-item .title{
+    border:none;
+    color:black;
+    font-size: 0.9em;
+    margin-bottom:0;
+    padding:0;
+    min-width:20px;
+    width:100%;
+    text-align: center;
+}
+
+.singlecon .feature-item .value{
+    color:#00aa96;
+    font-size: 1.5em;
+}
+
+#mapa{
+    margin-top:40px;
+}
+
+
