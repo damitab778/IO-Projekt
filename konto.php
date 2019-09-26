@@ -541,18 +541,20 @@
 			<div class="title">
 				Dane o użytkowniku:
 			</div>
+
+			<div class="info">
 			<div class="line">
-				Witaj: <span style="font-size: 1.05em; font-weight: 700;"><?php echo$_SESSION['Nick']?></span>!
+				<div class="info-text">Witaj:&nbsp</div><span style="font-size: 1.05em; font-weight: 700;"><?php echo $_SESSION['Nick']?></span>!
 			</div>
 			<div class="line">
-				Liczba dzieci: <span style="font-size: 1.05em; font-weight: 700;">
+				<div class="info-text">Liczba dzieci:</div><span style="font-size: 1.05em; font-weight: 700;">
 				<div id="iledzieci"><?php echo$_SESSION['iloscbach']?></div></span>
 			</div>
 			<div class="line">
-				Twoje województwo: <span id="regionText" style="font-size: 1.05em; font-weight: 700;"><?php echo$_SESSION['jakiewoj']?></span>
+				<div class="info-text">Twoje województwo:&nbsp</div><span id="regionText" style="font-size: 1.05em; font-weight: 700;"><?php echo$_SESSION['jakiewoj']?></span>
 				<a id="btnEdit" onClick="showRegionEditor();"></a>
 			</div>
-			
+			</div>
 				
 				
 					<form method="post" id="formEdit--hide">

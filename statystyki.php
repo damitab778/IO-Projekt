@@ -223,6 +223,7 @@
 					</div>
 				</div>
 			</div>
+			<div class="stat-info">Statystyki dla różnych szkół liczone są z rodzicami mającymi tyle samo dzieci.</div>
 
 			<div id="mapa">
 				<img src="img/poland-map.png">

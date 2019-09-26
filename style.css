@@ -369,12 +369,26 @@ h2
     font-size: 1.1em;
 }
 
+.singlecon .info{
+    display:flex;
+    flex-direction: column;
+}
+
 .singlecon .line
 {
     margin-left: auto;
     margin-right: auto;
     width:50%;
     margin-bottom: 1vmin;
+    justify-content: center;
+}
+
+.singlecon .line .info-text{
+    display: inline-block;
+}
+
+.singlecon .line #iledzieci{
+    display: inline-block;
 }
 
 .singlecon .tabela
@@ -618,4 +632,7 @@ h2
     margin-top:40px;
 }
 
-
+.stat-info{
+    margin-top:30px;
+    font-size: 0.9em;
+}
