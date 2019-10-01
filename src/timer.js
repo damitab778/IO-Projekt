@@ -55,13 +55,6 @@ Timer.prototype.start = function() {
 	self.frameReq = window.requestAnimationFrame(draw);
 }
 
-Timer.prototype.reset = function() {
-	this.running = false;
-	window.cancelAnimationFrame(this.frameReq);
-	this.els.seconds.textContent = this.duration / 1000;
-	this.els.ticker.style.height = null;
-	this.element.classList.remove('countdown--ended');
-}
 
 Timer.prototype.setDuration = function(duration) {
 	this.duration = duration;

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 07 Lip 2019, 23:16
+-- Czas generowania: 25 Wrz 2019, 18:28
 -- Wersja serwera: 10.1.38-MariaDB
 -- Wersja PHP: 7.3.3
 
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Baza danych: `kieszonkowefinal`
+-- Baza danych: `kieszonkowefinal2`
 --
 
 -- --------------------------------------------------------
@@ -46,14 +46,12 @@ INSERT INTO `dziecko` (`ID_dziecko`, `ID_user`) VALUES
 (63, 48),
 (64, 49),
 (65, 49),
+(87, 50),
+(88, 50),
 (91, 50),
 (92, 50),
 (93, 50),
-(94, 50),
-(95, 50),
-(96, 50),
-(97, 50),
-(98, 50);
+(95, 50);
 
 -- --------------------------------------------------------
 
@@ -80,14 +78,12 @@ INSERT INTO `kwota` (`ID_kwota`, `kwota`, `ID_dziecko`) VALUES
 (64, 10, 64),
 (65, 10, 65),
 (85, 10, 85),
+(87, 20, 87),
+(88, 10, 88),
 (91, 10, 91),
-(92, 10, 92),
-(93, 40, 93),
-(94, 80, 94),
-(95, 80, 95),
-(96, 20, 96),
-(97, 20, 97),
-(98, 20, 98);
+(92, 40, 92),
+(93, 70, 93),
+(95, 60, 95);
 
 -- --------------------------------------------------------
 
@@ -114,14 +110,12 @@ INSERT INTO `szkola` (`ID_szkola`, `ID_dziecko`, `Szkola`) VALUES
 (64, 64, 'Podstawowka'),
 (65, 65, 'Podstawowka'),
 (85, 85, 'Podstawowka'),
-(91, 91, 'Gimnazjum'),
-(92, 92, 'Gimnazjum'),
-(93, 93, 'Liceum lub Technikum'),
-(94, 94, 'Podstawowka'),
-(95, 95, 'Szkola wyzsza'),
-(96, 96, 'Podstawowka'),
-(97, 97, 'Podstawowka'),
-(98, 98, 'Podstawowka');
+(87, 87, 'Liceum lub Technikum'),
+(88, 88, 'Podstawowka'),
+(91, 91, 'Szkola wyzsza'),
+(92, 92, 'Szkola wyzsza'),
+(93, 93, 'Gimnazjum'),
+(95, 95, 'Gimnazjum');
 
 -- --------------------------------------------------------
 
@@ -146,7 +140,7 @@ INSERT INTO `uzytkownicy` (`ID_user`, `Nick`, `Haslo`, `Liczba_dzieci`, `ID_woj`
 (47, 'powinnobyc', '$2y$10$RAebjLJniaPaahyY1ZCynuTh.5ubD8g/D2EG.QqVpEWElzm5u2Y0.', 1, 1),
 (48, 'JozekMrozek', '$2y$10$crAHaqSNxYP35QPfrP9vS.gL34r6Fho0uuFrGAesJFLb4xqO0mugK', 4, 1),
 (49, 'Kokonowiczxx', '$2y$10$2KxKeA61m73jlp.pVyU.yOS17FZFqFB1YSJEmUZIveMDaeJuVdire', 2, 4),
-(50, 'MalyJack', '$2y$10$y5hW34gnGUWeKLzCpYJv7uG6eQQ3uf34GaAmA8sitiXLwNOTZMTWq', 8, 1);
+(50, 'MalyJack', '$2y$10$y5hW34gnGUWeKLzCpYJv7uG6eQQ3uf34GaAmA8sitiXLwNOTZMTWq', 6, 7);
 
 -- --------------------------------------------------------
 
@@ -232,19 +226,19 @@ ALTER TABLE `wojewodztwa`
 -- AUTO_INCREMENT dla tabeli `dziecko`
 --
 ALTER TABLE `dziecko`
-  MODIFY `ID_dziecko` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=99;
+  MODIFY `ID_dziecko` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=96;
 
 --
 -- AUTO_INCREMENT dla tabeli `kwota`
 --
 ALTER TABLE `kwota`
-  MODIFY `ID_kwota` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=99;
+  MODIFY `ID_kwota` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=96;
 
 --
 -- AUTO_INCREMENT dla tabeli `szkola`
 --
 ALTER TABLE `szkola`
-  MODIFY `ID_szkola` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=99;
+  MODIFY `ID_szkola` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=96;
 
 --
 -- AUTO_INCREMENT dla tabeli `uzytkownicy`

@@ -56,7 +56,7 @@
 			if($wszystko_OK==true){
 
 				switch($woj){
-				case "dolnoślaskie":
+				case "dolnośląskie":
 				$idwojew=1;
 				break;
 				case "kujawsko-pomorskie":
@@ -170,7 +170,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
 	<meta name="description" content="Serwis pokazujący średnie kieszonkowe dla dziecka pod względem regioniu albo poziomu szkoły, do której uczęszcza. Nie wiesz czy twoje dziecko dostaje dobre kieszonkowe? Sprawdź szybko u nas jaka jest średnia!" />
-	<meta name="keywords" content="kieszonkowe, dziecko, średnia, region, jakie, ile dzieci, ile dać dziecku, szkoła podstawowa, liceum, technikum, studia, szkoła zawodowa, przedszkole" />
+	<meta name="keywords" content="kieszonkowe, dziecko, średnia, region, jakie, ile dzieci, ile dać dziecku, szkoła podstawowa, liceum, technikum, studia, szkoła zawodowa, przedszkole siema jestem michal" />
 
 	<link href="style.css" rel="stylesheet" type="text/css"/>
 	<link href="https://fonts.googleapis.com/css?family=Baloo&amp;subset=latin-ext" rel="stylesheet">
@@ -255,7 +255,12 @@
 						<option>7</option>
 						<option>8</option>
 						<option>9</option>
-						<option>Za dużo</option>
+						<option>10</option>
+						<option>11</option>
+						<option>12</option>
+						<option>13</option>
+						<option>14</option>
+						<option>15</option>
 					</select>
 					<?php
 							if (isset($_SESSION['e_ldzieci']))
